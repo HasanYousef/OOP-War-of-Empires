@@ -1,6 +1,6 @@
-#include "Match.h"
+#include "Menu.h"
 
-void Match::run() {
+void Menu::run() {
 	sf::Event event;
 	sf::Clock clock;
 	sf::Time time;
@@ -8,24 +8,29 @@ void Match::run() {
 	while (window->isOpen()) {
 		time = clock.getElapsedTime();
 		window->pollEvent(event);
-		draw_world(window);
+		draw(window);
 		// checking actions done in the game's window
 		switch (event.type) {
 		case sf::Event::Closed:
 			window->close();
 			break;
+		// handle mouse click
+		case sf::Event::MouseButtonReleased:
+			auto location = window->mapPixelToCoords(
+				{ event.mouseButton.x, event.mouseButton.y }
+			);
+			handle_click(location);
 		}
-		// moving the moveAbleObjects should be here
 	}
 }
 
-void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
+void Menu::draw(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
 	draw_background(window);
 	window->display();
 }
 
-void Match::draw_background(std::shared_ptr<sf::RenderWindow> window) {
+void Menu::draw_background(std::shared_ptr<sf::RenderWindow> window) {
 	auto background = Textures::instance().get_background();
 	sf::Sprite result = sf::Sprite(*background);
 

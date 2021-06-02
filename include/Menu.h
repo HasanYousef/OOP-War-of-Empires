@@ -3,12 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include "Window.h"
 #include "Textures.h"
+#include "Button.h"
 
-class Match {
+class Menu {
 public:
 	void run();
 
 private:
-	void draw_world(std::shared_ptr<sf::RenderWindow>);
+	void draw(std::shared_ptr<sf::RenderWindow>);
 	void draw_background(std::shared_ptr<sf::RenderWindow>);
+
+	std::vector<Button> m_buttons;
 };
