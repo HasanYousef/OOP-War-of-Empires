@@ -1,0 +1,1 @@
+configure_file ("background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
