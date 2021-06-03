@@ -1,1 +1,2 @@
-configure_file ("background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+add_subdirectory (Chars)
+add_subdirectory (UI)

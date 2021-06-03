@@ -19,7 +19,7 @@ void Menu::run() {
 			auto location = window->mapPixelToCoords(
 				{ event.mouseButton.x, event.mouseButton.y }
 			);
-			handle_click(location);
+
 		}
 	}
 }
