@@ -7,8 +7,8 @@
 class Textures {
 public:
 	static Textures& instance();
-	std::shared_ptr<sf::Texture> get_ui_texture(UITexture) const;
-	std::shared_ptr<sf::Texture> get_animation_texture(WorldObjectType, AnimationType, int) const;
+	std::shared_ptr<sf::Texture> get_ui_texture(UITexture);
+	std::shared_ptr<sf::Texture> get_animation_texture(WorldObjectType, AnimationType, int);
 
 private:
 	Textures();

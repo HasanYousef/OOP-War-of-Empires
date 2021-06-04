@@ -11,12 +11,7 @@ std::shared_ptr<sf::RenderWindow> Window::get_window() {
 	return m_window;
 }
 
-sf::Vector2i Window::get_size() {
-	return m_size;
-}
-
 Window::Window() {
-	m_size = {1600, 900};
 	m_window = std::make_shared<sf::RenderWindow>();
-	m_window->create(sf::VideoMode(m_size.x, m_size.y), "Robots of War", sf::Style::Close);
+	m_window->create(sf::VideoMode(), "War of Empires", sf::Style::Fullscreen);
 }

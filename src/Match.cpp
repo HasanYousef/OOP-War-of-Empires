@@ -26,7 +26,7 @@ void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
 }
 
 void Match::draw_background(std::shared_ptr<sf::RenderWindow> window) {
-	auto background = Textures::instance().get_background();
+	/*auto background = Textures::instance().get_background();
 	sf::Sprite result = sf::Sprite(*background);
 
 	int windowHeight = Window::instance().get_size().y;
@@ -36,4 +36,5 @@ void Match::draw_background(std::shared_ptr<sf::RenderWindow> window) {
 		windowHeight / spriteHeight);
 
 	window->draw(result);
+	*/
 }

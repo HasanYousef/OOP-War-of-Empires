@@ -26,19 +26,11 @@ void Menu::run() {
 
 void Menu::draw(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
-	draw_background(window);
+
+	m_background.draw();
+	m_title.draw();
+	m_startButton.draw();
+	m_exitGameButton.draw();
+
 	window->display();
-}
-
-void Menu::draw_background(std::shared_ptr<sf::RenderWindow> window) {
-	auto background = Textures::instance().get_background();
-	sf::Sprite result = sf::Sprite(*background);
-
-	int windowHeight = Window::instance().get_size().y;
-	auto spriteHeight = result.getLocalBounds().height;
-	result.setScale(
-		windowHeight / spriteHeight,
-		windowHeight / spriteHeight);
-
-	window->draw(result);
 }

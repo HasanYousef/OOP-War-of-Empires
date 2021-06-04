@@ -1,0 +1,8 @@
+add_subdirectory (Char_01)
+add_subdirectory (Char_06)
+add_subdirectory (Char_08)
+add_subdirectory (Char_10)
+add_subdirectory (Char_11)
+add_subdirectory (Char_12)
+add_subdirectory (Char_16)
+add_subdirectory (Char_24)

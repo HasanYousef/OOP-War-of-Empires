@@ -7,13 +7,13 @@ Textures& Textures::instance() {
 	return inst;
 }
 
-std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) const {
-	return m_uiTextures[type];
+std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) {
+	return m_uiTextures[int(type)];
 }
 
 std::shared_ptr<sf::Texture> Textures::get_animation_texture(WorldObjectType objType,
-	AnimationType animType, int frame) const {
-	
+	AnimationType animType, int frame) {
+	return m_animations[0][0];
 }
 
 Textures::Textures() {
@@ -21,11 +21,13 @@ Textures::Textures() {
 }
 
 void Textures::load_ui_textures() {
-	for (int i = 0; i < NUM_OF_UI_TEXTURES; i++) {
+	for (int i = 0; i <= NUM_OF_UI_TEXTURES; i++) {
 		std::shared_ptr ptr = std::make_shared<sf::Texture>();
 		m_uiTextures.push_back(ptr);
 	}
-	m_uiTextures[UITexture::StartButton]->loadFromFile("StartButton.png");
-	m_uiTextures[UITexture::SettingsButton]->loadFromFile("SettingsButton.png");
-	m_uiTextures[UITexture::ExitGameButton]->loadFromFile("ExitGameButton.png");
+
+	m_uiTextures[int(UITexture::MenuBackground)]->loadFromFile("menu-background.png");
+	m_uiTextures[int(UITexture::GameTitle)]->loadFromFile("game-title.png");
+	m_uiTextures[int(UITexture::StartButton)]->loadFromFile("start-button.png");
+	m_uiTextures[int(UITexture::ExitGameButton)]->loadFromFile("exit-game-button.png");
 }
