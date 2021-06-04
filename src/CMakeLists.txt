@@ -3,11 +3,11 @@
 "Match.cpp"
 "Menu.cpp"
 "Window.cpp"
+"Sounds.cpp"
 "Textures.cpp"
 "Animation.cpp"
 "UIobject.cpp"
 "MenuBackground.cpp"
-"GameTitle.cpp"
 "Button.cpp"
 "StartButton.cpp"
 "ExitGameButton.cpp")

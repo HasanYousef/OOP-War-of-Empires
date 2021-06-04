@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Window.h"
+#include "Sounds.h"
 #include "Textures.h"
 
 class Match {
@@ -10,5 +11,4 @@ public:
 
 private:
 	void draw_world(std::shared_ptr<sf::RenderWindow>);
-	void draw_background(std::shared_ptr<sf::RenderWindow>);
 };

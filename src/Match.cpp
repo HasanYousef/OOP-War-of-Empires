@@ -5,6 +5,11 @@ void Match::run() {
 	sf::Clock clock;
 	sf::Time time;
 	std::shared_ptr<sf::RenderWindow> window = Window::instance().get_window();
+
+	std::shared_ptr<sf::Sound> music = Sounds::instance().getSound(SoundType::InGameMusic);
+	music->play();
+	music->setLoop(true);
+
 	while (window->isOpen()) {
 		time = clock.getElapsedTime();
 		window->pollEvent(event);
@@ -21,20 +26,6 @@ void Match::run() {
 
 void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
-	draw_background(window);
+
 	window->display();
-}
-
-void Match::draw_background(std::shared_ptr<sf::RenderWindow> window) {
-	/*auto background = Textures::instance().get_background();
-	sf::Sprite result = sf::Sprite(*background);
-
-	int windowHeight = Window::instance().get_size().y;
-	auto spriteHeight = result.getLocalBounds().height;
-	result.setScale(
-		windowHeight / spriteHeight,
-		windowHeight / spriteHeight);
-
-	window->draw(result);
-	*/
 }
