@@ -10,4 +10,10 @@
 "MenuBackground.cpp"
 "Button.cpp"
 "StartButton.cpp"
-"ExitGameButton.cpp")
+"ExitGameButton.cpp"
+
+"Empire.cpp"
+"WorldObject.cpp"
+"AnimatedObject.cpp"
+"LiveObject.cpp"
+"LiveAnimatedObject.cpp")
