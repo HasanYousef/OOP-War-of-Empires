@@ -27,6 +27,7 @@ void Textures::load_ui_textures() {
 	}
 
 	m_uiTextures[int(UITexture::MenuBackground)]->loadFromFile("menu-background.png");
+	m_uiTextures[int(UITexture::MatchBackground)]->loadFromFile("match-background.png");
 	m_uiTextures[int(UITexture::StartButton)]->loadFromFile("start-button.png");
 	m_uiTextures[int(UITexture::ExitGameButton)]->loadFromFile("exit-game-button.png");
 }

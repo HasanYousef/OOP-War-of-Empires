@@ -21,4 +21,4 @@ sf::Sprite LiveAnimatedObject::create() const {
 	// 40 = width of texture, 50 = height of texture
 	result.setTextureRect(sf::IntRect(40, 0, 40 * AnimatedObject::get_object_team(), 50));
 	return result;
-}\
+}

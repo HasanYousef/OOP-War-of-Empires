@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Sounds.h"
 #include "Textures.h"
+#include "MatchBackground.h"
 
 class Match {
 public:
@@ -11,4 +12,5 @@ public:
 
 private:
 	void draw_world(std::shared_ptr<sf::RenderWindow>);
+	MatchBackground m_background;
 };

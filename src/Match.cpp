@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Match.h"
 
 void Match::run() {
@@ -26,6 +28,8 @@ void Match::run() {
 
 void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
+
+	m_background.draw();
 
 	window->display();
 }

@@ -12,8 +12,4 @@
 "StartButton.cpp"
 "ExitGameButton.cpp"
 
-"Empire.cpp"
-"WorldObject.cpp"
-"AnimatedObject.cpp"
-"LiveObject.cpp"
-"LiveAnimatedObject.cpp")
+"MatchBackground.cpp")

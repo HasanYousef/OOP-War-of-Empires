@@ -23,6 +23,7 @@ const int NUM_OF_UI_TEXTURES = 3;
 enum class UITexture {
 
 	MenuBackground,
+	MatchBackground,
 
 	StartButton,
 	ExitGameButton,
