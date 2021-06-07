@@ -19,7 +19,7 @@ enum class AnimationType {
 
 };
 
-const int NUM_OF_UI_TEXTURES = 3;
+const int NUM_OF_UI_TEXTURES = 4;
 enum class UITexture {
 
 	MenuBackground,

@@ -22,7 +22,12 @@ void Match::run() {
 			window->close();
 			break;
 		}
-		// moving the moveAbleObjects should be here
+		// We move the fighters 
+		/*playerEmpire.moveFighters(enemyEmpire.getCastle().getPosition(),
+			enemyEmpire.getFirstFighter().getPosition());
+		enemyEmpire.moveFighters(playerEmpire.getCastle().getPosition(),
+			playerEmpire.getFirstFighter().getPosition());
+			*/
 	}
 }
 
@@ -30,6 +35,8 @@ void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
 
 	m_background.draw();
+	//playerEmpire.draw(window);
+	//enemyEmpire.draw(window);
 
 	window->display();
 }
