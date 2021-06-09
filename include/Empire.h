@@ -1,23 +1,25 @@
 #pragma once
 
-#include<forward_list>
 #include<memory>
 #include <list>
-#include "Base.h"
-#include "LiveAnimatedObject.h"
+#include "Castle.h"
+#include "Fighter.h"
 #include "Window.h"
 
 class Empire {
 public:
 	void draw() const;
-	void addFighter(LiveAnimatedObject&);
-	void moveFighters(sf::Vector2f&, &sf::Vector2f);
+	void addFighter(Fighter&);
+	void moveFighters(Castle&, Fighter&);
 	void draw(std::shared_ptr<sf::RenderWindow>);
+	void attackFighters(Castle&, Fighter&);
+	void collectDead();
 	//---get-functions----------
-	sf::Sprite getCastle() const;
-	sf::Sprite getFirstFighter() const;
+	Castle getCastle();
+	Fighter getFirstFighter();
 
 private:
-	std::list <std::shared_ptr <LiveAnimatedObject>> m_fighters;
-	Base m_castle;
+	int m_money = 0;
+	std::list <std::shared_ptr <Fighter>> m_fighters;
+	std::shared_ptr <Castle> m_castle;
 };

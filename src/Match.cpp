@@ -22,12 +22,22 @@ void Match::run() {
 			window->close();
 			break;
 		}
+		//need to add menue of players
+
+		//we get the castles and the front fighter os the empires
+		auto castlePlayer = m_playerEmpire.getCastle();
+		auto castleEnemy = m_enemyEmpire.getCastle();
+		auto firstFighterEnemy = m_enemyEmpire.getFirstFighter();
+		auto firstFighterPlayer = m_playerEmpire.getFirstFighter();
 		// We move the fighters 
-		/*playerEmpire.moveFighters(enemyEmpire.getCastle().getPosition(),
-			enemyEmpire.getFirstFighter().getPosition());
-		enemyEmpire.moveFighters(playerEmpire.getCastle().getPosition(),
-			playerEmpire.getFirstFighter().getPosition());
-			*/
+		m_playerEmpire.moveFighters(castleEnemy, firstFighterEnemy);
+		m_enemyEmpire.moveFighters(castlePlayer, firstFighterPlayer);
+		// we let the fighters attack each others
+		m_playerEmpire.attackFighters(castleEnemy, firstFighterEnemy);
+		m_enemyEmpire.attackFighters(castlePlayer, firstFighterPlayer);
+		// collect the dead
+		m_playerEmpire.collectDead();
+		m_enemyEmpire.collectDead();
 	}
 }
 
@@ -35,8 +45,8 @@ void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
 	window->clear();
 
 	m_background.draw();
-	//playerEmpire.draw(window);
-	//enemyEmpire.draw(window);
+	m_playerEmpire.draw(window);
+	m_enemyEmpire.draw(window);
 
 	window->display();
 }

@@ -2,17 +2,9 @@
 #include "LiveObject.h"
 
 //-------------------------------------------------
-LiveObject::LiveObject() {}
-
-LiveObject::LiveObject(const WorldObjectType& type, const sf::Vector2f& p,
+LiveObject::LiveObject(const sf::Vector2f& p,
 	const int& objectTeam, const int& health)
-	: WorldObject(type, p, objectTeam), m_health(health) {}
-
-//-------------------------------------------------
-//this func draw the object
-void LiveObject::draw(sf::RenderWindow& window) const {
-	window.draw(create());
-}
+	: WorldObject(p, objectTeam), m_health(health) {}
 
 //-------------------------------------------------
 int LiveObject::getHealth()const {
@@ -34,6 +26,7 @@ bool LiveObject::getDamaged(const int& damage) {
 
 //-------------------------------------------------
 //we creat the texture that we want to print it 
+/*
 sf::Sprite LiveObject::create() const {
 	sf::Sprite result = sf::Sprite(*Textures::instance().
 		get_texture(get_type()));
@@ -42,4 +35,4 @@ sf::Sprite LiveObject::create() const {
 	// 40 = width of texture, 50 = height of texture
 	result.setTextureRect(sf::IntRect(40, 0, 40 * get_object_team(), 50));
 	return result;
-}
+} */

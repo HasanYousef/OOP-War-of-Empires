@@ -3,17 +3,16 @@
 
 class AnimatedObject : public WorldObject {
 public:
-	AnimatedObject();
-	AnimatedObject(const WorldObjectType&, const sf::Vector2f&);
-	AnimatedObject(const WorldObjectType&, const sf::Vector2f&, const int&);
+	AnimatedObject() = default ;
+	AnimatedObject(const sf::Vector2f&);
+	AnimatedObject(const sf::Vector2f&, const bool&);
 
-	void draw(sf::RenderWindow&) const;
 	void setAnimationType(const AnimationType&);
-	AnimationType getCurrentAnimationType() const;
-	AnimationType getLastAnimationType() const;
+	AnimationType getAnimationType() const;
 
 	//---build-body-----------
-	virtual sf::Sprite create() const;
+	virtual sf::Sprite create() const = 0;
+	virtual void draw(sf::RenderWindow&) const = 0;
 private:
-	AnimationType m_currentAnimationType, m_lastAnimationType;
+	AnimationType m_animationType;
 };

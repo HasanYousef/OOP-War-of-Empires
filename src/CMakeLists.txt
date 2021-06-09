@@ -14,9 +14,9 @@
 
 "Match.cpp"
 "MatchBackground.cpp"
-#"WorldObject.cpp"
-#"AnimatedObject.cpp"
-#"LiveObject.cpp"
-#"LiveAnimatedObject.cpp"
-#"Empire.cpp"
+"WorldObject.cpp"
+"AnimatedObject.cpp"
+"LiveObject.cpp"
+"Fighter.cpp"
+"Empire.cpp"
 )

@@ -3,35 +3,60 @@
 #include <Empire.h>
 
 void Empire::draw() const {
-	for (std::shared_ptr <LiveAnimatedObject> f : m_fighters) {
+	for (std::shared_ptr <Fighter> f : m_fighters) {
 		(Window::instance().get_window())->draw(f->create());
 	}
 }
 
-void Empire::addFighter(LiveAnimatedObject& fighter) {
-	m_fighters.push_front(fighter);
+void Empire::addFighter(Fighter& fighter) {
+	m_fighters.push_back(fighter);
 }
 
-void Empire::moveFighters(sf::Vector2f &castlePoints, sf::Vector2f &lastFighter) {
-	if(!(castlePoints == m_fighters.back().get()->create().get_position() || 
-		m_fighters.back().get()->create().get_position() == lastFighter)) {
-		for (auto& fighter : m_fighters) {
-			//fighter.get()->move(); /****** ADD MOVE FUNCTION ON LiveAnimatedObject ******/
+void Empire::moveFighters(Castle &castle, Fighter &fighter) {
+	bool firstFighter = true;
+	for (auto& fighter : m_fighters) {
+		if (firstFighter) {
+			firstFighter = false;
+			fighter.get()->move(castle, fighter, NULL);
+		}
+		else {
+			auto frontFighter = fighter;
+			fighter.get()->move(castle, fighter, frontFighter.get());
 		}
 	}
 }
 
 void Empire::draw(std::shared_ptr<sf::RenderWindow> window) {
-	m_castle.draw(window);
+	m_castle.draw();
 	for (auto& fighter : m_fighters) {
-		fighter.get()->draw(window);
+		fighter.get()->draw();
 	}
 }
 
-sf::Sprite Empire::getCastle() const{
-	return m_castle.create();
+void Empire::attackFighters(Castle &castle,Fighter& firstEnemy) {
+	for (auto& fighter : m_fighters) {
+		fighter.get()->attack(castle, firstEnemy);
+		if (firstEnemy->getHealth() <= DIE || castle->getHealth() <= DIE) {
+			return;
+		}
+	}
 }
 
-sf::Sprite Empire::getFirstFighter() const {
-	return m_fighters.back().get()->create;
+void Empire::collectDead() {
+	for (auto& fighter : m_fighters) {
+		if (fighter.get().fullyDead()) {
+			m_money += fighter.getGoldWorth();
+			m_fighters.remove(fighter);
+		}
+	}
+	/*m_fighters.remove_if([](Fighter& fighter) { return 
+	(fighter.getHealth() == 0 && fighter.getAnimationType() == AnimationType::Idle)});*/
+}
+
+Castle Empire::getCastle() {
+	return m_castle.get();
+}
+
+Fighter Empire::getFirstFighter() {
+	return m_fighters.back().get();
 }
