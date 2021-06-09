@@ -1,5 +1,5 @@
 #pragma once
-/*
+
 #include <SFML/Graphics.hpp>
 
 #include "macros.h"
@@ -7,14 +7,13 @@
 
 class Animation {
 public:
-	static Animation& instance();
-	void update(float);
-	sf::IntRect get_rect(ObjectType) const;
+	void set_anim_type(AnimationType);
+	std::shared_ptr <sf::Texture> get_texture() const;
+	AnimationType update(float);
 
 private:
-	Animation();
-
-	int m_totalTime = 0,
-		m_currentImage = 0;
+	FighterType m_fighterType;
+	AnimationType m_currAnim = AnimationType::Idle;
+	float m_totalTime = 0;
+	int m_currFrame = 0;
 };
-*/

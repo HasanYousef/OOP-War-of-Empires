@@ -14,9 +14,17 @@ enum class WorldObjectType {
 
 };
 
-const int NUM_OF_ANIMATION_TYPES = 0;
-enum class AnimationType {
+const int NUM_OF_FIGHTER_TYPES = 0;
+enum class FighterType {
 
+};
+
+const int NUM_OF_ANIMATION_TYPES = 4;
+enum class AnimationType {
+	Idle,
+	Walk,
+	Attack,
+	Die,
 };
 
 const int NUM_OF_UI_TEXTURES = 4;

@@ -7,13 +7,17 @@ Textures& Textures::instance() {
 	return inst;
 }
 
-std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) {
+std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) const {
 	return m_uiTextures[int(type)];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_animation_texture(WorldObjectType objType,
-	AnimationType animType, int frame) {
-	return m_animations[0][0];
+std::shared_ptr<sf::Texture> Textures::get_animation_texture(FighterType fighter,
+	AnimationType animType, int frame) const {
+	return m_animations[int(fighter)][int(animType)][frame];
+}
+
+int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) const {
+	return m_animations[int(fighter)][int(animType)].size();
 }
 
 Textures::Textures() {

@@ -1,23 +1,28 @@
 #pragma once
-/*
+
 #include "Animation.h"
 
-Animation& Animation::instance() {
-	static Animation inst;
-	return inst;
+void Animation::set_anim_type(AnimationType anim) {
+	m_currAnim = anim;
+	m_currFrame = 0;
 }
 
-void Animation::update(float deltaTime) {
+std::shared_ptr <sf::Texture> Animation::get_texture() const {
+	return Textures::instance().get_animation_texture(m_fighterType, m_currAnim, m_currFrame);
+}
+
+AnimationType Animation::update(float deltaTime) {
 	m_totalTime += deltaTime;
 
 	if (m_totalTime >= ANIMATION_SWITCH_TIME) {
 		m_totalTime -= ANIMATION_SWITCH_TIME;
-		m_currentImage++;
-		if (m_currentImage >= ANIMATION_IMAGE_COUNT)
-			m_currentImage = 0;
+		m_currFrame++;
+		if (m_currFrame >= Textures::instance().num_of_anim_frames(m_fighterType, m_currAnim)) {
+			m_currFrame = 0;
+			if (m_currAnim == AnimationType::Attack || m_currAnim == AnimationType::Die)
+				m_currAnim = AnimationType::Idle;
+		}
 	}
-}
 
-sf::IntRect Animation::get_rect(WorldObjectType object, ) const {
-	Textures::instance().get_animation_texture()
-}*/
+	return m_currAnim;
+}
