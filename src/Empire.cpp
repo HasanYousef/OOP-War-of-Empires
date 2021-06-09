@@ -2,50 +2,45 @@
 
 #include <Empire.h>
 
-void Empire::draw() const {
-	for (std::shared_ptr <Fighter> f : m_fighters) {
-		(Window::instance().get_window())->draw(f->create());
-	}
-}
-
-void Empire::addFighter(Fighter& fighter) {
+void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_back(fighter);
 }
 
-void Empire::moveFighters(Castle &castle, Fighter &fighter) {
+void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fighter> enemyFighter) {
 	bool firstFighter = true;
-	for (auto& fighter : m_fighters) {
+	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		if (firstFighter) {
 			firstFighter = false;
-			fighter.get()->move(castle, fighter, NULL);
+			fighter->get()->move(NULL, enemyFighter, castle);
 		}
 		else {
-			auto frontFighter = fighter;
-			fighter.get()->move(castle, fighter, frontFighter.get());
+			auto frontFighter = std::next(fighter);
+			fighter->get()->move(*frontFighter, enemyFighter, castle);
 		}
 	}
 }
 
-void Empire::draw(std::shared_ptr<sf::RenderWindow> window) {
-	m_castle.draw();
+void Empire::draw(float delta) const {
+	//m_castle.draw();
 	for (auto& fighter : m_fighters) {
-		fighter.get()->draw();
+		fighter->draw(delta);
 	}
 }
-
-void Empire::attackFighters(Castle &castle,Fighter& firstEnemy) {
+/*
+void Empire::attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>) {
 	for (auto& fighter : m_fighters) {
-		fighter.get()->attack(castle, firstEnemy);
-		if (firstEnemy->getHealth() <= DIE || castle->getHealth() <= DIE) {
+		fighter->attack(firstEnemy, castle);
+		if (firstEnemy.getHealth() <= DIE || castle->getHealth() <= DIE) {
 			return;
 		}
 	}
 }
+*/
 
 void Empire::collectDead() {
-	for (auto& fighter : m_fighters) {
-		if (fighter.get().fullyDead()) {
-			m_money += fighter.getGoldWorth();
+	for (auto fighter : m_fighters) {
+		if (fighter->fullyDead()) {
+			m_money += fighter->getGoldWorth();
 			m_fighters.remove(fighter);
 		}
 	}
@@ -53,10 +48,11 @@ void Empire::collectDead() {
 	(fighter.getHealth() == 0 && fighter.getAnimationType() == AnimationType::Idle)});*/
 }
 
-Castle Empire::getCastle() {
-	return m_castle.get();
+std::shared_ptr <Castle> Empire::getCastle() {
+	return m_castle;
 }
 
-Fighter Empire::getFirstFighter() {
-	return m_fighters.back().get();
+std::shared_ptr <Fighter> Empire::getFirstFighter() {
+	return (m_fighters.size() > 0) ? m_fighters.back() : NULL;
+
 }

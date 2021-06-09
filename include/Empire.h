@@ -8,15 +8,14 @@
 
 class Empire {
 public:
-	void draw() const;
-	void addFighter(Fighter&);
-	void moveFighters(Castle&, Fighter&);
-	void draw(std::shared_ptr<sf::RenderWindow>);
-	void attackFighters(Castle&, Fighter&);
+	void addFighter(std::shared_ptr <Fighter>);
+	void moveFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
+	void draw(float) const;
+	//void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void collectDead();
-	//---get-functions----------
-	Castle getCastle();
-	Fighter getFirstFighter();
+
+	std::shared_ptr <Castle> getCastle();
+	std::shared_ptr <Fighter> getFirstFighter();
 
 private:
 	int m_money = 0;

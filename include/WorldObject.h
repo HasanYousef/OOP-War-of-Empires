@@ -2,6 +2,7 @@
 #include "macros.h"
 #include <SFML/Graphics.hpp>
 #include "Textures.h"
+#include "Window.h"
 
 class WorldObject {
 public:
@@ -15,8 +16,8 @@ public:
 	bool get_object_team() const;
 
 	//---build-body-----------
-	virtual void draw(sf::RenderWindow&) const = 0;
-	virtual sf::Sprite create() const = 0;
+	virtual void draw(float) const = 0;
+	virtual sf::Sprite create(float) const = 0;
 private:
 	sf::Vector2f m_position;
 	bool m_objectTeam; // "true" - if on ally team, "false" if on enemy team

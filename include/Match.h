@@ -12,9 +12,7 @@ public:
 	void run();
 
 private:
-	void draw_world(std::shared_ptr<sf::RenderWindow>);
+	void draw_world(float);
 	MatchBackground m_background;
-	//---Members----------
 	Empire m_enemyEmpire, m_playerEmpire;
-	// vector of buttons for fighters
 };

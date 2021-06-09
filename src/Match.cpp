@@ -15,7 +15,7 @@ void Match::run() {
 	while (window->isOpen()) {
 		time = clock.getElapsedTime();
 		window->pollEvent(event);
-		draw_world(window);
+		draw_world(1.0);
 		// checking actions done in the game's window
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -24,29 +24,24 @@ void Match::run() {
 		}
 		//need to add menue of players
 
-		//we get the castles and the front fighter os the empires
-		auto castlePlayer = m_playerEmpire.getCastle();
-		auto castleEnemy = m_enemyEmpire.getCastle();
-		auto firstFighterEnemy = m_enemyEmpire.getFirstFighter();
-		auto firstFighterPlayer = m_playerEmpire.getFirstFighter();
 		// We move the fighters 
-		m_playerEmpire.moveFighters(castleEnemy, firstFighterEnemy);
-		m_enemyEmpire.moveFighters(castlePlayer, firstFighterPlayer);
+		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
+		m_enemyEmpire.moveFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
 		// we let the fighters attack each others
-		m_playerEmpire.attackFighters(castleEnemy, firstFighterEnemy);
-		m_enemyEmpire.attackFighters(castlePlayer, firstFighterPlayer);
+		//m_playerEmpire.attackFighters(*m_enemyEmpire.getCastle(), *m_enemyEmpire.getFirstFighter());
+		//m_enemyEmpire.attackFighters(*m_playerEmpire.getCastle(), *m_playerEmpire.getFirstFighter());
 		// collect the dead
 		m_playerEmpire.collectDead();
 		m_enemyEmpire.collectDead();
 	}
 }
 
-void Match::draw_world(std::shared_ptr<sf::RenderWindow> window) {
-	window->clear();
+void Match::draw_world(float delta) {
+	Window::instance().get_window()->clear();
 
 	m_background.draw();
-	m_playerEmpire.draw(window);
-	m_enemyEmpire.draw(window);
+	m_playerEmpire.draw(delta);
+	m_enemyEmpire.draw(delta);
 
-	window->display();
+	Window::instance().get_window()->display();
 }

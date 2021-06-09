@@ -11,8 +11,8 @@ public:
 	AnimationType getAnimationType() const;
 
 	//---build-body-----------
-	virtual sf::Sprite create() const = 0;
-	virtual void draw(sf::RenderWindow&) const = 0;
+	virtual void draw(float) const = 0;
+	virtual sf::Sprite create(float) const = 0;
 private:
 	AnimationType m_animationType;
 };

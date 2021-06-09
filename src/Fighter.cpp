@@ -4,7 +4,8 @@
 Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& health, 
 	const float& defaultAttack, const float& defaultGoldWorth)
 	: AnimatedObject(p, objectTeam), LiveObject(p, objectTeam, health)
-	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth){
+	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth),
+	m_lastMovement(){
 	// applying speed limits ------------------------------------------
 	/*
 	if (movementSpeed > MAX_MOVEMENT_SPEED &&
@@ -31,4 +32,12 @@ const float& Fighter::getLevel() const {
 
 const float& Fighter::getDefaultAttack() const {
 	return m_defaultAttack;
+}
+
+bool Fighter::fullyDead() const {
+	return (getHealth() <= 0 && getAnimationType() == AnimationType::Idle) ? true : false;
+}
+
+float Fighter::getGoldWorth() const {
+	return m_defaultGoldWorth;
 }
