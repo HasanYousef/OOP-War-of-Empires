@@ -5,9 +5,13 @@
 #include "Castle.h"
 #include "Fighter.h"
 #include "Window.h"
+#include "MeleeFighter.h"
 
 class Empire {
 public:
+	Empire() {
+		
+	}
 	void addFighter(std::shared_ptr <Fighter>);
 	void moveFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void draw(float) const;

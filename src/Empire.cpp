@@ -3,20 +3,28 @@
 #include <Empire.h>
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
-	m_fighters.push_back(fighter);
+	m_fighters.push_front(fighter);
 }
 
 void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fighter> enemyFighter) {
-	bool firstFighter = true;
+	int fighternum = 0;
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
-		if (firstFighter) {
-			firstFighter = false;
-			//fighter->get()->move(NULL, enemyFighter, castle);
+		if (fighternum == m_fighters.size() - 1) {
+			fighter->get()->move(NULL, enemyFighter, castle);
 		}
-		else {
-			auto frontFighter = std::next(fighter);
-			//fighter->get()->move(*frontFighter, enemyFighter, castle);
+		else if(fighternum < m_fighters.size()) {
+			try
+			{
+				auto frontFighter = *std::next(fighter);
+				fighter->get()->move(frontFighter, enemyFighter, castle);
+			}
+			catch (const std::exception&)
+			{
+
+			}
+			
 		}
+		fighternum++;
 	}
 }
 
@@ -31,6 +39,7 @@ void Empire::attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>)
 	for (auto& fighter : m_fighters) {
 		fighter->attack(firstEnemy, castle);
 		if (firstEnemy.getHealth() <= DIE || castle->getHealth() <= DIE) {
+			m_money += firstEnemy->getGoldWorth();
 			return;
 		}
 	}
@@ -40,7 +49,6 @@ void Empire::attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>)
 void Empire::collectDead() {
 	for (auto fighter : m_fighters) {
 		if (fighter->fullyDead()) {
-			m_money += fighter->getGoldWorth();
 			m_fighters.remove(fighter);
 		}
 	}

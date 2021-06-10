@@ -13,7 +13,6 @@ void Match::run() {
 	music->play();
 	music->setLoop(true);
 
-
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
@@ -23,13 +22,15 @@ void Match::run() {
 		case sf::Event::Closed:
 			window->close();
 			break;
+		case sf::Event::KeyPressed:
+			m_enemyEmpire.addFighter((std::make_shared<MeleeFighter>
+				(sf::Vector2f(100 + 1090, 927), false, 100, 10, 10)));
+			m_playerEmpire.addFighter((std::make_shared<MeleeFighter>
+				(sf::Vector2f(100 , 927), true, 100, 10, 10)));
 		}
 		//need to add menue of players
-		for (int i = 0; i < 10; i++) {
-			std::shared_ptr <MeleeFighter> f = std::make_shared<MeleeFighter>();
-			std::shared_ptr <Castle> c = std::make_shared<Castle>();
-			m_fighters[i]->move(f, f, c);
-		}
+
+
 		// We move the fighters 
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.moveFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
@@ -49,11 +50,6 @@ void Match::draw_world(float delta) {
 	m_floor.draw(0);
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
-
-	
-	for (int i = 0; i < 10; i++) {
-		m_fighters[i]->draw(delta);
-	}
 
 	Window::instance().get_window()->display();
 }

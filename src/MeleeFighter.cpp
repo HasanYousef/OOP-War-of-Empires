@@ -4,7 +4,7 @@
 MeleeFighter::MeleeFighter(const sf::Vector2f& p, const int& objectTeam, const int& health, 
 	const float& defaultAttack, const float& defaultGoldWorth)
 	: Fighter(p, objectTeam, health, defaultAttack, defaultGoldWorth), 
-	m_animation(std::make_shared<Animation>(FighterType::Shooter2)){}
+	m_animation(std::make_shared<Animation>(FighterType::Tank1)){}
 
 
 //-------------------------------------------------

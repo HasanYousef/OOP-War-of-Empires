@@ -8,16 +8,9 @@
 #include "Floor.h"
 #include "Empire.h"
 
-#include "MeleeFighter.h" // @$#%@#$%@#$%@#$%@#$%
-
 class Match {
 public:
-	Match() : m_floor({0, 1015}) {
-		for (int i = 0; i < 10; i++) {
-			int x = 100 + i * 90;
-			m_fighters.push_back(new MeleeFighter(sf::Vector2f(x, 927), true, 100, 10, 10));
-		}
-	}
+	Match() : m_floor({ 0, 1015 }) {}
 	void run();
 
 private:
@@ -25,5 +18,4 @@ private:
 	MatchBackground m_background;
 	Floor m_floor;
 	Empire m_enemyEmpire, m_playerEmpire;
-	std::vector <MeleeFighter*> m_fighters;
 };
