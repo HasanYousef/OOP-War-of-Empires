@@ -16,11 +16,11 @@ public:
 	bool fullyDead() const;
 	float getGoldWorth() const;
 
-	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
+	/*virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
 		const std::shared_ptr<Castle>& Castle) = 0;
 	virtual void move(const std::shared_ptr<Fighter> nextAlly,
 		const std::shared_ptr<Fighter> firstEnemy,
-		const std::shared_ptr<Castle> Castle) = 0;
+		const std::shared_ptr<Castle> Castle) = 0;*/
 	virtual void draw(float) const = 0;
 	virtual sf::Sprite create(float) const = 0;
 

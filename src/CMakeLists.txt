@@ -18,5 +18,7 @@
 "AnimatedObject.cpp"
 "LiveObject.cpp"
 "Fighter.cpp"
+"MeleeFighter.cpp"
 "Empire.cpp"
+"Floor.cpp"
 )

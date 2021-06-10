@@ -33,18 +33,18 @@ void Textures::load_ui_textures() {
 
 	m_uiTextures[int(UITexture::MenuBackground)]->loadFromFile("menu-background.png");
 	m_uiTextures[int(UITexture::MatchBackground)]->loadFromFile("match-background.png");
+	m_uiTextures[int(UITexture::Floor)]->loadFromFile("floor.png");
 	m_uiTextures[int(UITexture::StartButton)]->loadFromFile("start-button.png");
 	m_uiTextures[int(UITexture::ExitGameButton)]->loadFromFile("exit-game-button.png");
 }
 
 void Textures::load_anim_textures() {
-	for (int i = 0; i <= NUM_OF_FIGHTER_TYPES; i++) {
+	for (int i = 0; i < NUM_OF_FIGHTER_TYPES; i++) {
 		std::vector <std::vector <std::shared_ptr <sf::Texture>>> fighter;
 		FighterType fighterType = FighterType(i);
 
-		std::string fighterFileName = fighter_file_name(fighterType);
-
-		for (int j = 0; j <= NUM_OF_ANIMATION_TYPES; j++) {
+		for (int j = 0; j < NUM_OF_ANIMATION_TYPES; j++) {
+			std::string fighterFileName = fighter_file_name(fighterType);
 			AnimationType animationType = AnimationType(j);
 			// just the Tank1 and the Tank2 fighters have Attack animations
 			if(animationType == AnimationType::Attack)
@@ -56,14 +56,14 @@ void Textures::load_anim_textures() {
 			int frame = 0;
 			while (true) {
 				anim.push_back(std::make_shared<sf::Texture>());
-				if (!anim[frame]->loadFromFile(fighterFileName + std::to_string(frame))) {
+				if (!anim[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
 					anim.pop_back();
 					break;		// stop reading more frames when there is no more
 				}
-				j++;
+				frame++;
 			}
 
-			m_animations[j].push_back(anim);
+			fighter.push_back(anim);
 		}
 		m_animations.push_back(fighter);
 	}

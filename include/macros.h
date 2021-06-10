@@ -15,7 +15,7 @@ const float MIN_ATTACK_SPEED = 3000;
 const bool LEFT_TEAM = true;
 const bool RIGHT_TEAM = false;
 
-const float ANIMATION_SWITCH_TIME = 0.2f,
+const float ANIMATION_SWITCH_TIME = 0.1f,
 SPEED = 0.1f;
 
 const int NUM_OF_SOUNDS = 2;
@@ -29,7 +29,7 @@ enum class WorldObjectType {
 
 };
 
-const int NUM_OF_FIGHTER_TYPES = 0;
+const int NUM_OF_FIGHTER_TYPES = 5;
 enum class FighterType {
 
 	Tank1,
@@ -49,11 +49,12 @@ enum class AnimationType {
 	Attack,		// just Tank1 and Tank2 have this animation
 };
 
-const int NUM_OF_UI_TEXTURES = 4;
+const int NUM_OF_UI_TEXTURES = 5;
 enum class UITexture {
 
 	MenuBackground,
 	MatchBackground,
+	Floor,
 
 	StartButton,
 	ExitGameButton,

@@ -3,10 +3,10 @@
 
 //-------------------------------------------------
 AnimatedObject::AnimatedObject(const sf::Vector2f& p) 
-	: WorldObject(p), m_animationType(AnimationType::Idle){}
+	: WorldObject(p), m_animationType(AnimationType::Walk){}
 
 AnimatedObject::AnimatedObject(const sf::Vector2f& p, const bool& objectTeam)
-	: WorldObject(p, objectTeam), m_animationType(AnimationType::Idle){}
+	: WorldObject(p, objectTeam), m_animationType(AnimationType::Walk){}
 
 //-------------------------------------------------
 void AnimatedObject::setAnimationType(const AnimationType& newAnimationType){

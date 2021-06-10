@@ -11,11 +11,11 @@ void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Figh
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		if (firstFighter) {
 			firstFighter = false;
-			fighter->get()->move(NULL, enemyFighter, castle);
+			//fighter->get()->move(NULL, enemyFighter, castle);
 		}
 		else {
 			auto frontFighter = std::next(fighter);
-			fighter->get()->move(*frontFighter, enemyFighter, castle);
+			//fighter->get()->move(*frontFighter, enemyFighter, castle);
 		}
 	}
 }

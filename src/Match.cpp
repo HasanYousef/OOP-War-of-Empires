@@ -6,16 +6,18 @@ void Match::run() {
 	sf::Event event;
 	sf::Clock clock;
 	sf::Time time;
+	float deltaTime = 0;
 	std::shared_ptr<sf::RenderWindow> window = Window::instance().get_window();
 
 	std::shared_ptr<sf::Sound> music = Sounds::instance().getSound(SoundType::InGameMusic);
 	music->play();
 	music->setLoop(true);
 
+
 	while (window->isOpen()) {
-		time = clock.getElapsedTime();
+		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
-		draw_world(1.0);
+		draw_world(deltaTime);
 		// checking actions done in the game's window
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -40,8 +42,14 @@ void Match::draw_world(float delta) {
 	Window::instance().get_window()->clear();
 
 	m_background.draw();
+	m_floor.draw(0);
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
+
+	
+	for (int i = 0; i < 10; i++) {
+		m_fighters[i]->draw(delta);
+	}
 
 	Window::instance().get_window()->display();
 }
