@@ -20,5 +20,6 @@
 "Fighter.cpp"
 "MeleeFighter.cpp"
 "Empire.cpp"
+"Castle.cpp"
 "Floor.cpp"
 )

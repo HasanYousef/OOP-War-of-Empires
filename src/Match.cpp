@@ -25,7 +25,11 @@ void Match::run() {
 			break;
 		}
 		//need to add menue of players
-
+		for (int i = 0; i < 10; i++) {
+			std::shared_ptr <MeleeFighter> f = std::make_shared<MeleeFighter>();
+			std::shared_ptr <Castle> c = std::make_shared<Castle>();
+			m_fighters[i]->move(f, f, c);
+		}
 		// We move the fighters 
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.moveFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());

@@ -41,3 +41,25 @@ bool Fighter::fullyDead() const {
 float Fighter::getGoldWorth() const {
 	return m_defaultGoldWorth;
 }
+
+//-------------------------------------------------
+void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
+	const std::shared_ptr<Fighter>& firstEnemy,
+	const std::shared_ptr<Castle>& enemyCastle) {
+	if (true || !create(0).getGlobalBounds().intersects(nextAlly->create(0).getGlobalBounds()) &&
+		!create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds()) &&
+		!create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
+		if (getAnimationType() == AnimationType::Idle)
+			setAnimationType(AnimationType::Walk);
+		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > 10) {
+			m_clock.restart();
+			// moving enemy
+			sf::Vector2f x = sf::Vector2f(
+				WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 1 : -1),
+				WorldObject::get_position().y);
+
+			WorldObject::set_position(x);
+		}
+	}
+
+}

@@ -8,15 +8,15 @@ Castle::Castle(const sf::Vector2f& p,
 
 //-------------------------------------------------
 //this func draw the object
-void Castle::draw() const {
-	Window::instance().get_window().draw(create());
+void Castle::draw(float f) const {
+	Window::instance().get_window()->draw(create(f));
 }
 
 //-------------------------------------------------
 //we creat the texture that we want to print it 
-sf::Sprite Castle::create() const{
+sf::Sprite Castle::create(float) const{
 	sf::Sprite result = sf::Sprite(*Textures::instance().
-		get_ui_texture(UITexture::Castle));
+		get_ui_texture(UITexture::MatchBackground));
 	result.setPosition(get_position());
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
