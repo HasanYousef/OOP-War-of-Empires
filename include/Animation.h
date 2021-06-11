@@ -11,6 +11,7 @@ public:
 	void set_anim_type(AnimationType);
 	std::shared_ptr <sf::Texture> get_texture() const;
 	AnimationType update(float);
+	int getCurrFrame();
 
 private:
 	FighterType m_fighterType;

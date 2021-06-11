@@ -27,3 +27,7 @@ AnimationType Animation::update(float deltaTime) {
 
 	return m_currAnim;
 }
+
+int Animation::getCurrFrame() {
+	return m_currFrame;
+}

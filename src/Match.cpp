@@ -26,9 +26,9 @@ void Match::run() {
 			break;
 		case sf::Event::KeyPressed:
 			m_enemyEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(100 + 1090, 927), false, 100, 10, 10)));
+				(sf::Vector2f(1920 - 100, 927), false, 100, 30, 30)));
 			m_playerEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(100 , 927), true, 100, 10, 10)));
+				(sf::Vector2f(1500 , 927), true, 100, 30, 30)));
 		}
 		//need to add menue of players
 
@@ -37,8 +37,8 @@ void Match::run() {
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.moveFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
 		// we let the fighters attack each others
-		//m_playerEmpire.attackFighters(*m_enemyEmpire.getCastle(), *m_enemyEmpire.getFirstFighter());
-		//m_enemyEmpire.attackFighters(*m_playerEmpire.getCastle(), *m_playerEmpire.getFirstFighter());
+		m_playerEmpire.attackFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
+		m_enemyEmpire.attackFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
 		// collect the dead
 		m_playerEmpire.collectDead();
 		m_enemyEmpire.collectDead();

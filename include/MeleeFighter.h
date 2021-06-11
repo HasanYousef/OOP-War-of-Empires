@@ -7,8 +7,10 @@ public:
 	MeleeFighter(const sf::Vector2f&,
 		const int&, const int&, const float&, const float&);
 
-	//virtual void attack(const std::shared_ptr<Fighter>& firstEnemy, 
-		//const std::shared_ptr<Castle>& Castle);
+	virtual bool fullyDead();
+
+	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy, 
+		const std::shared_ptr<Castle>& Castle);
 	//virtual void move(const std::shared_ptr<Fighter>& nextAlly,
 		//const std::shared_ptr<Fighter>& firstEnemy,
 		//const std::shared_ptr<Castle>& Castle);

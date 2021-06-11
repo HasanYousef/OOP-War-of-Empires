@@ -1,6 +1,10 @@
 #pragma once
 
 
+// Castle Indexes:
+const int CASTLE_X_INDEX = 0;
+const int CASTLE_Y_INDEX = 1015;
+
 // dead or alive function check resturns:
 const bool DEAD = false;
 const bool ALIVE = true;
@@ -10,10 +14,18 @@ const float MAX_MOVEMENT_SPEED = 50;  // move one pixel every 50 millisec = (100
 const float MIN_MOVEMENT_SPEED = 500;
 const float MAX_ATTACK_SPEED = 333;   // attack one time every 333 millisec = (1000/333 = 3) hits each 1 sec
 const float MIN_ATTACK_SPEED = 3000;
+const float FIGHTER_MOVEMENT_SPEED = 5;
 
 // teams:
 const bool LEFT_TEAM = true;
 const bool RIGHT_TEAM = false;
+
+// melee char macors:
+const int DAMAGING_FRAME = 9;
+const int MELEE_DIE_FRAME = 25;
+
+// objects default health
+const int CASTLE_HEALTH = 10000;
 
 const float ANIMATION_SWITCH_TIME = 0.1f,
 SPEED = 0.1f;

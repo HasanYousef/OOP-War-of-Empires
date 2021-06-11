@@ -13,7 +13,7 @@ public:
 	void addFighter(std::shared_ptr <Fighter>);
 	void moveFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void draw(float) const;
-	//void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
+	void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void collectDead();
 
 	std::shared_ptr <Castle> getCastle();

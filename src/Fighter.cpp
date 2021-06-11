@@ -34,10 +34,6 @@ const float& Fighter::getDefaultAttack() const {
 	return m_defaultAttack;
 }
 
-bool Fighter::fullyDead() const {
-	return (getHealth() <= 0 && getAnimationType() == AnimationType::Idle) ? true : false;
-}
-
 float Fighter::getGoldWorth() const {
 	return m_defaultGoldWorth;
 }
@@ -46,12 +42,12 @@ float Fighter::getGoldWorth() const {
 void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 	const std::shared_ptr<Fighter>& firstEnemy,
 	const std::shared_ptr<Castle>& enemyCastle) {
-	/*if (!create().getGlobalBounds().intersects(nextAlly->create().getGlobalBounds()) &&
-		!create().getGlobalBounds().intersects(firstEnemy->create().getGlobalBounds()) &&
-		!create().getGlobalBounds().intersects(enemyCastle->create().getGlobalBounds())) {
+	if ((nextAlly == NULL || !create(0).getGlobalBounds().intersects(nextAlly->create(0).getGlobalBounds())) &&
+		(firstEnemy == NULL || !create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds())) &&
+		!create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
 		if (getAnimationType() == AnimationType::Idle)
 			setAnimationType(AnimationType::Walk);
-		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > 10) {
+		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > FIGHTER_MOVEMENT_SPEED) {
 			m_clock.restart();
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
@@ -61,5 +57,7 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 			WorldObject::set_position(x);
 		}
 	}
-	*/
+	else if (getAnimationType() == AnimationType::Walk) {
+		setAnimationType(AnimationType::Idle);
+	}
 }

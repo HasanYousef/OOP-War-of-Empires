@@ -13,11 +13,11 @@ public:
 	void addLevel();
 	const float& getLevel() const;
 	const float& getDefaultAttack() const;
-	bool fullyDead() const;
+	virtual bool fullyDead() = 0;
 	float getGoldWorth() const;
 
-	/*virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
-		const std::shared_ptr<Castle>& Castle) = 0;*/
+	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
+		const std::shared_ptr<Castle>& Castle) = 0;
 	virtual void move(const std::shared_ptr<Fighter>& nextAlly,
 		const std::shared_ptr<Fighter>& firstEnemy,
 		const std::shared_ptr<Castle>& Castle);

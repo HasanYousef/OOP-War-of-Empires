@@ -3,7 +3,7 @@
 
 //-------------------------------------------------
 Castle::Castle(const sf::Vector2f& p, const int& objectTeam)
-	: LiveObject(p, objectTeam, 1000) {}
+	: LiveObject(p, objectTeam, CASTLE_HEALTH) {}
 
 //-------------------------------------------------
 //we creat the texture that we want to print it 
