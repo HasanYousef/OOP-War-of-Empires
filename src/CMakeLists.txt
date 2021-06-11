@@ -11,7 +11,8 @@
 "Button.cpp"
 "StartButton.cpp"
 "ExitGameButton.cpp"
-
+"InGameUI.cpp"
+"BuyWorldObject.cpp"
 "Match.cpp"
 "MatchBackground.cpp"
 "WorldObject.cpp"
