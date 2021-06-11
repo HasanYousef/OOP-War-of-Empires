@@ -36,3 +36,8 @@ sf::Sprite WorldObject::create() const {
 	return result;
 }
 */
+
+
+void WorldObject::draw(float delta) const {
+	Window::instance().get_window()->draw(create(delta));
+}

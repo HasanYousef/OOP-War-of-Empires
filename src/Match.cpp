@@ -2,6 +2,8 @@
 
 #include "Match.h"
 
+Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
+
 void Match::run() {
 	sf::Event event;
 	sf::Clock clock;
@@ -46,7 +48,7 @@ void Match::run() {
 void Match::draw_world(float delta) {
 	Window::instance().get_window()->clear();
 
-	m_background.draw();
+	m_background.draw(0);
 	m_floor.draw(0);
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);

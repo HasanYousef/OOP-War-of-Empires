@@ -10,11 +10,12 @@
 
 class Match {
 public:
-	Match() : m_floor({ 0, 1015 }) {}
+	Match();
 	void run();
 
 private:
 	void draw_world(float);
+
 	MatchBackground m_background;
 	Floor m_floor;
 	Empire m_enemyEmpire, m_playerEmpire;

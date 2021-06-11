@@ -20,12 +20,18 @@ SPEED = 0.1f;
 
 const int NUM_OF_SOUNDS = 2;
 enum class SoundType {
+
 	MenuMusic,
 	InGameMusic,
+
 };
 
-const int NUM_OF_WORLD_OBJECT_TYPES = 0;
+const int NUM_OF_WORLD_OBJECT_TYPES = 3;
 enum class WorldObjectType {
+
+	MatchBackground,
+	Floor,
+	Castle,
 
 };
 
@@ -43,18 +49,18 @@ enum class FighterType {
 
 const int NUM_OF_ANIMATION_TYPES = 4;
 enum class AnimationType {
+
 	Idle,
 	Walk,
 	Die,
 	Attack,		// just Tank1 and Tank2 have this animation
+
 };
 
-const int NUM_OF_UI_TEXTURES = 5;
+const int NUM_OF_UI_TEXTURES = 3;
 enum class UITexture {
 
 	MenuBackground,
-	MatchBackground,
-	Floor,
 
 	StartButton,
 	ExitGameButton,

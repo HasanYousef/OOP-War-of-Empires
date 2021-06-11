@@ -2,6 +2,11 @@
 
 #include <Empire.h>
 
+Empire::Empire(bool team) : m_team(team) {
+	sf::Vector2f pos = sf::Vector2f(m_team ? 0 : 1920, 630);
+	m_castle = std::make_shared<Castle>(Castle(pos, m_team));
+}
+
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_front(fighter);
 }
@@ -29,7 +34,7 @@ void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Figh
 }
 
 void Empire::draw(float delta) const {
-	//m_castle.draw();
+	m_castle->draw(0);
 	for (auto& fighter : m_fighters) {
 		fighter->draw(delta);
 	}

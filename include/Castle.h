@@ -3,10 +3,7 @@
 
 class Castle : public LiveObject {
 public:
-	Castle() = default ;
-	Castle(const sf::Vector2f&, const int&, const int&);
+	Castle(const sf::Vector2f& p, const int& objectTeam);
 
-	//---build-body-----------
-	virtual void draw(float) const;
-	virtual sf::Sprite create(float) const;
+	sf::Sprite create(float) const;
 };

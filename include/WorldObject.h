@@ -6,7 +6,6 @@
 
 class WorldObject {
 public:
-	WorldObject() = default;
 	WorldObject(const sf::Vector2f&);
 	WorldObject(const sf::Vector2f&, const bool&);
 
@@ -16,7 +15,7 @@ public:
 	bool get_object_team() const;
 
 	//---build-body-----------
-	virtual void draw(float) const = 0;
+	virtual void draw(float) const;
 	virtual sf::Sprite create(float) const = 0;
 private:
 	sf::Vector2f m_position;

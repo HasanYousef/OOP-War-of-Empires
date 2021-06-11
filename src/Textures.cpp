@@ -11,6 +11,10 @@ std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) const {
 	return m_uiTextures[int(type)];
 }
 
+std::shared_ptr<sf::Texture> Textures::get_world_obj_texture(WorldObjectType type) const {
+	return m_worldObjectTextures[int(type)];
+}
+
 std::shared_ptr<sf::Texture> Textures::get_animation_texture(FighterType fighter,
 	AnimationType animType, int frame) const {
 	return m_animations[int(fighter)][int(animType)][frame];
@@ -22,6 +26,7 @@ int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) co
 
 Textures::Textures() {
 	load_ui_textures();
+	load_world_obj_textures();
 	load_anim_textures();
 }
 
@@ -32,10 +37,19 @@ void Textures::load_ui_textures() {
 	}
 
 	m_uiTextures[int(UITexture::MenuBackground)]->loadFromFile("menu-background.png");
-	m_uiTextures[int(UITexture::MatchBackground)]->loadFromFile("match-background.png");
-	m_uiTextures[int(UITexture::Floor)]->loadFromFile("floor.png");
 	m_uiTextures[int(UITexture::StartButton)]->loadFromFile("start-button.png");
 	m_uiTextures[int(UITexture::ExitGameButton)]->loadFromFile("exit-game-button.png");
+}
+
+void Textures::load_world_obj_textures() {
+	for (int i = 0; i <= NUM_OF_WORLD_OBJECT_TYPES; i++) {
+		std::shared_ptr ptr = std::make_shared<sf::Texture>();
+		m_worldObjectTextures.push_back(ptr);
+	}
+
+	m_worldObjectTextures[int(WorldObjectType::MatchBackground)]->loadFromFile("match-background.png");
+	m_worldObjectTextures[int(WorldObjectType::Floor)]->loadFromFile("floor-texture.png");
+	m_worldObjectTextures[int(WorldObjectType::Castle)]->loadFromFile("castle-texture.png");
 }
 
 void Textures::load_anim_textures() {

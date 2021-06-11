@@ -1,12 +1,10 @@
 #pragma once
+
+#include <SFML/Graphics.hpp>
 #include "WorldObject.h"
 
-class Floor : WorldObject {
+class Floor : public WorldObject {
 public:
-	Floor() = default ;
-	Floor(const sf::Vector2f&);
-
-	//---build-body-----------
-	virtual void draw(float) const;
-	virtual sf::Sprite create(float) const;
+	Floor();
+	sf::Sprite create(float) const;
 };

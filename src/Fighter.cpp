@@ -46,9 +46,9 @@ float Fighter::getGoldWorth() const {
 void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 	const std::shared_ptr<Fighter>& firstEnemy,
 	const std::shared_ptr<Castle>& enemyCastle) {
-	if (!create(0).getGlobalBounds().intersects(nextAlly->create(0).getGlobalBounds()) &&
-		!create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds()) &&
-		!create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
+	/*if (!create().getGlobalBounds().intersects(nextAlly->create().getGlobalBounds()) &&
+		!create().getGlobalBounds().intersects(firstEnemy->create().getGlobalBounds()) &&
+		!create().getGlobalBounds().intersects(enemyCastle->create().getGlobalBounds())) {
 		if (getAnimationType() == AnimationType::Idle)
 			setAnimationType(AnimationType::Walk);
 		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > 10) {
@@ -61,5 +61,5 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 			WorldObject::set_position(x);
 		}
 	}
-
+	*/
 }

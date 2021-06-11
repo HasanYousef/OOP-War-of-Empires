@@ -1,11 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "UIObject.h"
-#include "Window.h"
+#include "WorldObject.h"
 
-class MatchBackground : public UIObject {
+class MatchBackground : public WorldObject {
 public:
 	MatchBackground();
-	sf::Sprite create() const;
+	sf::Sprite create(float) const;
 };
