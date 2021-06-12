@@ -49,6 +49,10 @@ void Empire::collectDead() {
 		{ return (fighter.get()->fullyDead());});*/
 }
 
+void Empire::pay(int price){
+	m_money -= price;
+}
+
 bool Empire::ifGetOccupied() const {
 	return (m_castle->getHealth() <= 0);
 }

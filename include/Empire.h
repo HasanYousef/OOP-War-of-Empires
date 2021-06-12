@@ -15,6 +15,7 @@ public:
 	void draw(float) const;
 	void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void collectDead();
+	void pay(int);
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();
@@ -25,7 +26,7 @@ public:
 
 private:
 	bool m_team;
-	int m_money = 450;
+	int m_money = 30000;
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
 };

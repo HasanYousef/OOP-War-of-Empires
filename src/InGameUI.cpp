@@ -2,7 +2,9 @@
 
 #include "InGameUI.h"
 
-InGameUI::InGameUI() {
+InGameUI::InGameUI()
+	: m_leftCastleHealthbar(LEFT_TEAM, 1000), m_rightCastleHealthbar(RIGHT_TEAM, 1000)
+{
 	for (int i = 0; i < NUM_OF_FIGHTER_TYPES; i++) {
 		sf::Vector2f pos(16 * (i + 1) + 110 * i, 16);
 		m_shop.push_back(BuyWorldObject(FighterType(i), pos, 100 * (i + 1)));
@@ -18,6 +20,8 @@ void InGameUI::update(int money) {
 void InGameUI::draw() const {
 	for (int i = 0; i < m_shop.size(); i++)
 		m_shop[i].draw();
+	m_leftCastleHealthbar.draw();
+	m_rightCastleHealthbar.draw();
 }
 
 FighterType InGameUI::handle_click(const sf::Vector2f location) const {

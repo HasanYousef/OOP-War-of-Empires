@@ -26,4 +26,7 @@
 "Empire.cpp"
 "Castle.cpp"
 "Floor.cpp"
+"CastleHealthbar.cpp"
+"CastleHealthbarBackground.cpp"
+"CastleHealthbarFilled.cpp"
 )

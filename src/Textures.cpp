@@ -47,6 +47,8 @@ void Textures::load_ui_textures() {
 	m_uiTextures[int(UITexture::ActiveButton)]->loadFromFile("active-button.png");
 	m_uiTextures[int(UITexture::UnactiveButton)]->loadFromFile("unactive-button.png");
 	m_uiTextures[int(UITexture::BuyWorldObjectBackground)]->loadFromFile("buy-world-object-background.png");
+	m_uiTextures[int(UITexture::CastleHealthbar)]->loadFromFile("castle-healthbar.png");
+	m_uiTextures[int(UITexture::CastleHealthbarBackground)]->loadFromFile("castle-healthbar-background.png");
 }
 
 void Textures::load_world_obj_textures() {

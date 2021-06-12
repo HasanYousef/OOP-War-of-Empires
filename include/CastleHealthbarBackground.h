@@ -2,12 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 #include "UIObject.h"
-#include "Window.h"
 
-class BuyWorldObjectBackground : public UIObject {
+class CastleHealthbarBackground : UIObject {
 public:
-	BuyWorldObjectBackground(sf::Vector2f);
-
+	CastleHealthbarBackground(bool);
+	void draw() const;
 private:
 	sf::Sprite create() const;
 };

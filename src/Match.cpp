@@ -15,6 +15,7 @@ void Match::run() {
 	music->play();
 	music->setLoop(true);
 
+	bool pressed = false;
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
@@ -24,15 +25,18 @@ void Match::run() {
 		case sf::Event::Closed:
 			window->close();
 			break;
-		case sf::Event::KeyPressed:
-			m_enemyEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(1920 - 250, 927), false, 100, 30, 30)));
-			m_playerEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(1200 , 927), true, 100, 30, 30)));
+		case sf::Event::MouseButtonPressed:
+			pressed = true;
+			break;
 		case sf::Event::MouseButtonReleased:
-			auto location = window->mapPixelToCoords(
-				{ event.mouseButton.x, event.mouseButton.y });
-			buyFighter(location);
+			if (pressed) {
+				auto location = window->mapPixelToCoords(
+					{ event.mouseButton.x, event.mouseButton.y }
+				);
+				buyFighter(location);
+				pressed = false;
+			}
+			break;
 		}
 
 		// We move the fighters 
@@ -73,30 +77,35 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 		if (m_playerEmpire.getMoney() >= TANK1) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
 				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.pay(TANK1);
 		}
 		break;
 	case FighterType::Tank2:
 		if (m_playerEmpire.getMoney() >= TANK2) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
 				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.pay(TANK2);
 		}
 		break;
 	case FighterType::Shooter1:
 		if (m_playerEmpire.getMoney() >= SHOOTER1) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
 				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.pay(SHOOTER1);
 		}
 		break;
 	case FighterType::Shooter2:
 		if (m_playerEmpire.getMoney() >= SHOOTER2) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
 				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.pay(SHOOTER2);
 		}
 		break;
 	case FighterType::Shooter3:
 		if (m_playerEmpire.getMoney() >= SHOOTER3) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
 				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.pay(SHOOTER3);
 		}
 		break;
 	default:
