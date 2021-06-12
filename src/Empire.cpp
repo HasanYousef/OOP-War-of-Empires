@@ -16,16 +16,10 @@ void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Figh
 			fighter->get()->move(NULL, enemyFighter, castle);
 		}
 		else if(fighternum < m_fighters.size()) {
-			try
-			{
+			if (fighter->get()->getAnimationType() != AnimationType::Die) {
 				auto frontFighter = *std::next(fighter);
 				fighter->get()->move(frontFighter, enemyFighter, castle);
 			}
-			catch (const std::exception&)
-			{
-
-			}
-			
 		}
 		fighternum++;
 	}
@@ -42,33 +36,22 @@ void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fi
 	int fighternum = 0;
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		fighter->get()->attack(enemyFighter, castle);
-		if (!enemyFighter && enemyFighter->fullyDead()) {
+		if (enemyFighter.get() != NULL && enemyFighter->fullyDead()) {
 			m_money += enemyFighter->getGoldWorth();
 			return;
 		}
-
 		fighternum++;
 	}
-
-	/*
-	for (auto& fighter : m_fighters) {
-		fighter->attack(firstEnemy, castle);
-		if (firstEnemy.getHealth() <= DIE || castle->getHealth() <= DIE) {
-			m_money += firstEnemy->getGoldWorth();
-			return;
-		}
-	}*/
 }
 
 
 void Empire::collectDead() {
-	for (auto fighter : m_fighters) {
-		if (fighter->fullyDead()) {
-			m_fighters.remove(fighter);
-		}
-	}
-	/*m_fighters.remove_if([](Fighter& fighter) { return 
-	(fighter.getHealth() == 0 && fighter.getAnimationType() == AnimationType::Idle)});*/
+	m_fighters.remove_if([](std::shared_ptr<Fighter> fighter) 
+		{ return !(fighter.get()->fullyDead());});
+}
+
+bool Empire::ifGetOccupied() const {
+	return (m_castle->getHealth() == 0);
 }
 
 std::shared_ptr <Castle> Empire::getCastle() {
@@ -78,5 +61,4 @@ std::shared_ptr <Castle> Empire::getCastle() {
 std::shared_ptr <Fighter> Empire::getFirstFighter() {
 	std::shared_ptr<Fighter> temp(nullptr);
 	return (m_fighters.size() > 0) ? m_fighters.back() : temp;
-
 }

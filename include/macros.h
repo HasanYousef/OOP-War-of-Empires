@@ -69,12 +69,15 @@ enum class AnimationType {
 
 };
 
-const int NUM_OF_UI_TEXTURES = 3;
+const int NUM_OF_UI_TEXTURES = 6;
 enum class UITexture {
 
 	MenuBackground,
 
 	StartButton,
 	ExitGameButton,
+	ActiveButton,
+	UnactiveButton,
+	BuyWorldObjectBackground,
 
 };

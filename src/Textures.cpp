@@ -24,10 +24,15 @@ int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) co
 	return m_animations[int(fighter)][int(animType)].size();
 }
 
+std::shared_ptr<sf::Font> Textures::get_font() const {
+	return m_font;
+}
+
 Textures::Textures() {
 	load_ui_textures();
 	load_world_obj_textures();
 	load_anim_textures();
+	load_font();
 }
 
 void Textures::load_ui_textures() {
@@ -39,6 +44,9 @@ void Textures::load_ui_textures() {
 	m_uiTextures[int(UITexture::MenuBackground)]->loadFromFile("menu-background.png");
 	m_uiTextures[int(UITexture::StartButton)]->loadFromFile("start-button.png");
 	m_uiTextures[int(UITexture::ExitGameButton)]->loadFromFile("exit-game-button.png");
+	m_uiTextures[int(UITexture::ActiveButton)]->loadFromFile("active-button.png");
+	m_uiTextures[int(UITexture::UnactiveButton)]->loadFromFile("unactive-button.png");
+	m_uiTextures[int(UITexture::BuyWorldObjectBackground)]->loadFromFile("buy-world-object-background.png");
 }
 
 void Textures::load_world_obj_textures() {
@@ -81,6 +89,11 @@ void Textures::load_anim_textures() {
 		}
 		m_animations.push_back(fighter);
 	}
+}
+
+void Textures::load_font() {
+	m_font = std::make_shared<sf::Font>();
+	m_font->loadFromFile("font.ttf");
 }
 
 std::string Textures::fighter_file_name(FighterType fighter) const {

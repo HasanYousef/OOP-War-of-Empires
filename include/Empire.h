@@ -15,6 +15,7 @@ public:
 	void draw(float) const;
 	void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void collectDead();
+	bool ifGetOccupied() const;
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();

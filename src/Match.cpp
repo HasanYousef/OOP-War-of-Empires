@@ -26,9 +26,9 @@ void Match::run() {
 			break;
 		case sf::Event::KeyPressed:
 			m_enemyEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(1920 - 100, 927), false, 100, 30, 30)));
+				(sf::Vector2f(1920 - 250, 927), false, 100, 30, 30)));
 			m_playerEmpire.addFighter((std::make_shared<MeleeFighter>
-				(sf::Vector2f(1500 , 927), true, 100, 30, 30)));
+				(sf::Vector2f(1200 , 927), true, 100, 30, 30)));
 		}
 		//need to add menue of players
 
@@ -42,6 +42,13 @@ void Match::run() {
 		// collect the dead
 		m_playerEmpire.collectDead();
 		m_enemyEmpire.collectDead();
+		//if someone get lost
+		if (m_enemyEmpire.ifGetOccupied()) {
+
+		}
+		else if(m_playerEmpire.ifGetOccupied()) {
+
+		}
 	}
 }
 
@@ -52,6 +59,7 @@ void Match::draw_world(float delta) {
 	m_floor.draw(0);
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
+	m_UI.draw();
 
 	Window::instance().get_window()->display();
 }

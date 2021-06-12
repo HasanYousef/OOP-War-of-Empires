@@ -5,6 +5,7 @@
 #include "Sounds.h"
 #include "Textures.h"
 #include "MatchBackground.h"
+#include "InGameUI.h"
 #include "Floor.h"
 #include "Empire.h"
 
@@ -17,6 +18,7 @@ private:
 	void draw_world(float);
 
 	MatchBackground m_background;
+	InGameUI m_UI;
 	Floor m_floor;
 	Empire m_enemyEmpire, m_playerEmpire;
 };

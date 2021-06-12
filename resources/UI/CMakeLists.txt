@@ -1,3 +1,7 @@
+configure_file ("font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menu-background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("start-button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("exit-game-button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("active-button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("unactive-button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("buy-world-object-background.png" ${CMAKE_BINARY_DIR} COPYONLY)
