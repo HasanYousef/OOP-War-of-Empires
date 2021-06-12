@@ -5,7 +5,7 @@
 
 class CastleHealthbarFilled : UIObject {
 public:
-	CastleHealthbarFilled(bool);
+	CastleHealthbarFilled(bool, int);
 	void update(int);
 	void draw() const;
 private:

@@ -2,8 +2,9 @@
 
 #include "CastleHealthbarFilled.h"
 
-CastleHealthbarFilled::CastleHealthbarFilled(bool team)
-	: UIObject(team ? sf::Vector2f(30, 377) : sf::Vector2f(1872, 379))
+CastleHealthbarFilled::CastleHealthbarFilled(bool team, int maxHealth)
+	: UIObject(team ? sf::Vector2f(33, 382) : sf::Vector2f(1875, 382)),
+	m_maxHealth(maxHealth), m_currHealth(maxHealth)
 {}
 
 sf::Sprite CastleHealthbarFilled::create() const {

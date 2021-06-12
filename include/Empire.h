@@ -19,7 +19,7 @@ public:
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();
-	
+
 	//---Get-Functions----------
 	bool ifGetOccupied() const;
 	int getMoney() const;

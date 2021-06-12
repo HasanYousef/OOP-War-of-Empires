@@ -3,7 +3,7 @@
 
 class AnimatedObject : public WorldObject {
 public:
-	AnimatedObject() = default ;
+	AnimatedObject() = default;
 	AnimatedObject(const sf::Vector2f&);
 	AnimatedObject(const sf::Vector2f&, const bool&);
 

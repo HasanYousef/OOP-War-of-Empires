@@ -16,6 +16,13 @@ void Match::run() {
 	music->setLoop(true);
 
 	bool pressed = false;
+	sf::Vector2f location;
+
+	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter>
+		(sf::Vector2f(1920, 927), RIGHT_TEAM, 100, 30, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+	m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
+		(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
@@ -27,12 +34,12 @@ void Match::run() {
 			break;
 		case sf::Event::MouseButtonPressed:
 			pressed = true;
+			location = window->mapPixelToCoords(
+				{ event.mouseButton.x, event.mouseButton.y }
+			);
 			break;
 		case sf::Event::MouseButtonReleased:
 			if (pressed) {
-				auto location = window->mapPixelToCoords(
-					{ event.mouseButton.x, event.mouseButton.y }
-				);
 				buyFighter(location);
 				pressed = false;
 			}

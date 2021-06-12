@@ -3,7 +3,7 @@
 #include "CastleHealthbarBackground.h"
 
 CastleHealthbarBackground::CastleHealthbarBackground(bool team)
-	: UIObject(team ? sf::Vector2f(30, 377) : sf::Vector2f(1872, 379))
+	: UIObject(team ? sf::Vector2f(30, 379) : sf::Vector2f(1872, 379))
 {}
 
 sf::Sprite CastleHealthbarBackground::create() const {
