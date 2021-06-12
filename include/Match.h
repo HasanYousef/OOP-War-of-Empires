@@ -16,7 +16,8 @@ public:
 
 private:
 	void draw_world(float);
-
+	void buyFighter(const sf::Vector2f&);
+	//---------------------------
 	MatchBackground m_background;
 	InGameUI m_UI;
 	Floor m_floor;

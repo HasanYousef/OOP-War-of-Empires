@@ -5,8 +5,12 @@
 BuyButton::BuyButton(sf::Vector2f pos, int price) 
 	: Button({pos.x + 9, pos.y + 101}), m_price(price) {}
 
-void BuyButton::setCanBuy(bool canBuy) {
+void BuyButton::set_can_buy(bool canBuy) {
 	m_canBuy = canBuy;
+}
+
+int BuyButton::get_price() const {
+	return m_price;
 }
 
 sf::Sprite BuyButton::create() const {

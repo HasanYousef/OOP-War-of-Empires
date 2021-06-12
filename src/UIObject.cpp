@@ -15,4 +15,3 @@ sf::Sprite UIObject::create(UITexture type) const {
 	obj.setPosition({ m_position.x, m_position.y });
 	return obj;
 }
-

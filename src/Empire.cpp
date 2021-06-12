@@ -6,7 +6,7 @@ Empire::Empire(bool team) : m_team(team),
 	m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)) {}
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
-	m_fighters.push_front(fighter);
+	m_fighters.push_back(fighter);
 }
 
 void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fighter> enemyFighter) {
@@ -44,14 +44,17 @@ void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fi
 	}
 }
 
-
 void Empire::collectDead() {
-	m_fighters.remove_if([](std::shared_ptr<Fighter> fighter) 
-		{ return !(fighter.get()->fullyDead());});
+	/*m_fighters.remove_if([](std::shared_ptr<Fighter> fighter)
+		{ return (fighter.get()->fullyDead());});*/
 }
 
 bool Empire::ifGetOccupied() const {
-	return (m_castle->getHealth() == 0);
+	return (m_castle->getHealth() <= 0);
+}
+
+int Empire::getMoney() const {
+	return m_money;
 }
 
 std::shared_ptr <Castle> Empire::getCastle() {
@@ -60,5 +63,5 @@ std::shared_ptr <Castle> Empire::getCastle() {
 
 std::shared_ptr <Fighter> Empire::getFirstFighter() {
 	std::shared_ptr<Fighter> temp(nullptr);
-	return (m_fighters.size() > 0) ? m_fighters.back() : temp;
+	return (m_fighters.size() > 0) ? m_fighters.front() : temp;
 }

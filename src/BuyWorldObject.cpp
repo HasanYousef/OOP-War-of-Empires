@@ -7,6 +7,14 @@ BuyWorldObject::BuyWorldObject(FighterType type, sf::Vector2f pos, int price)
 	m_button = std::make_unique<BuyButton>(BuyButton(pos, price));
 }
 
+void BuyWorldObject::set_can_buy(bool can) {
+	m_button->set_can_buy(can);
+}
+
+int BuyWorldObject::get_price() {
+	return m_button->get_price();
+}
+
 void BuyWorldObject::draw() const {
 	m_background.draw();
 	draw_fighter();
@@ -21,4 +29,8 @@ void BuyWorldObject::draw_fighter() const {
 		Rect.top + Rect.height / 2.0f);
 	fighter.setPosition(m_position.x + 55, m_position.y + 50);
 	Window::instance().get_window()->draw(fighter);
+}
+
+bool BuyWorldObject::handle_click(const sf::Vector2f location) const {
+	return m_button->handle_click(location);
 }

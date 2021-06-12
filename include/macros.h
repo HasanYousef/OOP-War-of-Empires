@@ -1,5 +1,11 @@
 #pragma once
 
+//Fighters prices
+const int TANK1 = 100,
+		  TANK2 = 200,
+		  SHOOTER1 = 300,
+		  SHOOTER2 = 400,
+		  SHOOTER3 = 500;
 
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
@@ -57,6 +63,7 @@ enum class FighterType {
 	Shooter2,
 	Shooter3,
 
+	Nothing
 };
 
 const int NUM_OF_ANIMATION_TYPES = 4;

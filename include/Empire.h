@@ -15,10 +15,13 @@ public:
 	void draw(float) const;
 	void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void collectDead();
-	bool ifGetOccupied() const;
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();
+	
+	//---Get-Functions----------
+	bool ifGetOccupied() const;
+	int getMoney() const;
 
 private:
 	bool m_team;
