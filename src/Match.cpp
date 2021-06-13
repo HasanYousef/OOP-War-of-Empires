@@ -57,10 +57,16 @@ void Match::run() {
 		m_enemyEmpire.collectDead();
 		//check if someone get lost
 		if (m_enemyEmpire.ifGetOccupied()) {
-
+			// allies win
+			std::cout << "*********************************\n\n            you win            \n\n*********************************\n";
+			window->close();
+			break;
 		}
-		else if(m_playerEmpire.ifGetOccupied()) {
-
+		else if (m_playerEmpire.ifGetOccupied()) {
+			// allies lose
+			std::cout << "*********************************\n\n            you lose            \n\n*********************************\n";
+			window->close();
+			break;
 		}
 		m_UI.update(m_playerEmpire.getMoney());
 	}

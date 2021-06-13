@@ -5,7 +5,7 @@ Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& healt
 	const float& defaultAttack, const float& defaultGoldWorth)
 	: AnimatedObject(p, objectTeam), LiveObject(p, objectTeam, health)
 	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth),
-	m_lastMovement(){
+	m_lastMovement(), m_fullyDead(std::make_shared<bool>(false)){
 	// applying speed limits ------------------------------------------
 	/*
 	if (movementSpeed > MAX_MOVEMENT_SPEED &&
@@ -36,6 +36,14 @@ const float& Fighter::getDefaultAttack() const {
 
 float Fighter::getGoldWorth() const {
 	return m_defaultGoldWorth;
+}
+
+void Fighter::setFullyDead() const {
+	*m_fullyDead = true;
+}
+
+std::shared_ptr<bool> Fighter::fullyDead() const {
+	return m_fullyDead;
 }
 
 //-------------------------------------------------

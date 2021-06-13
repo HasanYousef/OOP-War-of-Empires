@@ -13,7 +13,8 @@ public:
 	void addLevel();
 	const float& getLevel() const;
 	const float& getDefaultAttack() const;
-	virtual bool fullyDead() = 0;
+	void setFullyDead() const;
+	virtual std::shared_ptr<bool> fullyDead() const;
 	float getGoldWorth() const;
 
 	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
@@ -32,4 +33,5 @@ private:
 	//float m_movementSpeed; //  = milliseconds per one_pixel
 	//float m_attackSpeed;   //  = milliseconds per one_attack
 	sf::Clock m_clock;
+	std::shared_ptr<bool> m_fullyDead;
 };

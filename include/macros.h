@@ -31,7 +31,7 @@ const int DAMAGING_FRAME = 9;
 const int MELEE_DIE_FRAME = 25;
 
 // objects default health
-const int CASTLE_HEALTH = 10000;
+const int CASTLE_HEALTH = 100;
 
 const float ANIMATION_SWITCH_TIME = 0.1f,
 SPEED = 0.1f;
