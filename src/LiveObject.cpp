@@ -7,7 +7,7 @@ LiveObject::LiveObject(const sf::Vector2f& p,
 	: WorldObject(p, objectTeam), m_health(health) {}
 
 //-------------------------------------------------
-int LiveObject::getHealth()const {
+int LiveObject::getHealth() const {
 	return m_health;
 }
 

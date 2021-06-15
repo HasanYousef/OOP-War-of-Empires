@@ -7,7 +7,7 @@
 class InGameUI {
 public:
 	InGameUI();
-	void update(int);
+	void update(int, int, int);
 	void draw() const;
 	FighterType handle_click(const sf::Vector2f) const;
 private:

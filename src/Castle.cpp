@@ -15,4 +15,3 @@ sf::Sprite Castle::create(float) const{
 		result.scale(-1.f, 1.f);
 	return result;
 } 
-

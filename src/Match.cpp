@@ -68,7 +68,7 @@ void Match::run() {
 			window->close();
 			break;
 		}
-		m_UI.update(m_playerEmpire.getMoney());
+		m_UI.update(m_playerEmpire.getMoney(), m_playerEmpire.getCastle()->getHealth(), m_enemyEmpire.getCastle()->getHealth());
 	}
 }
 
