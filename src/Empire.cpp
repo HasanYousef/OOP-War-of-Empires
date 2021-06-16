@@ -37,7 +37,7 @@ void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fi
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		fighter->get()->attack(enemyFighter, castle);
 		if (enemyFighter.get() != NULL && *enemyFighter->fullyDead()) {
-			m_money += enemyFighter->getGoldWorth();
+			m_money += int(enemyFighter->getGoldWorth());
 			return;
 		}
 		fighternum++;

@@ -3,10 +3,17 @@
 
 //-------------------------------------------------
 AnimatedObject::AnimatedObject(const sf::Vector2f& p) 
-	: WorldObject(p), m_animationType(AnimationType::Walk){}
+	: WorldObject(p), m_animationType(AnimationType::Walk),
+	m_animation(std::make_shared<Animation>(FighterType::Tank1)) {}
 
 AnimatedObject::AnimatedObject(const sf::Vector2f& p, const bool& objectTeam)
-	: WorldObject(p, objectTeam), m_animationType(AnimationType::Walk){}
+	: WorldObject(p, objectTeam), m_animationType(AnimationType::Walk),
+	m_animation(std::make_shared<Animation>(FighterType::Tank1)) {}
+
+AnimatedObject::AnimatedObject(const sf::Vector2f& p, const bool& objectTeam, const AnimationType& animationType) 
+	: WorldObject(p, objectTeam), m_animationType(animationType),
+	m_animation(std::make_shared<Animation>(animationType)) {}
+	
 
 //-------------------------------------------------
 void AnimatedObject::setAnimationType(const AnimationType& newAnimationType){
@@ -19,6 +26,17 @@ AnimationType AnimatedObject::getAnimationType() const{
 }
 
 //-------------------------------------------------
+std::shared_ptr <Animation> AnimatedObject::getAnimationObject() const{
+	return m_animation;
+}
+
+//-------------------------------------------------
+
+void AnimatedObject::reSetAnimationObject(const FighterType& newFighterType) {
+	m_animation = std::make_shared<Animation>(newFighterType);
+}
+
+
 //we creat the texture that we want to print it 
 /*
 sf::Sprite AnimatedObject::create() const {

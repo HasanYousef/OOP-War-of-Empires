@@ -2,7 +2,7 @@
 
 #include "CastleHealthbarFilled.h"
 
-CastleHealthbarFilled::CastleHealthbarFilled(bool team, int maxHealth)
+CastleHealthbarFilled::CastleHealthbarFilled(bool team, float maxHealth)
 	: UIObject(team ? sf::Vector2f(33, 611) : sf::Vector2f(1875, 611)),
 	m_maxHealth(maxHealth), m_currHealth(maxHealth)
 {}
@@ -11,13 +11,13 @@ sf::Sprite CastleHealthbarFilled::create() const {
 	sf::Sprite bar = UIObject::create(UITexture::CastleHealthbar);
 	sf::FloatRect barRect = bar.getLocalBounds();
 	bar.setOrigin(0, barRect.top + barRect.height);
-	bar.scale(1, m_currHealth / m_maxHealth);
+	bar.scale(1, float(m_currHealth) / float(m_maxHealth));
 	return bar;
 }
 
 void CastleHealthbarFilled::draw_text() const {
 	sf::Text text;
-	text.setString("%" + std::to_string(int(m_currHealth / m_maxHealth * 100)));
+	text.setString("%" + std::to_string(int(float(m_currHealth) / float(m_maxHealth) * 100)));
 	text.setFont(*Textures::instance().get_font());
 	text.setCharacterSize(24);
 	sf::FloatRect textRect = text.getLocalBounds();

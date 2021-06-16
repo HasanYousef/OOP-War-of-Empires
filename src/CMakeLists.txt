@@ -23,6 +23,8 @@
 "LiveObject.cpp"
 "Fighter.cpp"
 "MeleeFighter.cpp"
+"RangeFighter.cpp"
+"GunFire.cpp"
 "Empire.cpp"
 "Castle.cpp"
 "Floor.cpp"

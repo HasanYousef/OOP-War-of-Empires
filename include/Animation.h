@@ -7,7 +7,8 @@
 
 class Animation {
 public:
-	Animation(FighterType fighter) : m_fighterType(fighter) {};
+	Animation(AnimationType gunFire) : m_currAnim(gunFire), m_fighterType(FighterType::Shooter1) {}
+	Animation(FighterType fighter) : m_fighterType(fighter) {}
 	void set_anim_type(AnimationType);
 	std::shared_ptr <sf::Texture> get_texture() const;
 	AnimationType update(float);

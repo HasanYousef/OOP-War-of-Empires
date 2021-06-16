@@ -6,6 +6,7 @@
 #include "Fighter.h"
 #include "Window.h"
 #include "MeleeFighter.h"
+#include "RangeFighter.h"
 
 class Empire {
 public:

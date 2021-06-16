@@ -28,11 +28,12 @@ const bool RIGHT_TEAM = false;
 
 // melee char macors:
 const int DAMAGING_FRAME = 9;
+const int RANGE_DAMAGING_FRAME = 3;
 const int MELEE_DIE_FRAME = 25;
 
 // objects default health
-const int CASTLE_MAX_HEALTH = 600,
-		  CASTLE_HEALTH = 600;
+const int CASTLE_MAX_HEALTH = 100,
+		  CASTLE_HEALTH = 100;
 
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;
@@ -74,6 +75,8 @@ enum class AnimationType {
 	Walk,
 	Die,
 	Attack,		// just Tank1 and Tank2 have this animation
+
+	GunFire
 
 };
 

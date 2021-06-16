@@ -2,7 +2,7 @@
 #include "Fighter.h"
 
 Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& health, 
-	const float& defaultAttack, const float& defaultGoldWorth)
+	const int& defaultAttack, const int& defaultGoldWorth)
 	: AnimatedObject(p, objectTeam), LiveObject(p, objectTeam, health)
 	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth),
 	m_lastMovement(), m_fullyDead(std::make_shared<bool>(false)){
@@ -26,15 +26,15 @@ void Fighter::addLevel() {
 	m_level++;
 }
 
-const float& Fighter::getLevel() const {
+const int& Fighter::getLevel() const {
 	return m_level;
 }
 
-const float& Fighter::getDefaultAttack() const {
+const int& Fighter::getDefaultAttack() const {
 	return m_defaultAttack;
 }
 
-float Fighter::getGoldWorth() const {
+int Fighter::getGoldWorth() const {
 	return m_defaultGoldWorth;
 }
 
@@ -53,7 +53,8 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 	if ((nextAlly == NULL || !create(0).getGlobalBounds().intersects(nextAlly->create(0).getGlobalBounds())) &&
 		(firstEnemy == NULL || !create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds())) &&
 		!create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
-		if (getAnimationType() == AnimationType::Idle)
+		if (getAnimationType() == AnimationType::Idle && 
+			(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Idle))
 			setAnimationType(AnimationType::Walk);
 		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > FIGHTER_MOVEMENT_SPEED) {
 			m_clock.restart();
@@ -65,7 +66,8 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 			WorldObject::set_position(x);
 		}
 	}
-	else if (getAnimationType() == AnimationType::Walk) {
+	else if (getAnimationType() == AnimationType::Walk && 
+		(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Walk )) {
 		setAnimationType(AnimationType::Idle);
 	}
 }

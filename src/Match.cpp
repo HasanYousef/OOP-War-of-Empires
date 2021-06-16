@@ -102,22 +102,22 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 		break;
 	case FighterType::Shooter1:
 		if (m_playerEmpire.getMoney() >= SHOOTER1) {
-			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
-				(spawnPos, LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
+				(spawnPos, LEFT_TEAM, 100, 10, 30));
 			m_playerEmpire.pay(SHOOTER1);
 		}
 		break;
 	case FighterType::Shooter2:
 		if (m_playerEmpire.getMoney() >= SHOOTER2) {
-			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
 				(spawnPos, LEFT_TEAM, 100, 30, 30));
 			m_playerEmpire.pay(SHOOTER2);
 		}
 		break;
 	case FighterType::Shooter3:
 		if (m_playerEmpire.getMoney() >= SHOOTER3) {
-			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
-				(sf::Vector2f(1200, 927), LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
+				(spawnPos, LEFT_TEAM, 100, 30, 30));
 			m_playerEmpire.pay(SHOOTER3);
 		}
 		break;

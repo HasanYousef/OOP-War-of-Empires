@@ -24,8 +24,16 @@ int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) co
 	return m_animations[int(fighter)][int(animType)].size();
 }
 
+int Textures::num_of_gun_fire_frames() const {
+	return m_gunFireAnimations.size();
+}
+
 std::shared_ptr<sf::Font> Textures::get_font() const {
 	return m_font;
+}
+
+std::shared_ptr<sf::Texture> Textures::get_gun_fire_texture(int frame) const {
+	return m_gunFireAnimations[frame];
 }
 
 Textures::Textures() {
@@ -33,6 +41,7 @@ Textures::Textures() {
 	load_world_obj_textures();
 	load_anim_textures();
 	load_font();
+	load_gun_fire_textures();
 }
 
 void Textures::load_ui_textures() {
@@ -96,6 +105,19 @@ void Textures::load_anim_textures() {
 void Textures::load_font() {
 	m_font = std::make_shared<sf::Font>();
 	m_font->loadFromFile("font.ttf");
+}
+
+void Textures::load_gun_fire_textures() {
+	std::string fighterFileName("skeleton-animation_");
+	int frame = 0;
+	while (true) {
+		m_gunFireAnimations.push_back(std::make_shared<sf::Texture>());
+		if (!m_gunFireAnimations[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
+			m_gunFireAnimations.pop_back();
+			break;		// stop reading more frames when there is no more
+		}
+		frame++;
+	}
 }
 
 std::string Textures::fighter_file_name(FighterType fighter) const {
