@@ -11,7 +11,7 @@ public:
 	bool update(float);
 	int getCurrFrame();
 
-private:
+protected:
 	float m_totalTime = 0;
 	int m_currFrame = 0;
 };
