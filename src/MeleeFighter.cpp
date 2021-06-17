@@ -7,7 +7,6 @@ MeleeFighter::MeleeFighter(const sf::Vector2f& p, const int& objectTeam, const i
 	AnimatedObject::reSetAnimationObject(FighterType::Tank2);
 }
 
-
 //-------------------------------------------------
 void MeleeFighter::attack(const std::shared_ptr<Fighter>& firstEnemy,
 	const std::shared_ptr<Castle>& enemyCastle) {
@@ -32,7 +31,7 @@ void MeleeFighter::attack(const std::shared_ptr<Fighter>& firstEnemy,
 	else if (getAnimationType() == AnimationType::Attack) {
 		setAnimationType(AnimationType::Idle);
 	}
-}
+} 
 
 //-------------------------------------------------
 std::shared_ptr<bool> MeleeFighter::fullyDead() const{
@@ -61,6 +60,7 @@ sf::Sprite MeleeFighter::create(float f) const {
 		result.scale(-1.f, 1.f);
 	return result;
 } 
+
 /*
 sf::Sprite MeleeFighter::create(float f, int) {
 	auto result = sf::Sprite(*(AnimatedObject::getAnimationObject())->get_texture());

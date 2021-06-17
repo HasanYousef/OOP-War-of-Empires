@@ -38,6 +38,8 @@ const int CASTLE_MAX_HEALTH = 100,
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;
 
+const int NUM_OF_FIRE_ANIMATION_FRAMES = 10;
+
 const int NUM_OF_SOUNDS = 2;
 enum class SoundType {
 
@@ -84,9 +86,6 @@ enum class AnimationType {
 	Walk,
 	Die,
 	Attack,		// just Tank1 and Tank2 have this animation
-
-	GunFire,
-	Shoot,
 
 };
 

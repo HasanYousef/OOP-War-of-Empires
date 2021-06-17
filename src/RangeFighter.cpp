@@ -4,6 +4,7 @@
 RangeFighter::RangeFighter(const sf::Vector2f& p, const int& objectTeam, const int& health,
 	const int& defaultAttack, const int& defaultGoldWorth)
 	: Fighter(p, objectTeam, health, defaultAttack, defaultGoldWorth), 
+	m_movementClock(std::make_shared<sf::Clock>()),
 	m_gunFire(std::make_shared<GunFire>(p + sf::Vector2f(80,20), objectTeam)) {
 	AnimatedObject::reSetAnimationObject(FighterType::Shooter1);
 }
@@ -61,8 +62,8 @@ void RangeFighter::move(const std::shared_ptr<Fighter>& nextAlly,
 		if (getAnimationType() == AnimationType::Idle &&
 			(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Idle))
 			setAnimationType(AnimationType::Walk);
-		if (getAnimationType() == AnimationType::Walk && m_movementClock.getElapsedTime().asMilliseconds() > FIGHTER_MOVEMENT_SPEED) {
-			m_movementClock.restart();
+		if (getAnimationType() == AnimationType::Walk && m_movementClock->getElapsedTime().asMilliseconds() > FIGHTER_MOVEMENT_SPEED) {
+			m_movementClock->restart();
 
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
@@ -83,6 +84,17 @@ void RangeFighter::move(const std::shared_ptr<Fighter>& nextAlly,
 std::shared_ptr<bool> RangeFighter::fullyDead() const {
 	return Fighter::fullyDead();
 }
+
+//-------------------------------------------------
+std::shared_ptr<GunFire> RangeFighter::getGunFire() const {
+	return m_gunFire;
+}
+
+//-------------------------------------------------
+std::shared_ptr<sf::Clock> RangeFighter::getMovementClock() const {
+	return m_movementClock;
+}
+
 
 //-------------------------------------------------
 //this func draw the object

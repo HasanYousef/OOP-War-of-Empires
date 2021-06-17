@@ -11,6 +11,8 @@ public:
 		const int&, const int&, const int&, const int&);
 
 	virtual std::shared_ptr<bool> fullyDead() const;
+	std::shared_ptr<GunFire> getGunFire() const;
+	std::shared_ptr<sf::Clock> getMovementClock() const;
 
 	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
 		const std::shared_ptr<Castle>& Castle);
@@ -22,7 +24,7 @@ public:
 	virtual sf::Sprite create(float) const;
 private:
 	sf::Clock m_attackClock;
-	sf::Clock m_movementClock;
+	std::shared_ptr <sf::Clock> m_movementClock;
 	std::shared_ptr<GunFire> m_gunFire;
 };
 

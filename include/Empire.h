@@ -5,8 +5,11 @@
 #include "Castle.h"
 #include "Fighter.h"
 #include "Window.h"
-#include "MeleeFighter.h"
-#include "RangeFighter.h"
+#include "MeleeFighter1.h"
+#include "MeleeFighter2.h"
+#include "RangeFighter1.h"
+#include "RangeFighter2.h"
+#include "RangeFighter3.h"
 
 class Empire {
 public:

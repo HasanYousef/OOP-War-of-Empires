@@ -13,8 +13,8 @@ public:
 	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy, 
 		const std::shared_ptr<Castle>& Castle);
 
-	virtual void draw(float) const ;
-	virtual sf::Sprite create(float) const ;
+	virtual void draw(float) const;
+	virtual sf::Sprite create(float) const;
 private:
 	sf::Clock m_attackClock;
 };

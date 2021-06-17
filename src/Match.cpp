@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Match.h"
-#include "Turett.h" // !@#@#$@#!%#@$%@#$%#@$%#@$
 
 Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
 
@@ -89,35 +88,35 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 	switch (m_UI.handle_click(pos)) {
 	case FighterType::Tank1:
 		if (m_playerEmpire.getMoney() >= TANK1) {
-			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
+			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>
 				(spawnPos, LEFT_TEAM, 100, 30, 30));
 			m_playerEmpire.pay(TANK1);
 		}
 		break;
 	case FighterType::Tank2:
 		if (m_playerEmpire.getMoney() >= TANK2) {
-			m_playerEmpire.addFighter(std::make_shared<MeleeFighter>
+			m_playerEmpire.addFighter(std::make_shared<MeleeFighter2>
 				(spawnPos, LEFT_TEAM, 100, 30, 30));
 			m_playerEmpire.pay(TANK2);
 		}
 		break;
 	case FighterType::Shooter1:
 		if (m_playerEmpire.getMoney() >= SHOOTER1) {
-			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter1>
 				(spawnPos, LEFT_TEAM, 100, 10, 30));
 			m_playerEmpire.pay(SHOOTER1);
 		}
 		break;
 	case FighterType::Shooter2:
 		if (m_playerEmpire.getMoney() >= SHOOTER2) {
-			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
-				(spawnPos, LEFT_TEAM, 100, 30, 30));
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter2>
+				(spawnPos, LEFT_TEAM, 100, 20, 30));
 			m_playerEmpire.pay(SHOOTER2);
 		}
 		break;
 	case FighterType::Shooter3:
 		if (m_playerEmpire.getMoney() >= SHOOTER3) {
-			m_playerEmpire.addFighter(std::make_shared<RangeFighter>
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter3>
 				(spawnPos, LEFT_TEAM, 100, 30, 30));
 			m_playerEmpire.pay(SHOOTER3);
 		}
