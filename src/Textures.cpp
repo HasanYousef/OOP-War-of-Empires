@@ -20,6 +20,10 @@ std::shared_ptr<sf::Texture> Textures::get_animation_texture(FighterType fighter
 	return m_animations[int(fighter)][int(animType)][frame];
 }
 
+std::shared_ptr<sf::Texture> Textures::get_turett_texture(TurettType turett, int frame) const {
+	return m_turetts[int(turett)][frame];
+}
+
 int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) const {
 	return m_animations[int(fighter)][int(animType)].size();
 }
@@ -40,6 +44,7 @@ Textures::Textures() {
 	load_ui_textures();
 	load_world_obj_textures();
 	load_anim_textures();
+	load_turetts_texturs();
 	load_font();
 	load_gun_fire_textures();
 }
@@ -99,6 +104,29 @@ void Textures::load_anim_textures() {
 			fighter.push_back(anim);
 		}
 		m_animations.push_back(fighter);
+	}
+}
+
+void Textures::load_turetts_texturs() {
+	std::string turettFileName = "skeleton";
+	"skeleton1-Shoot_0";
+	for (int i = 0; i < NUM_OF_TURETT_TYPES; i++) {
+		std::vector <std::shared_ptr <sf::Texture>> turett;
+		TurettType fighterType = TurettType(i);
+
+		std::vector <std::shared_ptr <sf::Texture>> anim;
+		turettFileName += (std::to_string(i) + "-Shoot_");
+		int frame = 0;
+		while (true) {
+			anim.push_back(std::make_shared<sf::Texture>());
+			if (!anim[frame]->loadFromFile(turettFileName + std::to_string(frame) + ".png")) {
+				anim.pop_back();
+				break;		// stop reading more frames when there is no more
+			}
+			frame++;
+		}
+
+		m_turetts.push_back(turett);
 	}
 }
 

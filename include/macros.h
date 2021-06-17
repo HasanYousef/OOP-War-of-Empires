@@ -68,6 +68,15 @@ enum class FighterType {
 	Nothing
 };
 
+const int NUM_OF_TURETT_TYPES = 3;
+enum class TurettType {
+
+	Turett1,
+	Turett2,
+	Turett3,
+
+};
+
 const int NUM_OF_ANIMATION_TYPES = 4;
 enum class AnimationType {
 
@@ -76,7 +85,8 @@ enum class AnimationType {
 	Die,
 	Attack,		// just Tank1 and Tank2 have this animation
 
-	GunFire
+	GunFire,
+	Shoot,
 
 };
 

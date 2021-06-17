@@ -12,13 +12,15 @@ void Animation::set_anim_type(AnimationType anim) {
 std::shared_ptr <sf::Texture> Animation::get_texture() const {
 	if (AnimationType::GunFire == m_currAnim)
 		return Textures::instance().get_gun_fire_texture(m_currFrame);
+	if (m_currAnim == AnimationType::Shoot)
+		return Textures::instance().get_turett_texture(m_turettType, m_currFrame);
 	return Textures::instance().get_animation_texture(m_fighterType, m_currAnim, m_currFrame);
 }
 
 AnimationType Animation::update(float deltaTime) {
 	m_totalTime += deltaTime;
 
-	if (m_totalTime >= ANIMATION_SWITCH_TIME && deltaTime !=0) {
+	if (m_totalTime >= ANIMATION_SWITCH_TIME && deltaTime != 0) {
 		m_totalTime -= ANIMATION_SWITCH_TIME;
 		m_currFrame++;
 		if (m_currAnim != AnimationType::GunFire && 
