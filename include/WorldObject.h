@@ -17,7 +17,7 @@ public:
 	//---build-body-----------
 	virtual void draw(float) const;
 	virtual sf::Sprite create(float) const = 0;
-private:
+protected:
 	sf::Vector2f m_position;
 	bool m_objectTeam; // "true" - if on ally team, "false" if on enemy team
 };

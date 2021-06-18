@@ -9,6 +9,8 @@
 #include "Floor.h"
 #include "Empire.h"
 
+#include "Bullet.h" //$!@#$@#%@#$%@#$%R#@%@$%@#$%
+
 class Match {
 public:
 	Match();
@@ -22,4 +24,5 @@ private:
 	InGameUI m_UI;
 	Floor m_floor;
 	Empire m_enemyEmpire, m_playerEmpire;
+	Bullet m_bullet;
 };

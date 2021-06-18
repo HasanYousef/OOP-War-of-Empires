@@ -2,7 +2,7 @@
 
 #include "Match.h"
 
-Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
+Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM), m_bullet({ 700, 400 }, 0, 100, true) {}
 
 void Match::run() {
 	sf::Event event;
@@ -25,6 +25,7 @@ void Match::run() {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
 		draw_world(deltaTime);
+
 		// checking actions done in the game's window
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -43,6 +44,7 @@ void Match::run() {
 			}
 			break;
 		}
+
 
 		// We move the fighters 
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
@@ -78,6 +80,9 @@ void Match::draw_world(float delta) {
 	m_UI.draw();
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
+
+	m_bullet.move();
+	m_bullet.draw(0);
 
 	Window::instance().get_window()->display();
 }

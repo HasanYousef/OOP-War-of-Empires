@@ -47,6 +47,9 @@ Textures::Textures() {
 	load_turetts_texturs();
 	load_font();
 	load_gun_fire_textures();
+
+	m_bullet = std::make_shared<sf::Texture>();
+	m_bullet->loadFromFile("bullet.png");
 }
 
 void Textures::load_ui_textures() {
@@ -175,4 +178,8 @@ std::string Textures::animation_name(AnimationType anim) const {
 		return "Die_";
 	else if (anim == AnimationType::Attack)
 		return "Attack_";
+}
+
+std::shared_ptr<sf::Texture> Textures::get_bullet() const {
+	return m_bullet;
 }

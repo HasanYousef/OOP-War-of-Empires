@@ -1,5 +1,7 @@
 #pragma once
 
+const float PI = 3.14159265;
+
 //Fighters prices
 const int TANK1 = 100,
 		  TANK2 = 200,

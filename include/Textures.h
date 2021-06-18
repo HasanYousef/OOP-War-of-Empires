@@ -15,6 +15,7 @@ public:
 	std::shared_ptr<sf::Texture> get_turett_texture(TurettType, int) const;
 	std::shared_ptr<sf::Font> get_font() const;
 	std::shared_ptr<sf::Texture> get_gun_fire_texture(int) const;
+	std::shared_ptr<sf::Texture> get_bullet() const;
 
 private:
 	Textures();
@@ -34,4 +35,5 @@ private:
 	std::vector <std::vector <std::shared_ptr <sf::Texture>>> m_turetts;
 	std::shared_ptr<sf::Font> m_font;
 	std::vector <std::shared_ptr <sf::Texture>> m_gunFireAnimations;
+	std::shared_ptr <sf::Texture > m_bullet;
 };
