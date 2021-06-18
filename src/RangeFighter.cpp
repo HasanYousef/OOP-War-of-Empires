@@ -6,7 +6,7 @@ RangeFighter::RangeFighter(const sf::Vector2f& p, const int& objectTeam, const i
 	: Fighter(p, objectTeam, health, defaultAttack, defaultGoldWorth), 
 	m_movementClock(std::make_shared<sf::Clock>()),
 	m_gunFire(std::make_shared<GunFire>(p + sf::Vector2f(80,20), objectTeam)) {
-	AnimatedObject::reSetAnimationObject(FighterType::Shooter1);
+	reSetAnimationObject(FighterType::Shooter1);
 }
 
 
@@ -25,12 +25,12 @@ void RangeFighter::attack(const std::shared_ptr<Fighter>& firstEnemy,
 		if (getAnimationType() == AnimationType::Idle)
 			setAnimationType(AnimationType::Idle);
 			//setAnimationType(AnimationType::Attack);
-		bool x = (AnimatedObject::getAnimationObject())->getCurrFrame() == RANGE_DAMAGING_FRAME;
+		bool x = m_animation->getCurrFrame() == RANGE_DAMAGING_FRAME;
 		if (getAnimationType() == AnimationType::Idle/*AnimationType::Attack*/ && x && m_attackClock.getElapsedTime().asSeconds() > 1.5*ANIMATION_SWITCH_TIME) {
 			m_attackClock.restart();
 			
-			if (getDistance(create(0), enemyCastle->create(0)) < 500 ||
-				create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
+			if (firstEnemy.get() == NULL && (getDistance(create(0), enemyCastle->create(0)) < 500 ||
+				create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds()))) {
 				// activate gunshot
 				m_gunFire->activate();
 				// attacking castle
@@ -107,12 +107,12 @@ void RangeFighter::draw(float f) const {
 //we creat the texture that we want to print it 
 
 sf::Sprite RangeFighter::create(float f) const {
-	auto result = sf::Sprite(*(AnimatedObject::getAnimationObject())->get_texture());
-	if ((AnimatedObject::getAnimationObject())->update(f) != getAnimationType()) {
-		if ((AnimatedObject::getAnimationObject())->update(0) == AnimationType::Idle && getAnimationType() == AnimationType::Die) {
+	auto result = sf::Sprite(*m_animation->get_texture());
+	if (m_animation->update(f) != getAnimationType()) {
+		if (m_animation->update(0) == AnimationType::Idle && getAnimationType() == AnimationType::Die && m_animation->getCurrFrame() == 0) {
 			setFullyDead();
 		}
-		(AnimatedObject::getAnimationObject())->set_anim_type(getAnimationType());
+		m_animation->set_anim_type(getAnimationType());
 	}
 	result.setPosition(WorldObject::get_position());
 	if (WorldObject::get_object_team() == RIGHT_TEAM)

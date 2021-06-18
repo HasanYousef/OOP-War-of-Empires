@@ -1,5 +1,6 @@
 #pragma once
 #include "AnimatedObject.h"
+#include "FireAnimation.h"
 
 class GunFire : public AnimatedObject {
 public:
@@ -13,4 +14,5 @@ public:
 	virtual sf::Sprite create(float) const;
 private:
 	std::shared_ptr<bool> m_activated;
+	std::shared_ptr< FireAnimation> m_animation;
 };

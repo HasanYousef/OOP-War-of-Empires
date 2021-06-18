@@ -19,7 +19,7 @@ void Match::run() {
 	sf::Vector2f location;
 
 	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter>
-		(sf::Vector2f(1920, 927), RIGHT_TEAM, 100, 30, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+		(sf::Vector2f(1920, 927), RIGHT_TEAM, 300, 50, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
 
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
@@ -89,14 +89,14 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 	case FighterType::Tank1:
 		if (m_playerEmpire.getMoney() >= TANK1) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>
-				(spawnPos, LEFT_TEAM, 100, 30, 30));
+				(spawnPos, LEFT_TEAM, 100, 10, 30));
 			m_playerEmpire.pay(TANK1);
 		}
 		break;
 	case FighterType::Tank2:
 		if (m_playerEmpire.getMoney() >= TANK2) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter2>
-				(spawnPos, LEFT_TEAM, 100, 30, 30));
+				(spawnPos, LEFT_TEAM, 100 * 1.5, 10 * 1.5, 30));
 			m_playerEmpire.pay(TANK2);
 		}
 		break;
@@ -110,14 +110,14 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 	case FighterType::Shooter2:
 		if (m_playerEmpire.getMoney() >= SHOOTER2) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter2>
-				(spawnPos, LEFT_TEAM, 100, 20, 30));
+				(spawnPos, LEFT_TEAM, 100, 10 * 2, 30));
 			m_playerEmpire.pay(SHOOTER2);
 		}
 		break;
 	case FighterType::Shooter3:
 		if (m_playerEmpire.getMoney() >= SHOOTER3) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter3>
-				(spawnPos, LEFT_TEAM, 100, 30, 30));
+				(spawnPos, LEFT_TEAM, 100, 10 * 3, 30));
 			m_playerEmpire.pay(SHOOTER3);
 		}
 		break;

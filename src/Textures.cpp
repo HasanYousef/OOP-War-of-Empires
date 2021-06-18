@@ -29,7 +29,7 @@ int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) co
 }
 
 int Textures::num_of_gun_fire_frames() const {
-	return m_gunFireAnimations.size();
+	return int(m_gunFireAnimations.size());
 }
 
 std::shared_ptr<sf::Font> Textures::get_font() const {

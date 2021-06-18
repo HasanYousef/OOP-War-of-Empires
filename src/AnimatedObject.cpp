@@ -3,16 +3,13 @@
 
 //-------------------------------------------------
 AnimatedObject::AnimatedObject(const sf::Vector2f& p) 
-	: WorldObject(p), m_animationType(AnimationType::Walk),
-	m_animation(std::make_shared<Animation>(FighterType::Tank1)) {}
+	: WorldObject(p), m_animationType(AnimationType::Walk){}
 
 AnimatedObject::AnimatedObject(const sf::Vector2f& p, const bool& objectTeam)
-	: WorldObject(p, objectTeam), m_animationType(AnimationType::Walk),
-	m_animation(std::make_shared<Animation>(FighterType::Tank1)) {}
+	: WorldObject(p, objectTeam), m_animationType(AnimationType::Walk) {}
 
 AnimatedObject::AnimatedObject(const sf::Vector2f& p, const bool& objectTeam, const AnimationType& animationType) 
-	: WorldObject(p, objectTeam), m_animationType(animationType),
-	m_animation(std::make_shared<Animation>(animationType)) {}
+	: WorldObject(p, objectTeam), m_animationType(animationType){}
 	
 
 //-------------------------------------------------
@@ -23,17 +20,6 @@ void AnimatedObject::setAnimationType(const AnimationType& newAnimationType){
 //-------------------------------------------------
 AnimationType AnimatedObject::getAnimationType() const{
 	return m_animationType;
-}
-
-//-------------------------------------------------
-std::shared_ptr <Animation> AnimatedObject::getAnimationObject() const{
-	return m_animation;
-}
-
-//-------------------------------------------------
-
-void AnimatedObject::reSetAnimationObject(const FighterType& newFighterType) {
-	m_animation = std::make_shared<Animation>(newFighterType);
 }
 
 

@@ -9,3 +9,7 @@ std::shared_ptr <sf::Texture> FireAnimation::get_texture() const {
 bool FireAnimation::update(float delta) {
 	return Animation::update(delta);
 }
+
+void FireAnimation::set_anim() {
+	m_currFrame = 0;
+}

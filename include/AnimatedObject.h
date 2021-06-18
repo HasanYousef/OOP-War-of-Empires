@@ -12,13 +12,10 @@ public:
 
 	void setAnimationType(const AnimationType&);
 	AnimationType getAnimationType() const;
-	std::shared_ptr <Animation> getAnimationObject() const;
-	void reSetAnimationObject(const FighterType&);
 
 	//---build-body-----------
 	virtual void draw(float) const = 0;
 	virtual sf::Sprite create(float) const = 0;
 private:
 	AnimationType m_animationType;
-	std::shared_ptr <Animation> m_animation;
 };

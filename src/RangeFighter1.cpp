@@ -4,5 +4,5 @@
 RangeFighter1::RangeFighter1(const sf::Vector2f& p, const int& objectTeam, const int& health,
 	const int& defaultAttack, const int& defaultGoldWorth)
 	: RangeFighter(p, objectTeam, health, defaultAttack, defaultGoldWorth) {
-	AnimatedObject::reSetAnimationObject(FighterType::Shooter1);
+	reSetAnimationObject(FighterType::Shooter1);
 }

@@ -5,7 +5,8 @@ Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& healt
 	const int& defaultAttack, const int& defaultGoldWorth)
 	: AnimatedObject(p, objectTeam), LiveObject(p, objectTeam, health)
 	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth),
-	m_lastMovement(), m_fullyDead(std::make_shared<bool>(false)){
+	m_lastMovement(), m_fullyDead(std::make_shared<bool>(false)),
+	m_animation(std::make_shared<FighterAnimation>(FighterType::Tank1)) {
 	// applying speed limits ------------------------------------------
 	/*
 	if (movementSpeed > MAX_MOVEMENT_SPEED &&
@@ -44,6 +45,18 @@ void Fighter::setFullyDead() const {
 
 std::shared_ptr<bool> Fighter::fullyDead() const {
 	return m_fullyDead;
+}
+
+
+//-------------------------------------------------
+std::shared_ptr <FighterAnimation> Fighter::getAnimationObject() const {
+	return m_animation;
+}
+
+//-------------------------------------------------
+
+void Fighter::reSetAnimationObject(const FighterType& newFighterType) {
+	m_animation = std::make_shared<FighterAnimation>(newFighterType);
 }
 
 //-------------------------------------------------

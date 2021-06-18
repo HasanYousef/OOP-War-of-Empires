@@ -2,6 +2,7 @@
 #include "AnimatedObject.h"
 #include "LiveObject.h"
 #include "Castle.h"
+#include "FighterAnimation.h"
 
 class Fighter : public AnimatedObject, public LiveObject {
 public:
@@ -15,6 +16,8 @@ public:
 	void setFullyDead() const;
 	virtual std::shared_ptr<bool> fullyDead() const;
 	int getGoldWorth() const;
+	std::shared_ptr <FighterAnimation> getAnimationObject() const;
+	void reSetAnimationObject(const FighterType&);
 
 	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
 		const std::shared_ptr<Castle>& Castle) = 0;
@@ -33,4 +36,7 @@ private:
 	//float m_attackSpeed;   //  = milliseconds per one_attack
 	sf::Clock m_clock;
 	std::shared_ptr<bool> m_fullyDead;
+
+protected:
+	std::shared_ptr <FighterAnimation> m_animation;
 };
