@@ -1,15 +1,15 @@
 #pragma once
 
-#include "FireAnimation.h"
+#include "TurettAnimation.h"
 
-std::shared_ptr <sf::Texture> FireAnimation::get_texture() const {
-	return Textures::instance().get_gun_fire_texture(m_currFrame);
+std::shared_ptr <sf::Texture> TurettAnimation::get_texture() const {
+	return Textures::instance().get_turett_texture(m_turettType, m_currFrame);
 }
 
-bool FireAnimation::update(float delta) {
+bool TurettAnimation::update(float delta) {
 	return Animation::update(delta);
 }
 
-void FireAnimation::set_anim() {
+void TurettAnimation::set_anim() {
 	m_currFrame = 0;
 }

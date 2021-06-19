@@ -2,7 +2,7 @@
 
 #include "Match.h"
 
-Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM), m_bullet({ 700, 400 }, 0, 100, true) {}
+Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
 
 void Match::run() {
 	sf::Event event;
@@ -80,9 +80,6 @@ void Match::draw_world(float delta) {
 	m_UI.draw();
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
-
-	m_bullet.move();
-	m_bullet.draw(0);
 
 	Window::instance().get_window()->display();
 }

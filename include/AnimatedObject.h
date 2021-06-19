@@ -16,6 +16,6 @@ public:
 	//---build-body-----------
 	virtual void draw(float) const = 0;
 	virtual sf::Sprite create(float) const = 0;
-private:
+protected:
 	AnimationType m_animationType;
 };
