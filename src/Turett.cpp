@@ -30,7 +30,7 @@ sf::Sprite Turett::create(float delta) const {
 void Turett::aim(const std::shared_ptr<Fighter>& enemy) {
 	if (enemy) {
 		auto enemyPos = enemy->WorldObject::get_position();
-		enemyPos.y += enemy->create(0).getGlobalBounds().height;
+		enemyPos.y += enemy->create(0).getGlobalBounds().height / 2;
 		float opposite = enemyPos.x - m_position.x;
 		float adjacent = enemyPos.y - m_position.y;
 		bool team = WorldObject::get_object_team();
