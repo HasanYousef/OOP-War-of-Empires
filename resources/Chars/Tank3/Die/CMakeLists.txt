@@ -1,0 +1,7 @@
+configure_file ("skeleton12-Die_0.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_4.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_5.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("skeleton12-Die_6.png" ${CMAKE_BINARY_DIR} COPYONLY)

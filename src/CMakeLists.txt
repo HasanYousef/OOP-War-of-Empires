@@ -32,6 +32,7 @@
 "RangeFighter1.cpp"
 "RangeFighter2.cpp"
 "RangeFighter3.cpp"
+"RangeFighter4.cpp"
 "GunFire.cpp"
 "Turett.cpp"
 "Bullet.cpp"
@@ -41,4 +42,8 @@
 "CastleHealthbar.cpp"
 "CastleHealthbarBackground.cpp"
 "CastleHealthbarFilled.cpp"
+"KiteBalloon.cpp"
+"AirBomb.cpp"
+"KiteBalloonAnimation.cpp"
+"AirBombAnimation.cpp"
 )
