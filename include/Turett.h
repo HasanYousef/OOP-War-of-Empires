@@ -12,7 +12,7 @@ public:
 
 private:
 	bool m_isShooting = false;
-	TurettType m_level = TurettType::Turett1;
+	TurettType m_level = TurettType::Turett3;
 	float m_deg = 0;
 	std::unique_ptr<TurettAnimation> m_animation;
 };

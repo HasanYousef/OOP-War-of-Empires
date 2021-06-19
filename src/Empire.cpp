@@ -3,7 +3,7 @@
 #include <Empire.h>
 
 Empire::Empire(bool team) : m_team(team),
-m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)), m_turett({ 200, 600 }, true) {}
+m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)), m_turett(sf::Vector2f(m_team ? 200 : 1720, 600), m_team) {}
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_front(fighter);
@@ -35,6 +35,7 @@ void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Figh
 		}
 		fighternum++;
 	}
+	m_turett.aim(enemyFighter);
 }
 
 void Empire::draw(float delta) const {
