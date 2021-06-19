@@ -3,12 +3,12 @@
 
 GunFire::GunFire(const sf::Vector2f& p, const bool& objectTeam)
 	: AnimatedObject(p, objectTeam), m_activated(std::make_shared<bool>(false)),
-	m_animation(std::make_shared<FireAnimation>()){}
+	m_animation(std::make_shared<FireAnimation>()) {}
 
-void GunFire::activate() const{
+void GunFire::activate() const {
 	*m_activated = true;
 }
-void GunFire::disActivate() const{
+void GunFire::disActivate() const {
 	*m_activated = false;
 	m_animation->set_anim();
 }

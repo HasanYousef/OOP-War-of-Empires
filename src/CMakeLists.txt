@@ -43,7 +43,7 @@
 "CastleHealthbarBackground.cpp"
 "CastleHealthbarFilled.cpp"
 "KiteBalloon.cpp"
-"AirBomb.cpp"
+#"AirBomb.cpp"
 "KiteBalloonAnimation.cpp"
-"AirBombAnimation.cpp"
+#"AirBombAnimation.cpp"
 )

@@ -6,7 +6,7 @@
 
 class Fighter : public AnimatedObject, public LiveObject {
 public:
-	Fighter() = default ;
+	Fighter() = default;
 	Fighter(const sf::Vector2f&,
 		const bool&, const int&, const int&, const int&);
 
@@ -18,6 +18,8 @@ public:
 	int getGoldWorth() const;
 	std::shared_ptr <FighterAnimation> getAnimationObject() const;
 	void reSetAnimationObject(const FighterType&);
+	void setAnimationType(const AnimationType&);
+	AnimationType getAnimationType() const;
 
 	virtual void attack(const std::shared_ptr<Fighter>& firstEnemy,
 		const std::shared_ptr<Castle>& Castle) = 0;
@@ -39,4 +41,5 @@ private:
 
 protected:
 	std::shared_ptr <FighterAnimation> m_animation;
+	AnimationType m_animationType;
 };

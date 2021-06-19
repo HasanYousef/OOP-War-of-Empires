@@ -15,6 +15,9 @@ public:
 	std::shared_ptr<sf::Texture> get_turett_texture(TurettType, int) const;
 	std::shared_ptr<sf::Font> get_font() const;
 	std::shared_ptr<sf::Texture> get_gun_fire_texture(int) const;
+	std::shared_ptr<sf::Texture> get_kite_balloon_texture(int) const;
+	std::shared_ptr<sf::Texture> get_bomb_texture(int) const;
+	std::shared_ptr<sf::Texture> get_explosion_texture(int) const;
 	std::shared_ptr<sf::Texture> get_bullet() const;
 
 private:
@@ -25,6 +28,10 @@ private:
 	void load_turetts_texturs();
 	void load_font();
 	void load_gun_fire_textures();
+	void load_kite_balloon_textures();
+	void load_bomb_textures();
+	void load_explosion_textures();
+
 	std::string fighter_file_name(FighterType) const;
 	std::string animation_name(AnimationType anim) const;
 
@@ -35,5 +42,8 @@ private:
 	std::vector <std::vector <std::shared_ptr <sf::Texture>>> m_turetts;
 	std::shared_ptr<sf::Font> m_font;
 	std::vector <std::shared_ptr <sf::Texture>> m_gunFireAnimations;
+	std::vector <std::shared_ptr <sf::Texture>> m_kiteBalloonAnimations;
+	std::vector <std::shared_ptr <sf::Texture>> m_bombs;
+	std::vector <std::shared_ptr <sf::Texture>> m_explotionAnimation;
 	std::shared_ptr <sf::Texture > m_bullet;
 };

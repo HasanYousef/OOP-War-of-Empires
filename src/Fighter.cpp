@@ -1,12 +1,13 @@
 #pragma once
 #include "Fighter.h"
 
-Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& health, 
+Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& health,
 	const int& defaultAttack, const int& defaultGoldWorth)
 	: AnimatedObject(p, objectTeam), LiveObject(p, objectTeam, health)
 	, m_level(1), m_defaultAttack(defaultAttack), m_defaultGoldWorth(defaultGoldWorth),
 	m_lastMovement(), m_fullyDead(std::make_shared<bool>(false)),
-	m_animation(std::make_shared<FighterAnimation>(FighterType::Tank1)) {
+	m_animation(std::make_shared<FighterAnimation>(FighterType::Tank1)),
+	m_animationType(AnimationType::Walk) {
 	// applying speed limits ------------------------------------------
 	/*
 	if (movementSpeed > MAX_MOVEMENT_SPEED &&
@@ -20,7 +21,7 @@ Fighter::Fighter(const sf::Vector2f& p, const bool& objectTeam, const int& healt
 	else
 		m_attackSpeed = (MIN_ATTACK_SPEED + MAX_ATTACK_SPEED) / 2;
 		*/
-	//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
 }
 
 void Fighter::addLevel() {
@@ -59,6 +60,18 @@ void Fighter::reSetAnimationObject(const FighterType& newFighterType) {
 	m_animation = std::make_shared<FighterAnimation>(newFighterType);
 }
 
+
+//-------------------------------------------------
+void Fighter::setAnimationType(const AnimationType& newAnimationType) {
+	m_animationType = newAnimationType;
+}
+
+//-------------------------------------------------
+AnimationType Fighter::getAnimationType() const {
+	return m_animationType;
+}
+
+
 //-------------------------------------------------
 void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 	const std::shared_ptr<Fighter>& firstEnemy,
@@ -66,7 +79,7 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 	if ((nextAlly == NULL || !create(0).getGlobalBounds().intersects(nextAlly->create(0).getGlobalBounds())) &&
 		(firstEnemy == NULL || !create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds())) &&
 		!create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds())) {
-		if (getAnimationType() == AnimationType::Idle && 
+		if (getAnimationType() == AnimationType::Idle &&
 			(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Idle))
 			setAnimationType(AnimationType::Walk);
 		if (getAnimationType() == AnimationType::Walk && m_clock.getElapsedTime().asMilliseconds() > FIGHTER_MOVEMENT_SPEED) {
@@ -79,8 +92,8 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 			WorldObject::set_position(x);
 		}
 	}
-	else if (getAnimationType() == AnimationType::Walk && 
-		(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Walk )) {
+	else if (getAnimationType() == AnimationType::Walk &&
+		(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Walk)) {
 		setAnimationType(AnimationType::Idle);
 	}
 }

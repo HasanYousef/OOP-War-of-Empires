@@ -7,7 +7,8 @@ const int TANK1 = 100,
 		  TANK2 = 200,
 		  SHOOTER1 = 300,
 		  SHOOTER2 = 400,
-		  SHOOTER3 = 500;
+		  SHOOTER3 = 500,
+		  TANK3 = 600;
 
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
@@ -59,7 +60,7 @@ enum class WorldObjectType {
 
 };
 
-const int NUM_OF_FIGHTER_TYPES = 5;
+const int NUM_OF_FIGHTER_TYPES = 6;
 enum class FighterType {
 
 	Tank1,
@@ -68,6 +69,8 @@ enum class FighterType {
 	Shooter1,
 	Shooter2,
 	Shooter3,
+
+	Tank3,
 
 	Nothing
 };

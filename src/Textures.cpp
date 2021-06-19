@@ -40,6 +40,17 @@ std::shared_ptr<sf::Texture> Textures::get_gun_fire_texture(int frame) const {
 	return m_gunFireAnimations[frame];
 }
 
+std::shared_ptr<sf::Texture> Textures::get_kite_balloon_texture(int frame) const {
+	return m_kiteBalloonAnimations[frame];
+}
+
+std::shared_ptr<sf::Texture> Textures::get_bomb_texture(int module) const {
+	return m_bombs[module];
+}
+std::shared_ptr<sf::Texture> Textures::get_explosion_texture(int frame) const {
+	return m_explotionAnimation[frame];
+}
+
 Textures::Textures() {
 	load_ui_textures();
 	load_world_obj_textures();
@@ -47,6 +58,9 @@ Textures::Textures() {
 	load_turetts_texturs();
 	load_font();
 	load_gun_fire_textures();
+	load_kite_balloon_textures();
+	load_bomb_textures();
+	load_explosion_textures();
 
 	m_bullet = std::make_shared<sf::Texture>();
 	m_bullet->loadFromFile("bullet.png");
@@ -88,9 +102,11 @@ void Textures::load_anim_textures() {
 			std::string fighterFileName = fighter_file_name(fighterType);
 			AnimationType animationType = AnimationType(j);
 			// just the Tank1 and the Tank2 fighters have Attack animations
-			if(animationType == AnimationType::Attack)
+			if (animationType == AnimationType::Attack)
 				if (fighterType != FighterType::Tank1 && fighterType != FighterType::Tank2)
 					break;
+			if (fighterType == FighterType::Tank3 && animationType == AnimationType::Attack)
+				break;
 
 			std::vector <std::shared_ptr <sf::Texture>> anim;
 			fighterFileName += animation_name(animationType);
@@ -137,12 +153,48 @@ void Textures::load_font() {
 }
 
 void Textures::load_gun_fire_textures() {
-	std::string fighterFileName("skeleton-animation_");
+	std::string fighterFileName("skeleton-fire-animation_");
 	int frame = 0;
 	while (true) {
 		m_gunFireAnimations.push_back(std::make_shared<sf::Texture>());
 		if (!m_gunFireAnimations[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
 			m_gunFireAnimations.pop_back();
+			break;		// stop reading more frames when there is no more
+		}
+		frame++;
+	}
+}
+
+void Textures::load_kite_balloon_textures() {
+	std::string fighterFileName("skeleton-NormalMoving_");
+	int frame = 0;
+	while (true) {
+		m_kiteBalloonAnimations.push_back(std::make_shared<sf::Texture>());
+		if (!m_kiteBalloonAnimations[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
+			m_kiteBalloonAnimations.pop_back();
+			break;		// stop reading more frames when there is no more
+		}
+		frame++;
+	}
+}
+
+void Textures::load_bomb_textures() {
+	std::string fighterFileName("airbomb");
+	int module = 1;
+	while (module <= 3) {
+		m_bombs.push_back(std::make_shared<sf::Texture>());
+		m_bombs[module - int(1)]->loadFromFile(fighterFileName + std::to_string(module) + ".png");
+		module++;
+	}
+}
+
+void Textures::load_explosion_textures() {
+	std::string fighterFileName("skeleton-explosion-animation_");
+	int frame = 0;
+	while (true) {
+		m_explotionAnimation.push_back(std::make_shared<sf::Texture>());
+		if (!m_explotionAnimation[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
+			m_explotionAnimation.pop_back();
 			break;		// stop reading more frames when there is no more
 		}
 		frame++;
@@ -162,6 +214,8 @@ std::string Textures::fighter_file_name(FighterType fighter) const {
 		fighterFileName += "6-";
 	else if (fighter == FighterType::Shooter3)
 		fighterFileName += "11-";
+	else if (fighter == FighterType::Tank3)
+		fighterFileName += "12-";
 
 	return fighterFileName;
 }

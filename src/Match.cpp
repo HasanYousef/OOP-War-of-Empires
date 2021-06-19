@@ -20,6 +20,8 @@ void Match::run() {
 
 	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter>
 		(sf::Vector2f(1920, 927), RIGHT_TEAM, 300, 50, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+	m_enemyEmpire.addKiteBalloon();
+	m_playerEmpire.addKiteBalloon();
 
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
@@ -49,6 +51,8 @@ void Match::run() {
 		// We move the fighters 
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.moveFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
+		m_enemyEmpire.moveKiteBalloon();
+		m_playerEmpire.moveKiteBalloon();
 		// we let the fighters attack each others
 		m_playerEmpire.attackFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.attackFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
@@ -121,6 +125,13 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter3>
 				(spawnPos, LEFT_TEAM, 100, 10 * 3, 30));
 			m_playerEmpire.pay(SHOOTER3);
+		}
+		break;
+	case FighterType::Tank3:
+		if (m_playerEmpire.getMoney() >= TANK3) {
+			m_playerEmpire.addFighter(std::make_shared<RangeFighter4>
+				(spawnPos, LEFT_TEAM, 100 * 4, 10 * 5, 30));
+			m_playerEmpire.pay(TANK3);
 		}
 		break;
 	default:
