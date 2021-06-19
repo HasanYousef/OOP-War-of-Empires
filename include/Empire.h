@@ -10,6 +10,7 @@
 #include "RangeFighter1.h"
 #include "RangeFighter2.h"
 #include "RangeFighter3.h"
+#include "Turett.h"	//@#$%@#$%#$^$#$$
 
 class Empire {
 public:
@@ -33,4 +34,5 @@ private:
 	int m_money = 30000;
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
+	Turett m_turett;
 };

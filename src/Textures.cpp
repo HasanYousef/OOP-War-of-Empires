@@ -111,19 +111,17 @@ void Textures::load_anim_textures() {
 }
 
 void Textures::load_turetts_texturs() {
-	std::string turettFileName = "skeleton";
-	"skeleton1-Shoot_0";
 	for (int i = 0; i < NUM_OF_TURETT_TYPES; i++) {
 		std::vector <std::shared_ptr <sf::Texture>> turett;
-		TurettType fighterType = TurettType(i);
+		TurettType turettType = TurettType(i);
 
-		std::vector <std::shared_ptr <sf::Texture>> anim;
-		turettFileName += (std::to_string(i) + "-Shoot_");
+		std::string turettFileName = "skeleton";
+		turettFileName += (std::to_string(i + 1) + "-Shoot_");
 		int frame = 0;
 		while (true) {
-			anim.push_back(std::make_shared<sf::Texture>());
-			if (!anim[frame]->loadFromFile(turettFileName + std::to_string(frame) + ".png")) {
-				anim.pop_back();
+			turett.push_back(std::make_shared<sf::Texture>());
+			if (!turett[frame]->loadFromFile(turettFileName + std::to_string(frame) + ".png")) {
+				turett.pop_back();
 				break;		// stop reading more frames when there is no more
 			}
 			frame++;

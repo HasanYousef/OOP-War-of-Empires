@@ -6,12 +6,13 @@
 class Turett : public AnimatedObject {
 public:
 	Turett(const sf::Vector2f&, bool);
-	sf::Sprite create(float delta);
+	sf::Sprite create(float delta) const;
+	void aim(const std::shared_ptr<Fighter>& enemy);
 	std::shared_ptr<Bullet> shoot();
 
 private:
 	bool m_isShooting = false;
 	TurettType m_level = TurettType::Turett1;
-	float m_deg;
-	TurettAnimation m_animation;
+	float m_deg = 0;
+	std::unique_ptr<TurettAnimation> m_animation;
 };

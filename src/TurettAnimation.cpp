@@ -10,6 +10,14 @@ bool TurettAnimation::update(float delta) {
 	return Animation::update(delta);
 }
 
+void TurettAnimation::setIsShooting(bool is) {
+	m_isShooting = is;
+}
+
+bool TurettAnimation::isShooting() const {
+	return m_isShooting;
+}
+
 void TurettAnimation::set_anim() {
 	m_currFrame = 0;
 }

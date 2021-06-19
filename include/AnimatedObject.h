@@ -14,7 +14,7 @@ public:
 	AnimationType getAnimationType() const;
 
 	//---build-body-----------
-	virtual void draw(float) const = 0;
+	virtual void draw(float delta) const { WorldObject::draw(delta); }
 	virtual sf::Sprite create(float) const = 0;
 protected:
 	AnimationType m_animationType;
