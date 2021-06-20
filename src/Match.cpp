@@ -100,7 +100,7 @@ void Match::draw_world(float delta) {
 void Match::buyFighter(const sf::Vector2f& pos) {
 	sf::Vector2f spawnPos(0, 927);
 
-	switch (m_UI.handle_click(pos)) {
+	switch (m_UI.handle_click_fighters(pos)) {
 	case FighterType::Tank1:
 		if (m_playerEmpire.getMoney() >= TANK1) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>

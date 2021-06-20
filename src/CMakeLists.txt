@@ -17,6 +17,8 @@
 "ExitGameButton.cpp"
 "InGameUI.cpp"
 "BuyWorldObject.cpp"
+"BuyFighter.cpp"
+"BuyTurett.cpp"
 "BuyWorldObjectBackground.cpp"
 "BuyButton.cpp"
 "UIObject.cpp"

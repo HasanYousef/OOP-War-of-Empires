@@ -19,9 +19,13 @@ sf::Sprite BuyButton::create() const {
 	return butt;
 }
 
+void BuyButton::set_can_buy_more(bool can) {
+	m_canBuy = can;
+}
+
 void BuyButton::draw() const {
 	Button::draw();
-	draw_price();
+	m_canBuyMore ? draw_price() : draw_bought();
 }
 
 void BuyButton::draw_price() const {
@@ -30,6 +34,19 @@ void BuyButton::draw_price() const {
 	priceText.setFont(*Textures::instance().get_font());
 	priceText.setCharacterSize(20);
 	priceText.setColor(m_canBuy ? sf::Color::White : sf::Color(185, 185, 185));
+	sf::FloatRect textRect = priceText.getLocalBounds();
+	priceText.setOrigin(textRect.left + textRect.width / 2.0f,
+		textRect.top + textRect.height / 2.0f);
+	priceText.setPosition(m_position.x + 46, m_position.y + 14);
+	Window::instance().get_window()->draw(priceText);
+}
+
+void BuyButton::draw_bought() const {
+	sf::Text priceText;
+	priceText.setString("Bought");
+	priceText.setFont(*Textures::instance().get_font());
+	priceText.setCharacterSize(20);
+	priceText.setColor(sf::Color(185, 185, 185));
 	sf::FloatRect textRect = priceText.getLocalBounds();
 	priceText.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
