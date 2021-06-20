@@ -9,7 +9,6 @@ public:
 	AirBomb(const sf::Vector2f&, const bool&, const int&);
 
 	virtual void move();
-	virtual bool collied(std::list <std::shared_ptr <Fighter>>& , const sf::Vector2f&) const;
 	virtual void draw(float) const;
 	virtual sf::Sprite create(float) const;
 

@@ -8,7 +8,7 @@ public:
 		AirUnites() = default;
 		AirUnites(const sf::Vector2f&, const bool&, const int&);
 
-		virtual bool collied(std::list <std::shared_ptr <Fighter>>&, const sf::Vector2f&) const = 0;
+		bool collied(std::list <std::shared_ptr <Fighter>>&, const sf::Vector2f&);
 		virtual void move() = 0;
 		bool getHit();
 
@@ -17,5 +17,5 @@ public:
 
 protected:
 	int m_damage;
-	std::shared_ptr<bool> m_hit;
+	bool m_hit = false;
 };

@@ -9,20 +9,8 @@ void Bullet::move() {
 	m_position.y = m_position.y + 4 * sin(m_deg * PI / 180) * (m_objectTeam ? 1 : -1);
 }
 
-bool Bullet::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f& floorPosition) const {
-	int fighternum = 0;
-	for (auto fighter = enemies.begin(); fighter != enemies.end(); ++fighter)
-		if (create(0).getGlobalBounds().intersects(fighter->get()->create(0).getGlobalBounds())) {
-			if (!(*fighter)->getDamaged(m_damage))
-				(*fighter)->setAnimationType(AnimationType::Die);
-			*m_hit = true;
-			return true;
-		}
-	if(create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y){
-		*m_hit = true;
-		return true;
-	}
-	return false;
+bool Bullet::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f& floorPosition) {
+	return AirUnites::collied(enemies, floorPosition);
 }
 
 void Bullet::draw(float delta) const {

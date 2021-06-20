@@ -23,23 +23,6 @@ void AirBomb::move() {
 	}
 }
 
-//--------------------------------------------------
-bool AirBomb::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f& floorPosition) const {
-	int fighternum = 0;
-	for (auto fighter = enemies.begin(); fighter != enemies.end(); ++fighter)
-		if (create(0).getGlobalBounds().intersects(fighter->get()->create(0).getGlobalBounds())) {
-			if (!(*fighter)->getDamaged(m_damage))
-				(*fighter)->setAnimationType(AnimationType::Die);
-			*m_hit = true;
-			return true;
-		}
-	if (create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y) {
-		*m_hit = true;
-		return true;
-	}
-	return false;
-}
-
 //-------------------------------------------------
 void AirBomb::draw(float delta) const {
 	Window::instance().get_window()->draw(create(delta));
@@ -54,8 +37,8 @@ sf::Sprite AirBomb::create(float f) const {
 	m_animation->update(f);
 
 	result.setPosition(WorldObject::get_position());
-	result.setScale(70.0f / result.getLocalBounds().width,
-		50.0f / result.getLocalBounds().height);
+	result.setScale(30.0f / result.getLocalBounds().width,
+		20.0f / result.getLocalBounds().height);
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
