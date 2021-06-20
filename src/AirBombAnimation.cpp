@@ -10,7 +10,8 @@ std::shared_ptr <sf::Texture> AirBombAnimation::get_texture() const {
 
 bool AirBombAnimation::update(float delta) {
 	if (m_explosive)
-		Animation::update(delta);
+		return Animation::update(delta);
+	return Animation::update(0);
 }
 
 void AirBombAnimation::set_anim() {

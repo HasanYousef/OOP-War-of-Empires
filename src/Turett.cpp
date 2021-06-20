@@ -2,7 +2,7 @@
 #include "Turett.h"
 
 Turett::Turett(const sf::Vector2f& pos, bool team)
-	: AnimatedObject(pos, team){
+	: AnimatedObject(pos, team), m_shootClock(std::make_shared<sf::Clock>()){
 	m_animation = std::make_unique<TurettAnimation>(TurettType::Turett3);
 }
 
@@ -29,8 +29,9 @@ sf::Sprite Turett::create(float delta) const {
 
 void Turett::aim(const std::shared_ptr<Fighter>& enemy) {
 	if (enemy) {
-		auto enemyPos = enemy->WorldObject::get_position();
-		enemyPos.y += enemy->create(0).getGlobalBounds().height / 2;
+		m_isShooting = true;
+		auto enemyPos = enemy->create(0).getPosition();
+		enemyPos.y += enemy->create(0).getGlobalBounds().height;
 		float opposite = enemyPos.x - m_position.x;
 		float adjacent = enemyPos.y - m_position.y;
 		bool team = WorldObject::get_object_team();
@@ -40,8 +41,15 @@ void Turett::aim(const std::shared_ptr<Fighter>& enemy) {
 		if (!team)
 			m_deg *= -1;
 	}
+	else
+		m_isShooting = false;
 }
 
 std::shared_ptr<Bullet> Turett::shoot() {
-	return std::make_shared<Bullet>(m_position, m_deg, 100, WorldObject::get_object_team());
+	if (m_shootClock->getElapsedTime().asSeconds() > 0.5 && m_isShooting) {
+		m_shootClock->restart();
+		auto bullet = std::make_shared<Bullet>(m_position, m_deg, 50, WorldObject::get_object_team());
+		return bullet;
+	}
+	return NULL;
 }

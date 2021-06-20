@@ -3,7 +3,8 @@
 #include <Empire.h>
 
 Empire::Empire(bool team) : m_team(team),
-m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)), m_turett(sf::Vector2f(m_team ? 200 : 1720, 600), m_team) {}
+m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)), 
+m_turett(sf::Vector2f(m_team ? 200 : 1720, 600), m_team) {}
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_front(fighter);
@@ -48,6 +49,8 @@ void Empire::draw(float delta) const {
 		fighter->draw(delta);
 	}
 	m_turett.draw(delta);
+	for (auto airUnit : m_airUnites)
+		airUnit->draw(delta);
 }
 
 void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fighter> enemyFighter) {
@@ -79,6 +82,20 @@ int Empire::getMoney() const {
 	return m_money;
 }
 
+void Empire::getLayedBomb() {
+	if (m_kiteBalloon != NULL) {
+		auto bomb = m_kiteBalloon->dropBomb();
+		if (bomb != NULL)
+			m_airUnites.push_back(bomb);
+	}
+}
+
+void Empire::getSentBullet() {
+	auto bullet = m_turett.shoot();
+	if (bullet != NULL)
+		m_airUnites.push_back(bullet);
+}
+
 std::shared_ptr <Castle> Empire::getCastle() {
 	return m_castle;
 }
@@ -86,4 +103,19 @@ std::shared_ptr <Castle> Empire::getCastle() {
 std::shared_ptr <Fighter> Empire::getFirstFighter() {
 	std::shared_ptr<Fighter> temp(nullptr);
 	return (m_fighters.size() > 0) ? m_fighters.back() : temp;
+}
+
+std::list<std::shared_ptr<Fighter>>& Empire::getFighters() {
+	return m_fighters;
+}
+
+void Empire::moveAirUnites() {
+	for (auto airUnit : m_airUnites)
+		airUnit->move();
+}
+void Empire::colliedAirUnites(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f& floorPosition) {
+	for (auto airUnit : m_airUnites)
+		airUnit->collied(enemies, floorPosition);
+	m_airUnites.remove_if([](std::shared_ptr<AirUnites> airUnit)
+		{ return (*airUnit).getHit(); });
 }

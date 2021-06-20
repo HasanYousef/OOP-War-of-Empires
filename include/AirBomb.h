@@ -1,13 +1,15 @@
 #pragma once
-#include "AnimatedObject.h"
+#include "AirUnites.h"
 #include "AirBombAnimation.h"
+#include <math.h>
 
-class AirBomb : public AnimatedObject {
+class AirBomb : public AirUnites {
+public:
 	AirBomb() = default;
-	AirBomb(const sf::Vector2f&, const bool&);
+	AirBomb(const sf::Vector2f&, const bool&, const int&);
 
-	void move();
-
+	virtual void move();
+	virtual bool collied(std::list <std::shared_ptr <Fighter>>& , const sf::Vector2f&) const;
 	virtual void draw(float) const;
 	virtual sf::Sprite create(float) const;
 

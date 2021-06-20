@@ -43,6 +43,8 @@ SPEED = 0.1f;
 
 const int NUM_OF_FIRE_ANIMATION_FRAMES = 10;
 
+const int BOMB_DAMAGE = 100;
+
 const int NUM_OF_SOUNDS = 2;
 enum class SoundType {
 

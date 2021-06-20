@@ -2,19 +2,31 @@
 #include "Bullet.h"
 
 Bullet::Bullet(sf::Vector2f pos, float deg, int damage, bool team)
-	: WorldObject(pos, team), m_deg(deg), m_damage(damage) {}
+	: AirUnites(pos, team, damage), m_deg(deg) {}
 
 void Bullet::move() {
-	m_position.x = m_position.x + 4 * cos(m_deg * PI / 180);
-	m_position.y = m_position.y + 4 * sin(m_deg * PI / 180);
+	m_position.x = m_position.x + 4 * cos(m_deg * PI / 180) * (m_objectTeam ? 1 : -1);
+	m_position.y = m_position.y + 4 * sin(m_deg * PI / 180) * (m_objectTeam ? 1 : -1);
 }
 
-bool Bullet::collied(std::shared_ptr <std::list <std::shared_ptr <Fighter>>> enemies) const {
+bool Bullet::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f& floorPosition) const {
 	int fighternum = 0;
-	for (auto fighter = enemies->begin(); fighter != enemies->end(); ++fighter)
-		if (create(0).getGlobalBounds().intersects(fighter->get()->create(0).getGlobalBounds()))
+	for (auto fighter = enemies.begin(); fighter != enemies.end(); ++fighter)
+		if (create(0).getGlobalBounds().intersects(fighter->get()->create(0).getGlobalBounds())) {
+			if (!(*fighter)->getDamaged(m_damage))
+				(*fighter)->setAnimationType(AnimationType::Die);
+			*m_hit = true;
 			return true;
+		}
+	if(create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y){
+		*m_hit = true;
+		return true;
+	}
 	return false;
+}
+
+void Bullet::draw(float delta) const {
+	Window::instance().get_window()->draw(create(delta));
 }
 
 sf::Sprite Bullet::create(float) const {
@@ -25,5 +37,7 @@ sf::Sprite Bullet::create(float) const {
 	sprite.setOrigin(spriteRect.left + spriteRect.width / 2.0f,
 		spriteRect.top + spriteRect.height / 2.0f);
 	sprite.rotate(m_deg);
+	if (WorldObject::get_object_team() == RIGHT_TEAM)
+		sprite.scale(-1.f, 1.f);
 	return sprite;
 }

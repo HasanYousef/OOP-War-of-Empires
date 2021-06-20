@@ -18,8 +18,8 @@ void Match::run() {
 	bool pressed = false;
 	sf::Vector2f location;
 
-	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter>
-		(sf::Vector2f(1920, 927), RIGHT_TEAM, 300, 50, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter2>
+		(sf::Vector2f(1920, 927), RIGHT_TEAM, 100, 10 * 2, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
 	m_enemyEmpire.addKiteBalloon();
 	m_playerEmpire.addKiteBalloon();
 
@@ -56,6 +56,15 @@ void Match::run() {
 		// we let the fighters attack each others
 		m_playerEmpire.attackFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
 		m_enemyEmpire.attackFighters(m_playerEmpire.getCastle(), m_playerEmpire.getFirstFighter());
+		// handle kite attack actions
+		m_playerEmpire.getLayedBomb();
+		m_playerEmpire.getSentBullet();
+		m_playerEmpire.moveAirUnites();
+		m_playerEmpire.colliedAirUnites(m_enemyEmpire.getFighters(), m_floor.get_position());
+		m_enemyEmpire.getLayedBomb();
+		m_enemyEmpire.getSentBullet();
+		m_enemyEmpire.moveAirUnites();
+		m_enemyEmpire.colliedAirUnites(m_playerEmpire.getFighters(), m_floor.get_position());
 		// collect the dead
 		m_playerEmpire.collectDead();
 		m_enemyEmpire.collectDead();

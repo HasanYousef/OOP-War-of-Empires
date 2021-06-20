@@ -25,9 +25,14 @@ public:
 	void pay(int);
 	void addKiteBalloon();
 	void moveKiteBalloon();
+	void moveAirUnites();
+	void colliedAirUnites(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f&);
+	void getLayedBomb();
+	void getSentBullet();
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();
+	std::list<std::shared_ptr<Fighter>>& getFighters();
 
 	//---Get-Functions----------
 	bool ifGetOccupied() const;
@@ -40,4 +45,5 @@ private:
 	std::shared_ptr <Castle> m_castle;
 	std::shared_ptr <KiteBalloon> m_kiteBalloon;
 	Turett m_turett;
+	std::list<std::shared_ptr <AirUnites>> m_airUnites;
 };

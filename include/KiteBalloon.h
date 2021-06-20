@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimatedObject.h"
 #include "KiteBalloonAnimation.h"
+#include "AirBomb.h"
 
 class KiteBalloon : public AnimatedObject {
 public:
@@ -8,6 +9,7 @@ public:
 	KiteBalloon(const sf::Vector2f&, const bool&);
 
 	void move();
+	std::shared_ptr<AirUnites> dropBomb();
 
 	virtual void draw(float) const ;
 	virtual sf::Sprite create(float) const ;
