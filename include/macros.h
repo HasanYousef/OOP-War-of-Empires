@@ -4,13 +4,11 @@ const float PI = 3.14159265;
 
 //Fighters prices
 const int TANK1 = 100,
-		  TANK2 = 200,
-		  SHOOTER1 = 300,
-		  SHOOTER2 = 400,
-		  SHOOTER3 = 500,
-		  TANK3 = 600;
-
-const int NUM_OF_TURETTS_STANDS = 2;
+TANK2 = 200,
+SHOOTER1 = 300,
+SHOOTER2 = 400,
+SHOOTER3 = 500,
+TANK3 = 600;
 
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
@@ -38,7 +36,7 @@ const int MELEE_DIE_FRAME = 25;
 
 // objects default health
 const int CASTLE_MAX_HEALTH = 10000,
-		  CASTLE_HEALTH = 10000;
+CASTLE_HEALTH = 10000;
 
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;
@@ -46,6 +44,30 @@ SPEED = 0.1f;
 const int NUM_OF_FIRE_ANIMATION_FRAMES = 10;
 
 const int BOMB_DAMAGE = 100;
+
+// fighters health
+const int MELEE_1_HEALTH = 100;
+const int MELEE_2_HEALTH = 200;
+const int RANGE_1_HEALTH = 80;
+const int RANGE_2_HEALTH = 160;
+const int RANGE_3_HEALTH = 240;
+const int RANGE_4_HEALTH = 500;
+
+// fighters damage
+const int MELEE_1_DAMAGE = 20;
+const int MELEE_2_DAMAGE = 30;
+const int RANGE_1_DAMAGE = 30;
+const int RANGE_2_DAMAGE = 40;
+const int RANGE_3_DAMAGE = 50;
+const int RANGE_4_DAMAGE = 80;
+
+// fighters gold Worth
+const int MELEE_1_WORTH = 100;
+const int MELEE_2_WORTH = 200;
+const int RANGE_1_WORTH = 125;
+const int RANGE_2_WORTH = 200;
+const int RANGE_3_WORTH = 300;
+const int RANGE_4_WORTH = 600;
 
 const int NUM_OF_SOUNDS = 2;
 enum class SoundType {
@@ -82,6 +104,8 @@ enum class FighterType {
 const int TURETT1_PRICE = 800,
 TURETT2_PRICE = 1600,
 TURETT3_PRICE = 3200;
+
+const int NUM_OF_TURETTS_STANDS = 2;
 const int NUM_OF_TURETT_TYPES = 3;
 enum class TurettType {
 

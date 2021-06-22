@@ -1,11 +1,11 @@
 #pragma once
 #include "RangeFighter3.h"
 
-RangeFighter3::RangeFighter3(const sf::Vector2f& p, const int& objectTeam, const int& health,
-	const int& defaultAttack, const int& defaultGoldWorth)
-	: RangeFighter(p, objectTeam, health, defaultAttack, defaultGoldWorth) {
+RangeFighter3::RangeFighter3(const sf::Vector2f& p, const int& objectTeam)
+	: RangeFighter(p, objectTeam, RANGE_3_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3)))
+		, RANGE_3_DAMAGE* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3))),
+		RANGE_3_WORTH* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3)))) {
 	reSetAnimationObject(FighterType::Shooter3);
-
 }
 
 //-------------------------------------------------
@@ -35,4 +35,8 @@ void RangeFighter3::move(const std::shared_ptr<Fighter>& nextAlly,
 		(nextAlly == NULL || nextAlly->getAnimationObject()->update(0) != AnimationType::Walk)) {
 		setAnimationType(AnimationType::Idle);
 	}
+}
+
+void RangeFighter3::addLevel() {
+	Levels::instance().add_level(WorldObject::m_objectTeam, int(FighterType::Shooter3));
 }

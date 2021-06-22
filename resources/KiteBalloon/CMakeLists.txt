@@ -1,1 +1,2 @@
-add_subdirectory (NormalMoving)
+add_subdirectory (Kite1Moving)
+add_subdirectory (Kite2Moving)

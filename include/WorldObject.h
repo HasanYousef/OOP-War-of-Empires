@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Textures.h"
 #include "Window.h"
+#include "Levels.h"
 
 class WorldObject {
 public:

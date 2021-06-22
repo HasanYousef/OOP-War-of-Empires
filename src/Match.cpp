@@ -19,7 +19,7 @@ void Match::run() {
 	sf::Vector2f location;
 
 	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter2>
-		(sf::Vector2f(1920, 927), RIGHT_TEAM, 100, 10 * 2, 30)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
+		(sf::Vector2f(1920, 927), RIGHT_TEAM)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
 	m_enemyEmpire.addKiteBalloon();
 	m_playerEmpire.addKiteBalloon();
 
@@ -104,42 +104,42 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 	case FighterType::Tank1:
 		if (m_playerEmpire.getMoney() >= TANK1) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>
-				(spawnPos, LEFT_TEAM, 100, 10, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(TANK1);
 		}
 		break;
 	case FighterType::Tank2:
 		if (m_playerEmpire.getMoney() >= TANK2) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter2>
-				(spawnPos, LEFT_TEAM, 100 * 1.5, 10 * 1.5, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(TANK2);
 		}
 		break;
 	case FighterType::Shooter1:
 		if (m_playerEmpire.getMoney() >= SHOOTER1) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter1>
-				(spawnPos, LEFT_TEAM, 100, 10, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(SHOOTER1);
 		}
 		break;
 	case FighterType::Shooter2:
 		if (m_playerEmpire.getMoney() >= SHOOTER2) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter2>
-				(spawnPos, LEFT_TEAM, 100, 10 * 2, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(SHOOTER2);
 		}
 		break;
 	case FighterType::Shooter3:
 		if (m_playerEmpire.getMoney() >= SHOOTER3) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter3>
-				(spawnPos, LEFT_TEAM, 100, 10 * 3, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(SHOOTER3);
 		}
 		break;
 	case FighterType::Tank3:
 		if (m_playerEmpire.getMoney() >= TANK3) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter4>
-				(spawnPos, LEFT_TEAM, 100 * 4, 10 * 5, 30));
+				(spawnPos, LEFT_TEAM));
 			m_playerEmpire.pay(TANK3);
 		}
 		break;

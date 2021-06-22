@@ -2,7 +2,7 @@
 #include "KiteBalloonAnimation.h"
 
 std::shared_ptr <sf::Texture> KiteBalloonAnimation::get_texture() const {
-	return Textures::instance().get_kite_balloon_texture(m_currFrame);
+	return Textures::instance().get_kite_balloon_texture((m_kiteLevel > 2)? 2: m_kiteLevel, m_currFrame);
 }
 
 bool KiteBalloonAnimation::update(float deltaTime) {
@@ -33,4 +33,8 @@ bool KiteBalloonAnimation::update(float deltaTime) {
 
 void KiteBalloonAnimation::set_anim() {
 	m_currFrame = 0;
+}
+
+void KiteBalloonAnimation::set_kite_level(int newKiteLevel) {
+	m_kiteLevel = newKiteLevel;
 }

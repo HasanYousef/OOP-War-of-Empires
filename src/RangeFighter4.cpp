@@ -1,11 +1,11 @@
 #pragma once
 #include "RangeFighter4.h"
 
-RangeFighter4::RangeFighter4(const sf::Vector2f& p, const int& objectTeam, const int& health,
-	const int& defaultAttack, const int& defaultGoldWorth)
-	: RangeFighter(p + sf::Vector2f(0, -50), objectTeam, health, defaultAttack, defaultGoldWorth) {
+RangeFighter4::RangeFighter4(const sf::Vector2f& p, const int& objectTeam)
+	: RangeFighter(p + sf::Vector2f(0, -50), objectTeam, RANGE_4_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))
+		, RANGE_4_DAMAGE* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3))),
+		RANGE_4_WORTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))) {
 	reSetAnimationObject(FighterType::Tank3);
-
 }
 
 //-------------------------------------------------
@@ -55,4 +55,8 @@ sf::Sprite RangeFighter4::create(float f) const {
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
+}
+
+void RangeFighter4::addLevel() {
+	Levels::instance().add_level(WorldObject::m_objectTeam, int(FighterType::Tank3));
 }

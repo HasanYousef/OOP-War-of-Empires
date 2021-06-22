@@ -6,6 +6,7 @@ add_subdirectory (ShootFx)
 add_subdirectory (Match)
 add_subdirectory (KiteBalloon)
 add_subdirectory (AirBombs)
-add_subdirectory (Explosion)
+add_subdirectory (Explosion1)
+add_subdirectory (Explosion2)
 
 configure_file ("bullet.png" ${CMAKE_BINARY_DIR} COPYONLY)

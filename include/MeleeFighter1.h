@@ -4,6 +4,6 @@
 class MeleeFighter1 : public MeleeFighter{
 public:
 	MeleeFighter1() = default;
-	MeleeFighter1(const sf::Vector2f&,
-		const int&, const int&, const int&, const int&);
+	MeleeFighter1(const sf::Vector2f&, const int&);
+	void addLevel();
 };

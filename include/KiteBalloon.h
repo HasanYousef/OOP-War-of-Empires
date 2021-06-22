@@ -10,6 +10,7 @@ public:
 
 	void move();
 	std::shared_ptr<AirUnites> dropBomb();
+	void addLevel();
 
 	virtual void draw(float) const ;
 	virtual sf::Sprite create(float) const ;

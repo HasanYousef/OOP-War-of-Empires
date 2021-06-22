@@ -40,15 +40,15 @@ std::shared_ptr<sf::Texture> Textures::get_gun_fire_texture(int frame) const {
 	return m_gunFireAnimations[frame];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_kite_balloon_texture(int frame) const {
-	return m_kiteBalloonAnimations[frame];
+std::shared_ptr<sf::Texture> Textures::get_kite_balloon_texture(int kiteLevel, int frame) const {
+	return m_kiteBalloonAnimations[size_t(kiteLevel) -1][frame];
 }
 
 std::shared_ptr<sf::Texture> Textures::get_bomb_texture(int module) const {
-	return m_bombs[module];
+	return m_bombs[size_t(module)-1];
 }
-std::shared_ptr<sf::Texture> Textures::get_explosion_texture(int frame) const {
-	return m_explotionAnimation[frame];
+std::shared_ptr<sf::Texture> Textures::get_explosion_texture(int kiteLevel, int frame) const {
+	return m_explotionAnimation[size_t(kiteLevel) - 1][frame];
 }
 
 Textures::Textures() {
@@ -166,38 +166,53 @@ void Textures::load_gun_fire_textures() {
 }
 
 void Textures::load_kite_balloon_textures() {
-	std::string fighterFileName("skeleton-NormalMoving_");
-	int frame = 0;
-	while (true) {
-		m_kiteBalloonAnimations.push_back(std::make_shared<sf::Texture>());
-		if (!m_kiteBalloonAnimations[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
-			m_kiteBalloonAnimations.pop_back();
-			break;		// stop reading more frames when there is no more
+	std::string kitesFileName("skeleton-kite");
+	int level = 1;
+	while (level <= 2) {
+		std::vector <std::shared_ptr <sf::Texture>> kiteBalloonAnimation;
+		int frame = 0;
+		std::string temp = kitesFileName + std::to_string(level) + "-Moving_";
+
+		while (true) {
+			kiteBalloonAnimation.push_back(std::make_shared<sf::Texture>());
+			if (!kiteBalloonAnimation[frame]->loadFromFile(temp + std::to_string(frame) + ".png")) {
+				kiteBalloonAnimation.pop_back();
+				break;		// stop reading more frames when there is no more
+			}
+			frame++;
 		}
-		frame++;
+		m_kiteBalloonAnimations.push_back(kiteBalloonAnimation);
+		level++;
 	}
 }
 
 void Textures::load_bomb_textures() {
 	std::string fighterFileName("airbomb");
-	int module = 1;
+	size_t module = 1;
 	while (module <= 3) {
 		m_bombs.push_back(std::make_shared<sf::Texture>());
-		m_bombs[module - int(1)]->loadFromFile(fighterFileName + std::to_string(module) + ".png");
+		m_bombs[module - size_t(1)]->loadFromFile(fighterFileName + std::to_string(module) + ".png");
 		module++;
 	}
 }
 
 void Textures::load_explosion_textures() {
-	std::string fighterFileName("skeleton-explosion-animation_");
-	int frame = 0;
-	while (true) {
-		m_explotionAnimation.push_back(std::make_shared<sf::Texture>());
-		if (!m_explotionAnimation[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
-			m_explotionAnimation.pop_back();
-			break;		// stop reading more frames when there is no more
+	std::string explosionFileName("skeleton-explosion");
+	int level = 1;
+	while (level <= 2) {
+		std::vector <std::shared_ptr <sf::Texture>> Explosion;
+		int frame = 0;
+		std::string temp = explosionFileName + std::to_string(level) + "-animation_";
+		while (true) {
+			Explosion.push_back(std::make_shared<sf::Texture>());
+			if (!Explosion[frame]->loadFromFile(temp + std::to_string(frame) + ".png")) {
+				Explosion.pop_back();
+				break;		// stop reading more frames when there is no more
+			}
+			frame++;
 		}
-		frame++;
+		m_explotionAnimation.push_back(Explosion);
+		level++;
 	}
 }
 
@@ -230,6 +245,7 @@ std::string Textures::animation_name(AnimationType anim) const {
 		return "Die_";
 	else if (anim == AnimationType::Attack)
 		return "Attack_";
+	return "";
 }
 
 std::shared_ptr<sf::Texture> Textures::get_bullet() const {

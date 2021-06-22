@@ -10,8 +10,6 @@ public:
 	Fighter(const sf::Vector2f&,
 		const bool&, const int&, const int&, const int&);
 
-	void addLevel();
-	const int& getLevel() const;
 	const int& getDefaultAttack() const;
 	void setFullyDead() const;
 	virtual std::shared_ptr<bool> fullyDead() const;
@@ -29,8 +27,9 @@ public:
 	virtual void draw(float) const = 0;
 	virtual sf::Sprite create(float) const = 0;
 
+	virtual void addLevel() = 0;
+
 private:
-	int m_level;
 	int m_defaultGoldWorth;
 	int m_defaultAttack;
 	float m_lastMovement;

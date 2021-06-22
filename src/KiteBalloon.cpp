@@ -29,10 +29,15 @@ std::shared_ptr<AirUnites> KiteBalloon::dropBomb() {
 		m_sendBombClock->restart();
 		auto bomb = std::make_shared<AirBomb>(sf::Vector2f(m_position.x + (create(0).getGlobalBounds().width / 2)*(m_objectTeam ? 1 : -1),
 															m_position.y + (create(0).getGlobalBounds().height) * 0.8), 
-			m_objectTeam, BOMB_DAMAGE);
+			m_objectTeam, BOMB_DAMAGE * Levels::instance().get_kite_level(m_objectTeam), Levels::instance().get_kite_level(m_objectTeam));
 		return bomb;
 	}
 	return NULL;
+}
+
+//-------------------------------------------------
+void KiteBalloon::addLevel() {
+	Levels::instance().add_kite_level(m_objectTeam);
 }
 
 //-------------------------------------------------
@@ -45,6 +50,8 @@ void KiteBalloon::draw(float f) const {
 //we creat the texture that we want to print it 
 
 sf::Sprite KiteBalloon::create(float f) const {
+	m_animation->set_kite_level(Levels::instance().get_kite_level(m_objectTeam));
+
 	auto result = sf::Sprite(*(m_animation->get_texture()));
 
 	m_animation->update(f);
