@@ -2,8 +2,24 @@
 
 #include "BuyTurett.h"
 
-BuyTurett::BuyTurett(sf::Vector2f pos, int price)
-	: BuyWorldObject(pos, price) {
+BuyTurett::BuyTurett(sf::Vector2f pos)
+	: BuyWorldObject(pos, TURETT1_PRICE) {
+}
+
+void BuyTurett::setType(int type) {
+	int price = 0;
+	switch (TurettType(type)) {
+	case TurettType::Turett1:
+		price = TURETT1_PRICE;
+		break;
+	case TurettType::Turett2:
+		price = TURETT2_PRICE;
+		break;
+	case TurettType::Turett3:
+		price = TURETT3_PRICE;
+	}
+	m_button->setPrice(price);
+	m_turettType = TurettType(type);
 }
 
 void BuyTurett::draw_object() const {

@@ -8,6 +8,7 @@ public:
 	BuyButton(sf::Vector2f, int);
 	void set_can_buy(bool);
 	void set_can_buy_more(bool);
+	void setPrice(int);
 	int get_price() const;
 	sf::Sprite create() const;
 	void draw() const;

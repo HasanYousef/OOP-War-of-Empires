@@ -90,9 +90,9 @@ void Match::draw_world(float delta) {
 
 	m_background.draw(0);
 	m_floor.draw(0);
-	m_UI.draw();
 	m_playerEmpire.draw(delta);
 	m_enemyEmpire.draw(delta);
+	m_UI.draw();
 
 	Window::instance().get_window()->display();
 }
@@ -145,5 +145,11 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 		break;
 	default:
 		break;
+	}
+	int stand = m_UI.handle_click_turetts(pos);
+	if (stand != -1) {
+		int type = m_playerEmpire.buyTurett(stand);
+		if (type != -1)
+			m_UI.setTurettType(stand, type + 1);
 	}
 }

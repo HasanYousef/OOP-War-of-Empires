@@ -10,12 +10,7 @@ const int TANK1 = 100,
 		  SHOOTER3 = 500,
 		  TANK3 = 600;
 
-const int TURETT1 = 800,
-TURETT2 = 1500,
-TURETT3 = 3500;
-
-const int TURETT_STAND_0 = 0,
-TURETT_STAND_1 = 1;
+const int NUM_OF_TURETTS_STANDS = 2;
 
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
@@ -84,6 +79,9 @@ enum class FighterType {
 	Nothing
 };
 
+const int TURETT1_PRICE = 800,
+TURETT2_PRICE = 1600,
+TURETT3_PRICE = 3200;
 const int NUM_OF_TURETT_TYPES = 3;
 enum class TurettType {
 

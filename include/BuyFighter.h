@@ -5,6 +5,7 @@
 class BuyFighter : public BuyWorldObject {
 public:
 	BuyFighter(FighterType, sf::Vector2f, int);
+	void setType(int) {};
 
 private:
 	void draw_object() const;

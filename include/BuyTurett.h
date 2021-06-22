@@ -4,7 +4,8 @@
 
 class BuyTurett : public BuyWorldObject {
 public:
-	BuyTurett(sf::Vector2f, int);
+	BuyTurett(sf::Vector2f);
+	void setType(int);
 
 private:
 	void draw_object() const;

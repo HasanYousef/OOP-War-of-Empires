@@ -3,7 +3,6 @@
 
 Turett::Turett(const sf::Vector2f& pos, bool team)
 	: AnimatedObject(pos, team), m_shootClock(std::make_shared<sf::Clock>()){
-	m_animation = std::make_unique<TurettAnimation>(TurettType::Turett3);
 }
 
 sf::Sprite Turett::create(float delta) const {
@@ -13,7 +12,7 @@ sf::Sprite Turett::create(float delta) const {
 		if (m_animation->update(delta)) m_animation->setIsShooting(false);
 	}
 	else
-		sprite = sf::Sprite(*Textures::instance().get_turett_texture(m_level, 0));
+		sprite = sf::Sprite(*Textures::instance().get_turett_texture(getType(), 0));
 
 	sprite.setPosition(WorldObject::get_position());
 	sprite.rotate(m_deg);
@@ -48,7 +47,7 @@ void Turett::aim(const std::shared_ptr<Fighter>& enemy) {
 std::shared_ptr<Bullet> Turett::shoot() {
 	if (m_shootClock->getElapsedTime().asSeconds() > 0.5 && m_isShooting) {
 		m_shootClock->restart();
-		auto bullet = std::make_shared<Bullet>(m_position, m_deg, 50, WorldObject::get_object_team());
+		auto bullet = std::make_shared<Bullet>(m_position, m_deg, getDamage(), WorldObject::get_object_team());
 		return bullet;
 	}
 	return NULL;

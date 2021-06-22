@@ -9,6 +9,10 @@ void BuyButton::set_can_buy(bool canBuy) {
 	m_canBuy = canBuy;
 }
 
+void BuyButton::setPrice(int price) {
+	m_price = price;
+}
+
 int BuyButton::get_price() const {
 	return m_price;
 }

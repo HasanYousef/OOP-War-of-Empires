@@ -12,7 +12,9 @@
 #include "RangeFighter3.h"
 #include "RangeFighter4.h"
 #include "KiteBalloon.h"
-#include "Turett.h"	//@#$%@#$%#$^$#$$
+#include "Turett1.h"
+#include "Turett2.h"
+#include "Turett3.h"
 
 class Empire {
 public:
@@ -29,6 +31,7 @@ public:
 	void colliedAirUnites(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f&);
 	void getLayedBomb();
 	void getSentBullet();
+	int buyTurett(int);
 
 	std::shared_ptr <Castle> getCastle();
 	std::shared_ptr <Fighter> getFirstFighter();
@@ -37,6 +40,7 @@ public:
 	//---Get-Functions----------
 	bool ifGetOccupied() const;
 	int getMoney() const;
+	int getFightersNum() const;
 
 private:
 	bool m_team;
@@ -44,6 +48,6 @@ private:
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
 	std::shared_ptr <KiteBalloon> m_kiteBalloon;
-	Turett m_turett;
 	std::list<std::shared_ptr <AirUnites>> m_airUnites;
+	std::unique_ptr<Turett> m_turetts[NUM_OF_TURETTS_STANDS];
 };

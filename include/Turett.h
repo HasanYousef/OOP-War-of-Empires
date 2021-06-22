@@ -9,11 +9,14 @@ public:
 	sf::Sprite create(float delta) const;
 	void aim(const std::shared_ptr<Fighter>& enemy);
 	std::shared_ptr<Bullet> shoot();
+	virtual TurettType getType() const = 0;
+	virtual int getDamage() const = 0;
+
+protected:
+	std::unique_ptr<TurettAnimation> m_animation;
 
 private:
 	bool m_isShooting = false;
-	TurettType m_level = TurettType::Turett3;
 	float m_deg = 0;
-	std::unique_ptr<TurettAnimation> m_animation;
 	std::shared_ptr<sf::Clock> m_shootClock;
 };

@@ -3,8 +3,7 @@
 #include <Empire.h>
 
 Empire::Empire(bool team) : m_team(team),
-m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)), 
-m_turett(sf::Vector2f(m_team ? 200 : 1720, 600), m_team) {}
+m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)) {}
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_front(fighter);
@@ -36,7 +35,9 @@ void Empire::moveFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Figh
 		}
 		fighternum++;
 	}
-	m_turett.aim(enemyFighter);
+	for (int i = 0; i < NUM_OF_TURETTS_STANDS; i++)
+		if (m_turetts[i])
+			m_turetts[i]->aim(enemyFighter);
 }
 
 void Empire::draw(float delta) const {
@@ -45,10 +46,14 @@ void Empire::draw(float delta) const {
 		m_kiteBalloon->draw(delta);
 	if (m_kiteBalloon != NULL)
 		m_kiteBalloon->draw(delta);
-	for (auto& fighter : m_fighters) {
+
+	for (auto& fighter : m_fighters)
 		fighter->draw(delta);
-	}
-	m_turett.draw(delta);
+
+	for (int i = 0; i < NUM_OF_TURETTS_STANDS; i++)
+		if(m_turetts[i])
+			m_turetts[i]->draw(delta);
+
 	for (auto airUnit : m_airUnites)
 		airUnit->draw(delta);
 }
@@ -82,6 +87,10 @@ int Empire::getMoney() const {
 	return m_money;
 }
 
+int Empire::getFightersNum() const {
+	return m_fighters.size();
+}
+
 void Empire::getLayedBomb() {
 	if (m_kiteBalloon != NULL) {
 		auto bomb = m_kiteBalloon->dropBomb();
@@ -91,9 +100,41 @@ void Empire::getLayedBomb() {
 }
 
 void Empire::getSentBullet() {
-	auto bullet = m_turett.shoot();
-	if (bullet != NULL)
-		m_airUnites.push_back(bullet);
+	for (int i = 0; i < NUM_OF_TURETTS_STANDS; i++) {
+		if (m_turetts[i]) {
+			auto bullet = m_turetts[i]->shoot();
+			if (bullet != NULL)
+				m_airUnites.push_back(bullet);
+		}
+	}
+}
+
+int Empire::buyTurett(int stand) {
+	if (stand != 0 && stand != 1)
+		return -1;
+
+	auto pos = sf::Vector2f(m_team ? 150 : 1670, 600 + stand * 200);
+	if (!m_turetts[stand]) {
+		if (m_money >= TURETT1_PRICE) {
+			m_turetts[stand] = std::make_unique<Turett1>(pos, m_team);
+			m_money -= TURETT1_PRICE;
+			return int(TurettType::Turett1);
+		}
+	}
+	else {
+		TurettType currType = m_turetts[stand]->getType();
+		if(currType == TurettType::Turett1 && m_money >= TURETT2_PRICE) {
+			m_turetts[stand] = std::make_unique<Turett2>(pos, m_team);
+			m_money -= TURETT2_PRICE;
+			return int(TurettType::Turett2);
+		}
+		else if (currType == TurettType::Turett2 && m_money >= TURETT3_PRICE) {
+			m_turetts[stand] = std::make_unique<Turett3>(pos, m_team);
+			m_money -= TURETT3_PRICE;
+			return int(TurettType::Turett3);
+		}
+	}
+	return -1;
 }
 
 std::shared_ptr <Castle> Empire::getCastle() {

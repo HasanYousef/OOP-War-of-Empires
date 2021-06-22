@@ -9,6 +9,7 @@ public:
 	BuyWorldObject(sf::Vector2f, int);
 	void set_can_buy(bool);
 	int get_price();
+	virtual void setType(int) = 0;
 	void draw() const;
 	bool handle_click(const sf::Vector2f location) const;
 
