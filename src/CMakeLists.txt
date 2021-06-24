@@ -2,6 +2,7 @@
 "Game.cpp"
 "Match.cpp"
 "Menu.cpp"
+"EndMenu.cpp"
 "Window.cpp"
 "Sounds.cpp"
 "Textures.cpp"

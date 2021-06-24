@@ -5,7 +5,7 @@
 
 Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
 
-void Match::run() {
+bool Match::run() {
 	sf::Event event;
 	sf::Clock clock;
 	sf::Time time;
@@ -71,16 +71,12 @@ void Match::run() {
 		m_enemyEmpire.collectDead();
 		//check if someone get lost
 		if (m_enemyEmpire.ifGetOccupied()) {
-			// allies win
-			std::cout << "*********************************\n\n            you win            \n\n*********************************\n";
-			window->close();
-			break;
+			music->stop();
+			return true;
 		}
 		else if (m_playerEmpire.ifGetOccupied()) {
-			// allies lose
-			std::cout << "*********************************\n\n            you lose            \n\n*********************************\n";
-			window->close();
-			break;
+			music->stop();
+			return false;
 		}
 		m_UI.update(m_playerEmpire.getMoney(), m_playerEmpire.getCastle()->getHealth(), m_enemyEmpire.getCastle()->getHealth());
 	}

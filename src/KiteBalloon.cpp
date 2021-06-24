@@ -2,7 +2,7 @@
 #include "KiteBalloon.h"
 
 KiteBalloon::KiteBalloon(const sf::Vector2f& p, const bool& objectTeam)
-	: AnimatedObject(p, objectTeam),
+	: AnimatedObject(p + sf::Vector2f(objectTeam ? -150 : 150, 0), objectTeam),
 	m_animation(std::make_shared<KiteBalloonAnimation>()),
 	m_movementClock(std::make_shared<sf::Clock>()),
 	m_sendBombClock(std::make_shared<sf::Clock>()) {
@@ -24,8 +24,8 @@ void KiteBalloon::move(){
 
 //-------------------------------------------------
 std::shared_ptr<AirUnites> KiteBalloon::dropBomb() {
-	double rand1 = (double)(rand() % 20) / (double)10;
-	if ((double)(m_sendBombClock->getElapsedTime().asSeconds()) > (rand1 + (double)0.7)) {
+	double rand1 = (double)(rand() % 5) / (double)10;
+	if ((double)(m_sendBombClock->getElapsedTime().asSeconds()) > (rand1+(double)0.5)) {
 		m_sendBombClock->restart();
 		auto bomb = std::make_shared<AirBomb>(sf::Vector2f(m_position.x + (create(0).getGlobalBounds().width / 2)*(m_objectTeam ? 1 : -1),
 															m_position.y + (create(0).getGlobalBounds().height) * 0.8), 

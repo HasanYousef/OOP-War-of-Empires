@@ -12,7 +12,7 @@
 class Match {
 public:
 	Match();
-	void run();
+	bool run();
 
 private:
 	void drawWorld(float);

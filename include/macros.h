@@ -27,8 +27,8 @@ const int RANGE_DAMAGING_FRAME = 3;
 const int MELEE_DIE_FRAME = 25;
 
 // objects default health
-const int CASTLE_MAX_HEALTH = 10000,
-CASTLE_HEALTH = 10000;
+const int CASTLE_MAX_HEALTH = 10,
+CASTLE_HEALTH = 10;	//10000
 
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;
@@ -79,13 +79,14 @@ const int TOWER_RANGE = 600;
 
 const int BALLOON_TIME = 100;
 
-const int NUM_OF_SOUNDS = 4;
+const int NUM_OF_SOUNDS = 5;
 enum class SoundType {
 
 	MenuMusic,
 	InGameMusic,
 	ShootSoundEffect,
-	ExplosionSoundEffect
+	ExplosionSoundEffect,
+	EndMusic,
 
 };
 
@@ -137,7 +138,7 @@ enum class AnimationType {
 
 };
 
-const int NUM_OF_UI_TEXTURES = 8;
+const int NUM_OF_UI_TEXTURES = 10;
 enum class UITexture {
 
 	MenuBackground,
@@ -148,5 +149,7 @@ enum class UITexture {
 	BuyWorldObjectBackground,
 	CastleHealthbar,
 	CastleHealthbarBackground,
+	LostBackground,
+	WonBackground,
 
 };

@@ -28,4 +28,7 @@ Sounds::Sounds() {
 
 	m_buffers[int(SoundType::ExplosionSoundEffect)]->loadFromFile("explosion.wav");
 	m_sounds[int(SoundType::ExplosionSoundEffect)]->setBuffer(*m_buffers[int(SoundType::ExplosionSoundEffect)]);
+
+	m_buffers[int(SoundType::EndMusic)]->loadFromFile("end.ogg");
+	m_sounds[int(SoundType::EndMusic)]->setBuffer(*m_buffers[int(SoundType::EndMusic)]);
 }

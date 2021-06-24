@@ -1,9 +1,14 @@
 #include "Game.h"
 
 void Game::run() {
-	Menu menu;
-	menu.run();
+	while (true) {
+		Menu menu;
+		menu.run();
 
-	Match match;
-	match.run();
+		Match match;
+		bool won = match.run();
+
+		EndMenu endMenu;
+		endMenu.run(won);
+	}
 }
