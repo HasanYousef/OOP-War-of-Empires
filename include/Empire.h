@@ -31,6 +31,7 @@ public:
 	void colliedAirUnites(std::list <std::shared_ptr <Fighter>>& enemies, const sf::Vector2f&);
 	void getLayedBomb();
 	void getSentBullet();
+	void giveMoney(int);
 	int buyTurett(int);
 
 	std::shared_ptr <Castle> getCastle();
@@ -44,7 +45,7 @@ public:
 
 private:
 	bool m_team;
-	int m_money = 30000;
+	int m_money = 1000;
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
 	std::shared_ptr <KiteBalloon> m_kiteBalloon;

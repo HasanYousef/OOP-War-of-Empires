@@ -5,15 +5,20 @@
 InGameUI::InGameUI()
 	: m_leftCastleHealthbar(LEFT_TEAM, CASTLE_MAX_HEALTH), m_rightCastleHealthbar(RIGHT_TEAM, CASTLE_MAX_HEALTH)
 {
+	std::vector<sf::Vector2f> positions;
 	int i = 0;
 	for (; i < NUM_OF_FIGHTER_TYPES; i++) {
-		sf::Vector2f pos(16 * (i + 1) + 110 * i, 16);
-		m_shop.push_back(std::make_unique<BuyFighter>(FighterType(i), pos, 100 * (i + 1)));
+		positions.push_back(sf::Vector2f(16 * (i + 1) + 110 * i, 16));
 	}
-	for (; i < 2 + NUM_OF_FIGHTER_TYPES; i++) {
-		sf::Vector2f pos(16 * (i + 1) + 110 * i, 16);
-		m_shop.push_back(std::make_unique<BuyTurett>(pos));
-	}
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(0), positions[0], MELEE_1_WORTH));
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(1), positions[1], MELEE_2_WORTH));
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(2), positions[2], RANGE_1_WORTH));
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(3), positions[3], RANGE_2_WORTH));
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(4), positions[4], RANGE_3_WORTH));
+	m_shop.push_back(std::make_unique<BuyFighter>(FighterType(5), positions[5], RANGE_4_WORTH));
+	for (; i < 2 + NUM_OF_FIGHTER_TYPES; i++)
+		m_shop.push_back(std::make_unique<BuyTurett>(sf::Vector2f(16 * (i + 1) + 110 * i, 16)));
+	m_kiteBalloonButton =  std::make_unique<BuyKiteBalloon>(sf::Vector2f(16 * (i + 1) + 110 * i, 16));
 }
 
 void InGameUI::update(int money, int playerHealth, int enemyHealth) {
@@ -21,6 +26,7 @@ void InGameUI::update(int money, int playerHealth, int enemyHealth) {
 		if (m_shop[i])
 			m_shop[i]->set_can_buy(money >= m_shop[i]->get_price());
 	}
+	m_kiteBalloonButton->set_can_buy(true);
 	m_leftCastleHealthbar.update(playerHealth);
 	m_rightCastleHealthbar.update(enemyHealth);
 	m_money = money;
@@ -30,6 +36,7 @@ void InGameUI::draw() const {
 	for (int i = 0; i < m_shop.size(); i++)
 		if(m_shop[i])
 			m_shop[i]->draw();
+	m_kiteBalloonButton->draw();
 	m_leftCastleHealthbar.draw();
 	m_rightCastleHealthbar.draw();
 	drawMoney(m_money);

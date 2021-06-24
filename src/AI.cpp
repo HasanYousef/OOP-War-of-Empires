@@ -2,67 +2,73 @@
 
 #include "AI.h"
 
-void AI::bot(std::shared_ptr<Empire> empire) {
+void AI::bot(Empire& empire) {
 	int spawn = 0;
-	float timeWait = m_level * 2.5;
 	m_levelTime = m_clock.getElapsedTime();
 	//change num of soilder every 120 sec
-	if (m_levelTime.asSeconds() == TWOMINUTES) {
+	if (m_levelTime.asSeconds() >= WAVE) {
 		m_level++;
 		if (m_level > 2) {
 			m_level = 0;
 		}
+		empire.giveMoney(500);
 		m_clock.restart();
+		empire.addKiteBalloon();
 	}
 	// buy Turret if we can
-	if ( true /* ADD IF CAN BY TURRET */) {
-		m_level++;
-		//by stronget turrent
+	if (empire.getMoney() >= TURETT1_PRICE) {
+		if (m_upTurretStand) {
+			m_upTurretStand = false;
+			empire.buyTurett(0);
+		}
+		else {
+			m_upTurretStand = true;
+			empire.buyTurett(1);
+		}
+		m_score += 100;
 	}
-
-	// CHECK IF THERE ARE A TURRET TO DEVOLP (LEVEL UP)
-
-	sf::Vector2f spawnPos(1920, 927);
+	sf::Vector2f spawnPos(empire.getCastle()->get_object_team() ? 20 : 1920, 927);
 	// buy tanks fighters
-	if (empire->getFightersNum() < (4 + (m_level * 2))) {
+	if (empire.getFightersNum() < (4 + (m_level * 2))) {
 		// buy a TANK VEHICLE
-		if (m_tankInFront /* && can by a tank */ ) {
-			m_tankInFront = false;
-			// ADD A TANK VEHICLE
+		if (empire.getMoney() >= MELEE_2_WORTH) {
+			empire.addFighter(std::make_shared<MeleeFighter2>
+				(spawnPos, empire.getCastle()->get_object_team()));
+			empire.pay(MELEE_2_WORTH);
 		}
-		if (empire->getMoney() >= TANK2) {
-			empire->addFighter(std::make_shared<MeleeFighter2>
-				(spawnPos, LEFT_TEAM, 100 * 1.5, 10 * 1.5, 30));
-			empire->pay(TANK2);
-		}
-		else if (empire->getMoney() >= TANK1) {
-			empire->addFighter(std::make_shared<MeleeFighter1>
-				(spawnPos, LEFT_TEAM, 100, 10, 30));
-			empire->pay(TANK1);
+		else if (empire.getMoney() >= MELEE_1_WORTH) {
+			empire.addFighter(std::make_shared<MeleeFighter1>
+				(spawnPos, empire.getCastle()->get_object_team()));
+			empire.pay(MELEE_1_WORTH);
 		}
 		// by a shooters
 		while (spawn < 2) {
-			if (empire->getMoney() >= SHOOTER3) {
-				empire->addFighter(std::make_shared<RangeFighter3>
-					(spawnPos, LEFT_TEAM, 100, 10 * 3, 30));
-				empire->pay(SHOOTER3);
+			if (empire.getMoney() >= RANGE_3_WORTH) {
+				empire.addFighter(std::make_shared<RangeFighter3>
+					(spawnPos, empire.getCastle()->get_object_team()));
+				empire.pay(RANGE_3_WORTH);
 			}
-			else if (empire->getMoney() >= SHOOTER2) {
-				empire->addFighter(std::make_shared<RangeFighter2>
-					(spawnPos, LEFT_TEAM, 100, 10 * 2, 30));
-				empire->pay(SHOOTER2);
+			else if (empire.getMoney() >= RANGE_2_WORTH) {
+				empire.addFighter(std::make_shared<RangeFighter2>
+					(spawnPos, empire.getCastle()->get_object_team()));
+				empire.pay(RANGE_2_WORTH);
 			}
-			else if (empire->getMoney() >= SHOOTER1) {
-				empire->addFighter(std::make_shared<RangeFighter1>
-					(spawnPos, LEFT_TEAM, 100, 10, 30));
-				empire->pay(SHOOTER1);
+			else if (empire.getMoney() >= RANGE_1_WORTH) {
+				empire.addFighter(std::make_shared<RangeFighter1>
+					(spawnPos, empire.getCastle()->get_object_team()));
+				empire.pay(RANGE_1_WORTH);
 			}
 			spawn++;
 		}
+
 		// buy a TANK VEHICLE
-		if (!(m_tankInFront) /* && can by a tank */) {
-			m_tankInFront = true;
-			// ADD A TANK VEHICLE
+		if (empire.getMoney() >= RANGE_4_WORTH) {
+			empire.addFighter(std::make_shared<RangeFighter4>
+				(spawnPos, empire.getCastle()->get_object_team()));
+			empire.pay(RANGE_4_WORTH);
 		}
+	}
+	if (empire.getFightersNum() == 0 && m_levelTime.asSeconds() < (WAVE / 2)) {
+		empire.giveMoney(500);
 	}
 }

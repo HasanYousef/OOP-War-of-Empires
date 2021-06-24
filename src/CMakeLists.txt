@@ -19,6 +19,8 @@
 "BuyWorldObject.cpp"
 "BuyFighter.cpp"
 "BuyTurett.cpp"
+"BuyKiteBalloon.cpp"
+"BuyKiteBalloonButton.cpp"
 "BuyWorldObjectBackground.cpp"
 "BuyButton.cpp"
 "UIObject.cpp"
@@ -55,5 +57,5 @@
 "KiteBalloonAnimation.cpp"
 "AirBombAnimation.cpp"
 "Levels.cpp"
-
+"AI.cpp"
 )

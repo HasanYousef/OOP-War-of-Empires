@@ -2,14 +2,6 @@
 
 const float PI = 3.14159265;
 
-//Fighters prices
-const int TANK1 = 100,
-TANK2 = 200,
-SHOOTER1 = 300,
-SHOOTER2 = 400,
-SHOOTER3 = 500,
-TANK3 = 600;
-
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
 const int CASTLE_Y_INDEX = 1015;
@@ -69,6 +61,9 @@ const int RANGE_2_WORTH = 200;
 const int RANGE_3_WORTH = 300;
 const int RANGE_4_WORTH = 600;
 
+//time
+const int WAVE = 100;
+
 const int NUM_OF_SOUNDS = 2;
 enum class SoundType {
 
@@ -101,9 +96,11 @@ enum class FighterType {
 	Nothing
 };
 
-const int TURETT1_PRICE = 800,
-TURETT2_PRICE = 1600,
-TURETT3_PRICE = 3200;
+const int BALLOON_TIME = 4;
+
+const int TURETT1_PRICE = 1200,
+TURETT2_PRICE = 2200,
+TURETT3_PRICE = 3500;
 
 const int NUM_OF_TURETTS_STANDS = 2;
 const int NUM_OF_TURETT_TYPES = 3;

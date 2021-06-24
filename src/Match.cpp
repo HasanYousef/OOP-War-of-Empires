@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Match.h"
+#include "AI.h"
 
 Match::Match() : m_playerEmpire(LEFT_TEAM), m_enemyEmpire(RIGHT_TEAM) {}
 
@@ -17,12 +18,8 @@ void Match::run() {
 
 	bool pressed = false;
 	sf::Vector2f location;
-
-	m_enemyEmpire.addFighter(std::make_shared<MeleeFighter2>
-		(sf::Vector2f(1920, 927), RIGHT_TEAM)); // %#$%@#%#@$%$%^$%#@$#@%#@$%
-	m_enemyEmpire.addKiteBalloon();
-	m_playerEmpire.addKiteBalloon();
-
+	m_enemyEmpire.giveMoney(100);
+	AI ai;
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
@@ -47,6 +44,7 @@ void Match::run() {
 			break;
 		}
 
+		ai.bot(m_enemyEmpire);
 
 		// We move the fighters 
 		m_playerEmpire.moveFighters(m_enemyEmpire.getCastle(), m_enemyEmpire.getFirstFighter());
@@ -102,45 +100,45 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 
 	switch (m_UI.handle_click_fighters(pos)) {
 	case FighterType::Tank1:
-		if (m_playerEmpire.getMoney() >= TANK1) {
+		if (m_playerEmpire.getMoney() >= MELEE_1_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(TANK1);
+			m_playerEmpire.pay(MELEE_1_WORTH);
 		}
 		break;
 	case FighterType::Tank2:
-		if (m_playerEmpire.getMoney() >= TANK2) {
+		if (m_playerEmpire.getMoney() >= MELEE_2_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter2>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(TANK2);
+			m_playerEmpire.pay(MELEE_2_WORTH);
 		}
 		break;
 	case FighterType::Shooter1:
-		if (m_playerEmpire.getMoney() >= SHOOTER1) {
+		if (m_playerEmpire.getMoney() >= RANGE_1_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter1>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(SHOOTER1);
+			m_playerEmpire.pay(RANGE_1_WORTH);
 		}
 		break;
 	case FighterType::Shooter2:
-		if (m_playerEmpire.getMoney() >= SHOOTER2) {
+		if (m_playerEmpire.getMoney() >= RANGE_2_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter2>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(SHOOTER2);
+			m_playerEmpire.pay(RANGE_2_WORTH);
 		}
 		break;
 	case FighterType::Shooter3:
-		if (m_playerEmpire.getMoney() >= SHOOTER3) {
+		if (m_playerEmpire.getMoney() >= RANGE_3_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter3>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(SHOOTER3);
+			m_playerEmpire.pay(RANGE_3_WORTH);
 		}
 		break;
 	case FighterType::Tank3:
-		if (m_playerEmpire.getMoney() >= TANK3) {
+		if (m_playerEmpire.getMoney() >= RANGE_4_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<RangeFighter4>
 				(spawnPos, LEFT_TEAM));
-			m_playerEmpire.pay(TANK3);
+			m_playerEmpire.pay(RANGE_4_WORTH);
 		}
 		break;
 	default:

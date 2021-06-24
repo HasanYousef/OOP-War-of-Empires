@@ -63,7 +63,7 @@ void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fi
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		fighter->get()->attack(enemyFighter, castle);
 		if (enemyFighter.get() != NULL && *enemyFighter->fullyDead()) {
-			m_money += int(enemyFighter->getGoldWorth());
+			m_money += int(enemyFighter->getGoldWorth()) + 30;
 			return;
 		}
 		fighternum++;
@@ -107,6 +107,10 @@ void Empire::getSentBullet() {
 				m_airUnites.push_back(bullet);
 		}
 	}
+}
+
+void Empire::giveMoney(int money){
+	m_money += money;
 }
 
 int Empire::buyTurett(int stand) {

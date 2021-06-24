@@ -3,6 +3,7 @@
 #include <vector>
 #include "BuyFighter.h"
 #include "BuyTurett.h"
+#include "BuyKiteBalloon.h"
 #include "CastleHealthbar.h"
 
 class InGameUI {
@@ -18,5 +19,6 @@ private:
 	std::vector<std::unique_ptr<BuyWorldObject>> m_shop;
 	CastleHealthbar m_leftCastleHealthbar,
 		m_rightCastleHealthbar;
+	std::unique_ptr<BuyKiteBalloon> m_kiteBalloonButton;
 	int m_money = 0;
 };

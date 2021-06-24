@@ -6,5 +6,5 @@
 class Button : public UIObject {
 public:
 	Button(sf::Vector2f);
-	bool handle_click(const sf::Vector2f location) const;
+	bool handle_click(const sf::Vector2f location);
 };
