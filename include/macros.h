@@ -27,8 +27,8 @@ const int RANGE_DAMAGING_FRAME = 3;
 const int MELEE_DIE_FRAME = 25;
 
 // objects default health
-const int CASTLE_MAX_HEALTH = 10,
-CASTLE_HEALTH = 10;	//10000
+const int CASTLE_MAX_HEALTH = 1000,
+CASTLE_HEALTH = 1000;
 
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;
@@ -149,7 +149,7 @@ enum class UITexture {
 	BuyWorldObjectBackground,
 	CastleHealthbar,
 	CastleHealthbarBackground,
-	LostBackground,
 	WonBackground,
+	LostBackground,
 
 };

@@ -80,8 +80,8 @@ void Textures::loadUiTextures() {
 	m_uiTextures[int(UITexture::BuyWorldObjectBackground)]->loadFromFile("buy-world-object-background.png");
 	m_uiTextures[int(UITexture::CastleHealthbar)]->loadFromFile("castle-healthbar.png");
 	m_uiTextures[int(UITexture::CastleHealthbarBackground)]->loadFromFile("castle-healthbar-background.png");
-	m_uiTextures[int(UITexture::LostBackground)]->loadFromFile("wonBackground.png");
-	m_uiTextures[int(UITexture::WonBackground)]->loadFromFile("lostBackground.png");
+	m_uiTextures[int(UITexture::WonBackground)]->loadFromFile("wonBackground.png");
+	m_uiTextures[int(UITexture::LostBackground)]->loadFromFile("lostBackground.png");
 }
 
 void Textures::loadWorldObjTextures() {

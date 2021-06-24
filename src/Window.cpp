@@ -13,5 +13,5 @@ std::shared_ptr<sf::RenderWindow> Window::getWindow() {
 
 Window::Window() {
 	m_window = std::make_shared<sf::RenderWindow>();
-	m_window->create(sf::VideoMode(1920, 1080), "War of Empires", sf::Style::Close);
+	m_window->create(sf::VideoMode(1920, 1080), "War of Empires", sf::Style::Fullscreen);
 }
