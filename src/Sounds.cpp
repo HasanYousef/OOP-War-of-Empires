@@ -22,4 +22,10 @@ Sounds::Sounds() {
 
 	m_buffers[int(SoundType::InGameMusic)]->loadFromFile("in-game-music.wav");
 	m_sounds[int(SoundType::InGameMusic)]->setBuffer(*m_buffers[int(SoundType::InGameMusic)]);
+
+	m_buffers[int(SoundType::ShootSoundEffect)]->loadFromFile("shoot.ogg");
+	m_sounds[int(SoundType::ShootSoundEffect)]->setBuffer(*m_buffers[int(SoundType::ShootSoundEffect)]);
+
+	m_buffers[int(SoundType::ExplosionSoundEffect)]->loadFromFile("explosion.wav");
+	m_sounds[int(SoundType::ExplosionSoundEffect)]->setBuffer(*m_buffers[int(SoundType::ExplosionSoundEffect)]);
 }

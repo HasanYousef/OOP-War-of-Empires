@@ -64,11 +64,13 @@ const int RANGE_4_WORTH = 600;
 //time
 const int WAVE = 100;
 
-const int NUM_OF_SOUNDS = 2;
+const int NUM_OF_SOUNDS = 4;
 enum class SoundType {
 
 	MenuMusic,
 	InGameMusic,
+	ShootSoundEffect,
+	ExplosionSoundEffect,
 
 };
 

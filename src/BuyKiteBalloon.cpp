@@ -11,6 +11,10 @@ void BuyKiteBalloon::set_can_buy(bool can) {
 	m_button->set_can_buy(can);
 }
 
+bool BuyKiteBalloon::handle_click(const sf::Vector2f location) {
+	return m_button->handle_click(location);
+}
+
 void BuyKiteBalloon::draw_object() const {
 	sf::Sprite balloon(*Textures::instance().get_kite_balloon_texture(1, 0));
 	balloon.scale(0.15, 0.15);

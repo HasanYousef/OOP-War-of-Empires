@@ -11,7 +11,7 @@ public:
 	int get_price();
 	virtual void setType(int) = 0;
 	void draw() const;
-	bool handle_click(const sf::Vector2f location) const;
+	virtual bool handle_click(const sf::Vector2f location) const;
 
 protected:
 	virtual void draw_object() const = 0;

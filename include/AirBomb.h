@@ -1,6 +1,7 @@
 #pragma once
 #include "AirUnites.h"
 #include "AirBombAnimation.h"
+#include "Sounds.h"
 #include <math.h>
 
 class AirBomb : public AirUnites {

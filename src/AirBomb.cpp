@@ -33,11 +33,12 @@ bool AirBomb::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::
 				if (!(*fighter)->getDamaged(m_damage))
 					(*fighter)->setAnimationType(AnimationType::Die);
 				*m_hit = true;
-
+				Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
 				return true;
 			}
 		if (create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y) {
 			*m_hit = true;
+			Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
 			return true;
 		}
 

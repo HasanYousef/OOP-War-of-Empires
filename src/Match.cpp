@@ -150,4 +150,7 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 		if (type != -1)
 			m_UI.setTurettType(stand, type + 1);
 	}
+
+	if (m_UI.handle_click_balloon(pos))
+		m_playerEmpire.addKiteBalloon();
 }

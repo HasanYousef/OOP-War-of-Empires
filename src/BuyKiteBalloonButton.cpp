@@ -17,7 +17,8 @@ void BuyKiteBalloonButton::draw() const {
 }
 
 void BuyKiteBalloonButton::set_can_buy(bool canBuy) {
-	m_canBuy = canBuy && m_clock.getElapsedTime().asSeconds() > BALLOON_TIME;
+	bool mm_canBuy = canBuy && m_clock.getElapsedTime().asSeconds() > BALLOON_TIME;
+	m_canBuy = mm_canBuy;
 }
 
 void BuyKiteBalloonButton::draw_price() const {
@@ -53,6 +54,7 @@ void BuyKiteBalloonButton::draw_bought() const {
 bool BuyKiteBalloonButton::handle_click(const sf::Vector2f location) {
 	if (m_canBuy && Button::handle_click(location)) {
 		m_clock.restart();
+		m_canBuy = false;
 		return true;
 	}
 	return false;
