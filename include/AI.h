@@ -5,12 +5,15 @@
 
 class AI {
 public:
-	AI() : m_level(0), m_maxFighters(4), m_upTurretStand(true),
-		m_score(0), m_giveMoney(true) {}
+	AI() : m_level(0), m_maxFighters(4), m_tankFront(false),
+		 m_giveMoney(true), m_wave(0) {}
 	void bot(Empire&);
 private:
+	void levelUp();
+	void buyTurret(Empire&);
+	//---Members----------
 	sf::Clock m_clock;
 	sf::Time m_levelTime;
-	int m_maxFighters, m_level, m_score;
-	bool m_upTurretStand, m_giveMoney;
+	int m_maxFighters, m_level, m_wave;
+	bool m_tankFront, m_giveMoney;
 };

@@ -1,10 +1,10 @@
 #pragma once 
 #include "FireAnimation.h"
 
-std::shared_ptr <sf::Texture> FireAnimation::get_texture() const {
-	return Textures::instance().get_gun_fire_texture(m_currFrame);
+std::shared_ptr <sf::Texture> FireAnimation::getTexture() const {
+	return Textures::instance().getGunFireTexture(m_currFrame);
 }
 
-void FireAnimation::set_anim() {
+void FireAnimation::setAnim() {
 	m_currFrame = 0;
 }

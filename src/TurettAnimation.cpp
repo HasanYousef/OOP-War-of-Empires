@@ -2,8 +2,8 @@
 
 #include "TurettAnimation.h"
 
-std::shared_ptr <sf::Texture> TurettAnimation::get_texture() const {
-	return Textures::instance().get_turett_texture(m_turettType, m_currFrame);
+std::shared_ptr <sf::Texture> TurettAnimation::getTexture() const {
+	return Textures::instance().getTurettTexture(m_turettType, m_currFrame);
 }
 
 bool TurettAnimation::update(float delta) {
@@ -18,6 +18,6 @@ bool TurettAnimation::isShooting() const {
 	return m_isShooting;
 }
 
-void TurettAnimation::set_anim() {
+void TurettAnimation::setAnim() {
 	m_currFrame = 0;
 }

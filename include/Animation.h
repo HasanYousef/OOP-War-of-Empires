@@ -7,7 +7,7 @@
 
 class Animation {
 public:
-	virtual std::shared_ptr <sf::Texture> get_texture() const = 0;
+	virtual std::shared_ptr <sf::Texture> getTexture() const = 0;
 	bool update(float);
 	int getCurrFrame();
 

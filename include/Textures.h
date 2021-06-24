@@ -7,33 +7,33 @@
 class Textures {
 public:
 	static Textures& instance();
-	std::shared_ptr<sf::Texture> get_ui_texture(UITexture) const;
-	std::shared_ptr<sf::Texture> get_world_obj_texture(WorldObjectType) const;
-	int num_of_anim_frames(FighterType, AnimationType) const;
-	int num_of_gun_fire_frames() const;
-	std::shared_ptr<sf::Texture> get_animation_texture(FighterType, AnimationType, int) const;
-	std::shared_ptr<sf::Texture> get_turett_texture(TurettType, int) const;
-	std::shared_ptr<sf::Font> get_font() const;
-	std::shared_ptr<sf::Texture> get_gun_fire_texture(int) const;
-	std::shared_ptr<sf::Texture> get_kite_balloon_texture(int,int) const;
-	std::shared_ptr<sf::Texture> get_bomb_texture(int) const;
-	std::shared_ptr<sf::Texture> get_explosion_texture(int, int) const;
-	std::shared_ptr<sf::Texture> get_bullet() const;
+	std::shared_ptr<sf::Texture> getUiTexture(UITexture) const;
+	std::shared_ptr<sf::Texture> getWorldObjTexture(WorldObjectType) const;
+	int numOfAnimFrames(FighterType, AnimationType) const;
+	int numOfGunFireFrames() const;
+	std::shared_ptr<sf::Texture> getAnimationTexture(FighterType, AnimationType, int) const;
+	std::shared_ptr<sf::Texture> getTurettTexture(TurettType, int) const;
+	std::shared_ptr<sf::Font> getFont() const;
+	std::shared_ptr<sf::Texture> getGunFireTexture(int) const;
+	std::shared_ptr<sf::Texture> getKiteBalloonTexture(int,int) const;
+	std::shared_ptr<sf::Texture> getBombTexture(int) const;
+	std::shared_ptr<sf::Texture> getExplosionTexture(int, int) const;
+	std::shared_ptr<sf::Texture> getBullet() const;
 
 private:
 	Textures();
-	void load_ui_textures();
-	void load_world_obj_textures();
-	void load_anim_textures();
-	void load_turetts_texturs();
-	void load_font();
-	void load_gun_fire_textures();
-	void load_kite_balloon_textures();
-	void load_bomb_textures();
-	void load_explosion_textures();
+	void loadUiTextures();
+	void loadWorldObjTextures();
+	void loadAnimTextures();
+	void loadTurettsTextures();
+	void loadFont();
+	void loadGunFireTextures();
+	void loadKiteBalloonTextures();
+	void loadBombTextures();
+	void loadExplosionTextures();
 
-	std::string fighter_file_name(FighterType) const;
-	std::string animation_name(AnimationType anim) const;
+	std::string fighterFileName(FighterType) const;
+	std::string animationName(AnimationType anim) const;
 
 	std::vector <std::shared_ptr <sf::Texture>> m_uiTextures;
 	std::vector <std::shared_ptr <sf::Texture>> m_worldObjectTextures;

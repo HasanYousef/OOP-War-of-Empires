@@ -11,9 +11,9 @@ public:
 	WorldObject(const sf::Vector2f&, const bool&);
 
 	//---functions----------------------------
-	sf::Vector2f get_position() const;
-	void set_position(const sf::Vector2f&);
-	bool get_object_team() const;
+	sf::Vector2f getPosition() const;
+	void setPosition(const sf::Vector2f&);
+	bool getObjectTeam() const;
 
 	//---build-body-----------
 	virtual void draw(float) const;

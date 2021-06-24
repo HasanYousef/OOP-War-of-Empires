@@ -1,7 +1,6 @@
 #pragma once
 #include "AnimatedObject.h"
 #include "FireAnimation.h"
-#include "Sounds.h"
 
 class GunFire : public AnimatedObject {
 public:

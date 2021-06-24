@@ -8,6 +8,6 @@ public:
 	void setType(int);
 
 private:
-	void draw_object() const;
+	void drawObject() const;
 	TurettType m_turettType = TurettType::Turett1;
 };

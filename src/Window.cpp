@@ -7,7 +7,7 @@ Window& Window::instance() {
 	return inst;
 }
 
-std::shared_ptr<sf::RenderWindow> Window::get_window() {
+std::shared_ptr<sf::RenderWindow> Window::getWindow() {
 	return m_window;
 }
 

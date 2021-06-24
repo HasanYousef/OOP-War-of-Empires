@@ -23,16 +23,3 @@ bool LiveObject::getDamaged(const int& damage) {
 		return DEAD;
 	return ALIVE;
 }
-
-//-------------------------------------------------
-//we creat the texture that we want to print it 
-/*
-sf::Sprite LiveObject::create() const {
-	sf::Sprite result = sf::Sprite(*Textures::instance().
-		get_texture(get_type()));
-	result.setPosition(get_position());
-	result.getPosition();
-	// 40 = width of texture, 50 = height of texture
-	result.setTextureRect(sf::IntRect(40, 0, 40 * get_object_team(), 50));
-	return result;
-} */

@@ -7,66 +7,66 @@ Textures& Textures::instance() {
 	return inst;
 }
 
-std::shared_ptr<sf::Texture> Textures::get_ui_texture(UITexture type) const {
+std::shared_ptr<sf::Texture> Textures::getUiTexture(UITexture type) const {
 	return m_uiTextures[int(type)];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_world_obj_texture(WorldObjectType type) const {
+std::shared_ptr<sf::Texture> Textures::getWorldObjTexture(WorldObjectType type) const {
 	return m_worldObjectTextures[int(type)];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_animation_texture(FighterType fighter,
+std::shared_ptr<sf::Texture> Textures::getAnimationTexture(FighterType fighter,
 	AnimationType animType, int frame) const {
 	return m_animations[int(fighter)][int(animType)][frame];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_turett_texture(TurettType turett, int frame) const {
+std::shared_ptr<sf::Texture> Textures::getTurettTexture(TurettType turett, int frame) const {
 	return m_turetts[int(turett)][frame];
 }
 
-int Textures::num_of_anim_frames(FighterType fighter, AnimationType animType) const {
+int Textures::numOfAnimFrames(FighterType fighter, AnimationType animType) const {
 	return m_animations[int(fighter)][int(animType)].size();
 }
 
-int Textures::num_of_gun_fire_frames() const {
+int Textures::numOfGunFireFrames() const {
 	return int(m_gunFireAnimations.size());
 }
 
-std::shared_ptr<sf::Font> Textures::get_font() const {
+std::shared_ptr<sf::Font> Textures::getFont() const {
 	return m_font;
 }
 
-std::shared_ptr<sf::Texture> Textures::get_gun_fire_texture(int frame) const {
+std::shared_ptr<sf::Texture> Textures::getGunFireTexture(int frame) const {
 	return m_gunFireAnimations[frame];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_kite_balloon_texture(int kiteLevel, int frame) const {
+std::shared_ptr<sf::Texture> Textures::getKiteBalloonTexture(int kiteLevel, int frame) const {
 	return m_kiteBalloonAnimations[size_t(kiteLevel) -1][frame];
 }
 
-std::shared_ptr<sf::Texture> Textures::get_bomb_texture(int module) const {
+std::shared_ptr<sf::Texture> Textures::getBombTexture(int module) const {
 	return m_bombs[size_t(module)-1];
 }
-std::shared_ptr<sf::Texture> Textures::get_explosion_texture(int kiteLevel, int frame) const {
+std::shared_ptr<sf::Texture> Textures::getExplosionTexture(int kiteLevel, int frame) const {
 	return m_explotionAnimation[size_t(kiteLevel) - 1][frame];
 }
 
 Textures::Textures() {
-	load_ui_textures();
-	load_world_obj_textures();
-	load_anim_textures();
-	load_turetts_texturs();
-	load_font();
-	load_gun_fire_textures();
-	load_kite_balloon_textures();
-	load_bomb_textures();
-	load_explosion_textures();
+	loadUiTextures();
+	loadWorldObjTextures();
+	loadAnimTextures();
+	loadTurettsTextures();
+	loadFont();
+	loadGunFireTextures();
+	loadKiteBalloonTextures();
+	loadBombTextures();
+	loadExplosionTextures();
 
 	m_bullet = std::make_shared<sf::Texture>();
 	m_bullet->loadFromFile("bullet.png");
 }
 
-void Textures::load_ui_textures() {
+void Textures::loadUiTextures() {
 	for (int i = 0; i <= NUM_OF_UI_TEXTURES; i++) {
 		std::shared_ptr ptr = std::make_shared<sf::Texture>();
 		m_uiTextures.push_back(ptr);
@@ -82,7 +82,7 @@ void Textures::load_ui_textures() {
 	m_uiTextures[int(UITexture::CastleHealthbarBackground)]->loadFromFile("castle-healthbar-background.png");
 }
 
-void Textures::load_world_obj_textures() {
+void Textures::loadWorldObjTextures() {
 	for (int i = 0; i <= NUM_OF_WORLD_OBJECT_TYPES; i++) {
 		std::shared_ptr ptr = std::make_shared<sf::Texture>();
 		m_worldObjectTextures.push_back(ptr);
@@ -93,13 +93,13 @@ void Textures::load_world_obj_textures() {
 	m_worldObjectTextures[int(WorldObjectType::Castle)]->loadFromFile("castle-texture.png");
 }
 
-void Textures::load_anim_textures() {
+void Textures::loadAnimTextures() {
 	for (int i = 0; i < NUM_OF_FIGHTER_TYPES; i++) {
 		std::vector <std::vector <std::shared_ptr <sf::Texture>>> fighter;
 		FighterType fighterType = FighterType(i);
 
 		for (int j = 0; j < NUM_OF_ANIMATION_TYPES; j++) {
-			std::string fighterFileName = fighter_file_name(fighterType);
+			std::string fighterFName = fighterFileName(fighterType);
 			AnimationType animationType = AnimationType(j);
 			// just the Tank1 and the Tank2 fighters have Attack animations
 			if (animationType == AnimationType::Attack)
@@ -109,11 +109,11 @@ void Textures::load_anim_textures() {
 				break;
 
 			std::vector <std::shared_ptr <sf::Texture>> anim;
-			fighterFileName += animation_name(animationType);
+			fighterFName += animationName(animationType);
 			int frame = 0;
 			while (true) {
 				anim.push_back(std::make_shared<sf::Texture>());
-				if (!anim[frame]->loadFromFile(fighterFileName + std::to_string(frame) + ".png")) {
+				if (!anim[frame]->loadFromFile(fighterFName + std::to_string(frame) + ".png")) {
 					anim.pop_back();
 					break;		// stop reading more frames when there is no more
 				}
@@ -126,7 +126,7 @@ void Textures::load_anim_textures() {
 	}
 }
 
-void Textures::load_turetts_texturs() {
+void Textures::loadTurettsTextures() {
 	for (int i = 0; i < NUM_OF_TURETT_TYPES; i++) {
 		std::vector <std::shared_ptr <sf::Texture>> turett;
 		TurettType turettType = TurettType(i);
@@ -147,12 +147,12 @@ void Textures::load_turetts_texturs() {
 	}
 }
 
-void Textures::load_font() {
+void Textures::loadFont() {
 	m_font = std::make_shared<sf::Font>();
 	m_font->loadFromFile("font.ttf");
 }
 
-void Textures::load_gun_fire_textures() {
+void Textures::loadGunFireTextures() {
 	std::string fighterFileName("skeleton-fire-animation_");
 	int frame = 0;
 	while (true) {
@@ -165,7 +165,7 @@ void Textures::load_gun_fire_textures() {
 	}
 }
 
-void Textures::load_kite_balloon_textures() {
+void Textures::loadKiteBalloonTextures() {
 	std::string kitesFileName("skeleton-kite");
 	int level = 1;
 	while (level <= 2) {
@@ -186,7 +186,7 @@ void Textures::load_kite_balloon_textures() {
 	}
 }
 
-void Textures::load_bomb_textures() {
+void Textures::loadBombTextures() {
 	std::string fighterFileName("airbomb");
 	size_t module = 1;
 	while (module <= 3) {
@@ -196,7 +196,7 @@ void Textures::load_bomb_textures() {
 	}
 }
 
-void Textures::load_explosion_textures() {
+void Textures::loadExplosionTextures() {
 	std::string explosionFileName("skeleton-explosion");
 	int level = 1;
 	while (level <= 2) {
@@ -216,7 +216,7 @@ void Textures::load_explosion_textures() {
 	}
 }
 
-std::string Textures::fighter_file_name(FighterType fighter) const {
+std::string Textures::fighterFileName(FighterType fighter) const {
 	std::string fighterFileName = "skeleton";
 
 	if (fighter == FighterType::Tank1)
@@ -235,7 +235,7 @@ std::string Textures::fighter_file_name(FighterType fighter) const {
 	return fighterFileName;
 }
 
-std::string Textures::animation_name(AnimationType anim) const {
+std::string Textures::animationName(AnimationType anim) const {
 
 	if (anim == AnimationType::Idle)
 		return "Idle_";
@@ -248,6 +248,6 @@ std::string Textures::animation_name(AnimationType anim) const {
 	return "";
 }
 
-std::shared_ptr<sf::Texture> Textures::get_bullet() const {
+std::shared_ptr<sf::Texture> Textures::getBullet() const {
 	return m_bullet;
 }

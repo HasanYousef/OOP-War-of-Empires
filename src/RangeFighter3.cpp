@@ -2,9 +2,9 @@
 #include "RangeFighter3.h"
 
 RangeFighter3::RangeFighter3(const sf::Vector2f& p, const int& objectTeam)
-	: RangeFighter(p, objectTeam, RANGE_3_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3)))
-		, RANGE_3_DAMAGE* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3))),
-		RANGE_3_WORTH* (Levels::instance().get_level(objectTeam, int(FighterType::Shooter3)))) {
+	: RangeFighter(p, objectTeam, RANGE_3_HEALTH* (Levels::instance().getLevel(objectTeam, int(FighterType::Shooter3)))
+		, RANGE_3_DAMAGE* (Levels::instance().getLevel(objectTeam, int(FighterType::Shooter3))),
+		RANGE_3_WORTH* (Levels::instance().getLevel(objectTeam, int(FighterType::Shooter3)))) {
 	reSetAnimationObject(FighterType::Shooter3);
 }
 
@@ -24,11 +24,11 @@ void RangeFighter3::move(const std::shared_ptr<Fighter>& nextAlly,
 
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
-				WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 1 : -1),
-				WorldObject::get_position().y);
+				WorldObject::getPosition().x + ((WorldObject::getObjectTeam()) ? 1 : -1),
+				WorldObject::getPosition().y);
 
-			WorldObject::set_position(x);
-			getGunFire()->set_position(x + sf::Vector2f(WorldObject::m_objectTeam ? 85*0.625:-85 * 0.625, 30 * 0.625));
+			WorldObject::setPosition(x);
+			getGunFire()->setPosition(x + sf::Vector2f(WorldObject::m_objectTeam ? 85*0.625:-85 * 0.625, 30 * 0.625));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&
@@ -38,5 +38,5 @@ void RangeFighter3::move(const std::shared_ptr<Fighter>& nextAlly,
 }
 
 void RangeFighter3::addLevel() {
-	Levels::instance().add_level(WorldObject::m_objectTeam, int(FighterType::Shooter3));
+	Levels::instance().addLevel(WorldObject::m_objectTeam, int(FighterType::Shooter3));
 }

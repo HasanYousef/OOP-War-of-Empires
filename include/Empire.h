@@ -46,7 +46,7 @@ public:
 
 private:
 	bool m_team;
-	int m_money = INIT_MONEY;
+	int m_money = 1500;
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
 	std::shared_ptr <KiteBalloon> m_kiteBalloon;

@@ -7,20 +7,20 @@ BuyWorldObject::BuyWorldObject(sf::Vector2f pos, int price)
 	m_button = std::make_unique<BuyButton>(BuyButton(pos, price));
 }
 
-void BuyWorldObject::set_can_buy(bool can) {
-	m_button->set_can_buy(can);
+void BuyWorldObject::setCanBuy(bool can) {
+	m_button->setCanBuy(can);
 }
 
-int BuyWorldObject::get_price() {
-	return m_button->get_price();
+int BuyWorldObject::getPrice() {
+	return m_button->getPrice();
 }
 
 void BuyWorldObject::draw() const {
 	m_background.draw();
-	draw_object();
+	drawObject();
 	m_button->draw();
 }
 
-bool BuyWorldObject::handle_click(const sf::Vector2f location) const {
-	return m_button->handle_click(location);
+bool BuyWorldObject::handleClick(const sf::Vector2f location) const {
+	return m_button->handleClick(location);
 }

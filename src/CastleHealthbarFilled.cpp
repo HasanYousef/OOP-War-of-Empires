@@ -15,16 +15,16 @@ sf::Sprite CastleHealthbarFilled::create() const {
 	return bar;
 }
 
-void CastleHealthbarFilled::draw_text() const {
+void CastleHealthbarFilled::drawText() const {
 	sf::Text text;
 	text.setString("%" + std::to_string(int(float(m_currHealth) / float(m_maxHealth) * 100)));
-	text.setFont(*Textures::instance().get_font());
+	text.setFont(*Textures::instance().getFont());
 	text.setCharacterSize(24);
 	sf::FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
 	text.setPosition(m_position.x + 4, m_position.y - 260);
-	Window::instance().get_window()->draw(text);
+	Window::instance().getWindow()->draw(text);
 }
 
 void CastleHealthbarFilled::update(int hp) {
@@ -33,5 +33,5 @@ void CastleHealthbarFilled::update(int hp) {
 
 void CastleHealthbarFilled::draw() const {
 	UIObject::draw();
-	draw_text();
+	drawText();
 }

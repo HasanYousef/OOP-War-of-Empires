@@ -7,30 +7,26 @@ BuyKiteBalloon::BuyKiteBalloon(sf::Vector2f pos)
 	m_button = std::make_unique<BuyKiteBalloonButton>(BuyKiteBalloonButton(pos, 0));
 }
 
-void BuyKiteBalloon::set_can_buy(bool can) {
-	m_button->set_can_buy(can);
+void BuyKiteBalloon::setCanBuy(bool can) {
+	m_button->setCanBuy(can);
 }
 
-bool BuyKiteBalloon::handle_click(const sf::Vector2f location) {
-	return m_button->handle_click(location);
+bool BuyKiteBalloon::handleClick(const sf::Vector2f location) {
+	return m_button->handleClick(location);
 }
 
-void BuyKiteBalloon::draw_object() const {
-	sf::Sprite balloon(*Textures::instance().get_kite_balloon_texture(1, 0));
+void BuyKiteBalloon::drawObject() const {
+	sf::Sprite balloon(*Textures::instance().getKiteBalloonTexture(1, 0));
 	balloon.scale(0.15, 0.15);
-	/*if (m_fighterType == FighterType::Tank3) {
-		fighter.setScale(150.0f / fighter.getLocalBounds().width,
-			150.0f / fighter.getLocalBounds().height);
-	}*/
 	sf::FloatRect Rect = balloon.getLocalBounds();
 	balloon.setOrigin(Rect.left + Rect.width / 2.0f,
 		Rect.top + Rect.height / 2.0f);
 	balloon.setPosition(m_position.x + 55, m_position.y + 50);
-	Window::instance().get_window()->draw(balloon);
+	Window::instance().getWindow()->draw(balloon);
 }
 
 void BuyKiteBalloon::draw() const {
 	m_background.draw();
-	draw_object();
+	drawObject();
 	m_button->draw();
 }

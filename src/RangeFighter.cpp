@@ -14,22 +14,25 @@ RangeFighter::RangeFighter(const sf::Vector2f& p, const int& objectTeam, const i
 void RangeFighter::attack(const std::shared_ptr<Fighter>& firstEnemy,
 	const std::shared_ptr<Castle>& enemyCastle) {
 	bool b1 = firstEnemy != NULL && 
-		( getDistance(create(0), firstEnemy->create(0)) < 500 || 
+		( getDistance(create(0), firstEnemy->create(0)) < 
+			ATTACK_RANGE + ATTACK_RANGE * (Levels::instance().getLevel(WorldObject::m_objectTeam,int(m_animation->getFighterType()))/3) ||
 			create(0).getGlobalBounds().intersects(firstEnemy->create(0).getGlobalBounds())) &&
 		firstEnemy->getHealth() > 0,
 		b2 = firstEnemy == NULL && 
-		( getDistance(create(0), enemyCastle->create(0)) < 500 || 
+		( getDistance(create(0), enemyCastle->create(0)) < 
+			ATTACK_RANGE + ATTACK_RANGE * (Levels::instance().getLevel(WorldObject::m_objectTeam, int(m_animation->getFighterType()))/3) ||
 			create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds()));
 
 	if (b1 || b2) {
 		if (getAnimationType() == AnimationType::Idle)
 			setAnimationType(AnimationType::Idle);
-			//setAnimationType(AnimationType::Attack);
+
 		bool x = m_animation->getCurrFrame() == RANGE_DAMAGING_FRAME;
-		if (getAnimationType() == AnimationType::Idle/*AnimationType::Attack*/ && x && m_attackClock.getElapsedTime().asSeconds() > 1.5*ANIMATION_SWITCH_TIME) {
+		if (getAnimationType() == AnimationType::Idle&& x && m_attackClock.getElapsedTime().asSeconds() > 1.5*ANIMATION_SWITCH_TIME) {
 			m_attackClock.restart();
 			
-			if (firstEnemy.get() == NULL && (getDistance(create(0), enemyCastle->create(0)) < 500 ||
+			if (firstEnemy.get() == NULL && (getDistance(create(0), enemyCastle->create(0)) < 
+				ATTACK_RANGE + ATTACK_RANGE * (Levels::instance().getLevel(WorldObject::m_objectTeam, int(m_animation->getFighterType()))/3) ||
 				create(0).getGlobalBounds().intersects(enemyCastle->create(0).getGlobalBounds()))) {
 				// activate gunshot
 				m_gunFire->activate();
@@ -67,11 +70,11 @@ void RangeFighter::move(const std::shared_ptr<Fighter>& nextAlly,
 
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
-				WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 1 : -1),
-				WorldObject::get_position().y);
+				WorldObject::getPosition().x + ((WorldObject::getObjectTeam()) ? 1 : -1),
+				WorldObject::getPosition().y);
 
-			WorldObject::set_position(x);
-			m_gunFire->set_position(x + sf::Vector2f(WorldObject::m_objectTeam ? 75*0.625: -75 * 0.625,5));
+			WorldObject::setPosition(x);
+			m_gunFire->setPosition(x + sf::Vector2f(WorldObject::m_objectTeam ? 75*0.625: -75 * 0.625,5));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&
@@ -99,7 +102,7 @@ std::shared_ptr<sf::Clock> RangeFighter::getMovementClock() const {
 //-------------------------------------------------
 //this func draw the object
 void RangeFighter::draw(float f) const {
-	Window::instance().get_window()->draw(create(f));
+	Window::instance().getWindow()->draw(create(f));
 	m_gunFire->draw(f*5);
 }
 
@@ -107,17 +110,17 @@ void RangeFighter::draw(float f) const {
 //we creat the texture that we want to print it 
 
 sf::Sprite RangeFighter::create(float f) const {
-	auto result = sf::Sprite(*m_animation->get_texture());
+	auto result = sf::Sprite(*m_animation->getTexture());
 	if (m_animation->update(f) != getAnimationType()) {
 		if (m_animation->update(0) == AnimationType::Idle && getAnimationType() == AnimationType::Die && m_animation->getCurrFrame() == 0) {
 			setFullyDead();
 		}
-		m_animation->set_anim_type(getAnimationType());
+		m_animation->setAnimType(getAnimationType());
 	}
 	sf::Vector2f temp = (getAnimationType() == AnimationType::Die) ? sf::Vector2f(0, -40) : sf::Vector2f(0, 0);
-	result.setPosition(WorldObject::get_position() + temp);
+	result.setPosition(WorldObject::getPosition() + temp);
 	result.scale(0.625f, 0.625f);
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 }

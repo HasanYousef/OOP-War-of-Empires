@@ -13,9 +13,9 @@ public:
 	void draw() const;
 	void drawMoney(int) const;
 	void setTurettType(int, int);
-	FighterType handle_click_fighters(const sf::Vector2f) const;
-	int handle_click_turetts(const sf::Vector2f) const;
-	bool handle_click_balloon(const sf::Vector2f) const;
+	FighterType handleClickFighters(const sf::Vector2f) const;
+	int handleClickTuretts(const sf::Vector2f) const;
+	bool handleClickBalloon(const sf::Vector2f) const;
 private:
 	std::vector<std::unique_ptr<BuyWorldObject>> m_shop;
 	CastleHealthbar m_leftCastleHealthbar,

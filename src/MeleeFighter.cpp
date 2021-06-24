@@ -41,19 +41,19 @@ std::shared_ptr<bool> MeleeFighter::fullyDead() const{
 //-------------------------------------------------
 //this func draw the object
 void MeleeFighter::draw(float f) const {
-	Window::instance().get_window()->draw(create(f));
+	Window::instance().getWindow()->draw(create(f));
 }
 
 //-------------------------------------------------
 //we creat the texture that we want to print it 
 
 sf::Sprite MeleeFighter::create(float f) const {
-	auto result = sf::Sprite(*m_animation->get_texture() );
+	auto result = sf::Sprite(*m_animation->getTexture() );
 	if (m_animation->update(f) != getAnimationType()) {
 		if (m_animation->update(0) == AnimationType::Idle && getAnimationType() == AnimationType::Die && m_animation->getCurrFrame() == 0){
 			setFullyDead();
 		}
-		m_animation->set_anim_type(getAnimationType());
+		m_animation->setAnimType(getAnimationType());
 	}
 	sf::Vector2f temp;
 	if(m_animation->getFighterType() == FighterType::Tank2)
@@ -61,38 +61,9 @@ sf::Sprite MeleeFighter::create(float f) const {
 			sf::Vector2f(0, -30) : sf::Vector2f(0, 0);
 	else
 		temp = (getAnimationType() == AnimationType::Die) ? sf::Vector2f(0, -30) : sf::Vector2f(0, 0);
-	result.setPosition(WorldObject::get_position() + temp);
+	result.setPosition(WorldObject::getPosition() + temp);
 	result.scale(0.625f, 0.625f);
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 } 
-
-/*
-sf::Sprite MeleeFighter::create(float f, int) {
-	auto result = sf::Sprite(*(m_animation->get_texture());
-	if ((m_animation->update(0) == AnimationType::Idle && m_pre != AnimationType::Idle) {
-		std::cout << "it returns idle i guess\n pre is:" << int(m_pre) << " | object anime is: " << int(getAnimationType()) << std::endl;
-		if (int(m_pre) == int(AnimationType::Die)) {
-			std::cout << "setting to dead\n";
-			setFullyDead();
-		}
-	}
-	savePre((m_animation->update(0));
-
-	//std::cout << ((WorldObject::get_object_team()) ? "ally : " : "enemy : ") << LiveObject::getHealth() << std::endl;
-
-	if ((m_animation->update(0) != getAnimationType()) {
-		if (LiveObject::getHealth() <= 0 && (m_animation->update(0) == AnimationType::Idle) {
-			std::cout << "reached fully dead";
-			setFullyDead();
-		}
-		if ((m_animation->update(0) == AnimationType::Idle)
-			std::cout << "it returns idle i guess\n";
-		(m_animation->set_anim_type(getAnimationType());
-	}
-	result.setPosition(WorldObject::get_position());
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
-		result.scale(-1.f, 1.f);
-	return result;
-}*/

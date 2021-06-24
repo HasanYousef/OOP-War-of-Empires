@@ -17,10 +17,10 @@ void AirBomb::move() {
 			(m_gravityClock->getElapsedTime().asSeconds())) / 2 );
 
 		sf::Vector2f x = sf::Vector2f(
-			WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 0.3 : -0.3),
-			WorldObject::get_position().y + gravity);
+			WorldObject::getPosition().x + ((WorldObject::getObjectTeam()) ? 0.3 : -0.3),
+			WorldObject::getPosition().y + gravity);
 
-		WorldObject::set_position(x);
+		WorldObject::setPosition(x);
 	}
 }
 
@@ -33,12 +33,11 @@ bool AirBomb::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::
 				if (!(*fighter)->getDamaged(m_damage))
 					(*fighter)->setAnimationType(AnimationType::Die);
 				*m_hit = true;
-				Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
+
 				return true;
 			}
 		if (create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y) {
 			*m_hit = true;
-			Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
 			return true;
 		}
 
@@ -54,7 +53,7 @@ bool AirBomb::getHit() {
 
 //-------------------------------------------------
 void AirBomb::draw(float delta) const {
-	Window::instance().get_window()->draw(create(delta));
+	Window::instance().getWindow()->draw(create(delta));
 }
 
 //-------------------------------------------------
@@ -62,16 +61,16 @@ void AirBomb::draw(float delta) const {
 
 sf::Sprite AirBomb::create(float f) const {
 	if (*m_hit && m_animation->getCurrFrame() == 0)
-		m_animation->set_anim();
+		m_animation->setAnim();
 
-	m_animation->set_anim_module(m_level);
+	m_animation->setAnimModule(m_level);
 
-	auto result = sf::Sprite(*(m_animation->get_texture()));
+	auto result = sf::Sprite(*(m_animation->getTexture()));
 
 	if(m_animation->update(f))
 		*m_explosionDone = true;
 
-	result.setPosition(WorldObject::get_position());
+	result.setPosition(WorldObject::getPosition());
 	result.setScale(30.0f / result.getLocalBounds().width,
 		20.0f / result.getLocalBounds().height);
 	if (*m_hit) {
@@ -80,7 +79,7 @@ sf::Sprite AirBomb::create(float f) const {
 		result.setPosition(result.getPosition() + sf::Vector2f(result.getGlobalBounds().width * (0.4) *(m_objectTeam ? -1:1),
 			- result.getGlobalBounds().height*0.4));
 	}
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 }

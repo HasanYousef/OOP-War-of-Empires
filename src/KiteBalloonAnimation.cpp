@@ -1,8 +1,8 @@
 #pragma once
 #include "KiteBalloonAnimation.h"
 
-std::shared_ptr <sf::Texture> KiteBalloonAnimation::get_texture() const {
-	return Textures::instance().get_kite_balloon_texture((m_kiteLevel > 2)? 2: m_kiteLevel, m_currFrame);
+std::shared_ptr <sf::Texture> KiteBalloonAnimation::getTexture() const {
+	return Textures::instance().getKiteBalloonTexture((m_kiteLevel > 2)? 2: m_kiteLevel, m_currFrame);
 }
 
 bool KiteBalloonAnimation::update(float deltaTime) {
@@ -31,10 +31,10 @@ bool KiteBalloonAnimation::update(float deltaTime) {
 	return false;
 }
 
-void KiteBalloonAnimation::set_anim() {
+void KiteBalloonAnimation::setAnim() {
 	m_currFrame = 0;
 }
 
-void KiteBalloonAnimation::set_kite_level(int newKiteLevel) {
+void KiteBalloonAnimation::setKiteLevel(int newKiteLevel) {
 	m_kiteLevel = newKiteLevel;
 }

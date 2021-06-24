@@ -10,7 +10,7 @@ public:
 	void draw() const;
 private:
 	sf::Sprite create() const;
-	void draw_text() const;
+	void drawText() const;
 	float m_currHealth;
 	float m_maxHealth;
 };

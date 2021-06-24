@@ -9,10 +9,10 @@ Castle::Castle(const sf::Vector2f& p, const int& objectTeam)
 //we creat the texture that we want to print it 
 sf::Sprite Castle::create(float) const{
 	sf::Sprite result = sf::Sprite(*Textures::instance().
-		get_world_obj_texture(WorldObjectType::Castle));
-	result.setPosition(get_position());
+		getWorldObjTexture(WorldObjectType::Castle));
+	result.setPosition(getPosition());
 	result.scale(0.625f, 0.625f);
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 } 

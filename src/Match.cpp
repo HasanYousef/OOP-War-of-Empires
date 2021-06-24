@@ -10,7 +10,7 @@ void Match::run() {
 	sf::Clock clock;
 	sf::Time time;
 	float deltaTime = 0;
-	std::shared_ptr<sf::RenderWindow> window = Window::instance().get_window();
+	std::shared_ptr<sf::RenderWindow> window = Window::instance().getWindow();
 
 	std::shared_ptr<sf::Sound> music = Sounds::instance().getSound(SoundType::InGameMusic);
 	music->play();
@@ -18,12 +18,12 @@ void Match::run() {
 
 	bool pressed = false;
 	sf::Vector2f location;
-	m_enemyEmpire.giveMoney(100);
 	AI ai;
+	//m_enemyEmpire.giveMoney(500);
 	while (window->isOpen()) {
 		deltaTime = clock.restart().asSeconds();
 		window->pollEvent(event);
-		draw_world(deltaTime);
+		drawWorld(deltaTime);
 
 		// checking actions done in the game's window
 		switch (event.type) {
@@ -58,11 +58,11 @@ void Match::run() {
 		m_playerEmpire.getLayedBomb();
 		m_playerEmpire.getSentBullet();
 		m_playerEmpire.moveAirUnites();
-		m_playerEmpire.colliedAirUnites(m_enemyEmpire.getFighters(), m_floor.get_position());
+		m_playerEmpire.colliedAirUnites(m_enemyEmpire.getFighters(), m_floor.getPosition());
 		m_enemyEmpire.getLayedBomb();
 		m_enemyEmpire.getSentBullet();
 		m_enemyEmpire.moveAirUnites();
-		m_enemyEmpire.colliedAirUnites(m_playerEmpire.getFighters(), m_floor.get_position());
+		m_enemyEmpire.colliedAirUnites(m_playerEmpire.getFighters(), m_floor.getPosition());
 		// collect money of the fully dead
 		m_playerEmpire.collectEnemyMoney(m_enemyEmpire.getFighters());
 		m_enemyEmpire.collectEnemyMoney(m_playerEmpire.getFighters());
@@ -86,8 +86,8 @@ void Match::run() {
 	}
 }
 
-void Match::draw_world(float delta) {
-	Window::instance().get_window()->clear();
+void Match::drawWorld(float delta) {
+	Window::instance().getWindow()->clear();
 
 	m_background.draw(0);
 	m_floor.draw(0);
@@ -95,13 +95,13 @@ void Match::draw_world(float delta) {
 	m_enemyEmpire.draw(delta);
 	m_UI.draw();
 
-	Window::instance().get_window()->display();
+	Window::instance().getWindow()->display();
 }
 
 void Match::buyFighter(const sf::Vector2f& pos) {
 	sf::Vector2f spawnPos(0, 1080 - 120);
 
-	switch (m_UI.handle_click_fighters(pos)) {
+	switch (m_UI.handleClickFighters(pos)) {
 	case FighterType::Tank1:
 		if (m_playerEmpire.getMoney() >= MELEE_1_WORTH) {
 			m_playerEmpire.addFighter(std::make_shared<MeleeFighter1>
@@ -148,10 +148,10 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 		break;
 	}
 
-	if (m_UI.handle_click_balloon(pos))
+	if (m_UI.handleClickBalloon(pos))
 		m_playerEmpire.addKiteBalloon();
 
-	int stand = m_UI.handle_click_turetts(pos);
+	int stand = m_UI.handleClickTuretts(pos);
 	if (stand != -1) {
 		int type = m_playerEmpire.buyTurett(stand);
 		if (type != -1)

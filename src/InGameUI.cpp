@@ -24,9 +24,9 @@ InGameUI::InGameUI()
 void InGameUI::update(int money, int playerHealth, int enemyHealth) {
 	for (int i = 0; i < m_shop.size(); i++) {
 		if (m_shop[i])
-			m_shop[i]->set_can_buy(money >= m_shop[i]->get_price());
+			m_shop[i]->setCanBuy(money >= m_shop[i]->getPrice());
 	}
-	m_kiteBalloon->set_can_buy(true);
+	m_kiteBalloon->setCanBuy(true);
 	m_leftCastleHealthbar.update(playerHealth);
 	m_rightCastleHealthbar.update(enemyHealth);
 	m_money = money;
@@ -45,29 +45,29 @@ void InGameUI::draw() const {
 void InGameUI::drawMoney(int money) const {
 	sf::Text text;
 	text.setString("$" + std::to_string(money));
-	text.setFont(*Textures::instance().get_font());
+	text.setFont(*Textures::instance().getFont());
 	text.setCharacterSize(32);
 	text.setPosition(14, 290);
 
-	Window::instance().get_window()->draw(text);
+	Window::instance().getWindow()->draw(text);
 }
 
-FighterType InGameUI::handle_click_fighters(const sf::Vector2f location) const {
+FighterType InGameUI::handleClickFighters(const sf::Vector2f location) const {
 	for (int i = 0; i < NUM_OF_FIGHTER_TYPES; i++)
-		if (m_shop[i] && m_shop[i]->handle_click(location))
+		if (m_shop[i] && m_shop[i]->handleClick(location))
 			return FighterType(i);
 	return FighterType::Nothing;
 }
 
-int InGameUI::handle_click_turetts(const sf::Vector2f location) const {
+int InGameUI::handleClickTuretts(const sf::Vector2f location) const {
 	for (int i = NUM_OF_FIGHTER_TYPES; i < m_shop.size(); i++)
-		if (m_shop[i] && m_shop[i]->handle_click(location))
+		if (m_shop[i] && m_shop[i]->handleClick(location))
 			return i - NUM_OF_FIGHTER_TYPES;
 	return -1;
 }
 
-bool InGameUI::handle_click_balloon(const sf::Vector2f location) const {
-	return m_kiteBalloon->handle_click(location);
+bool InGameUI::handleClickBalloon(const sf::Vector2f location) const {
+	return m_kiteBalloon->handleClick(location);
 }
 
 void InGameUI::setTurettType(int stand, int type) {

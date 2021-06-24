@@ -63,10 +63,10 @@ void Fighter::move(const std::shared_ptr<Fighter>& nextAlly,
 			m_clock.restart();
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
-				WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 1 : -1),
-				WorldObject::get_position().y);
+				WorldObject::getPosition().x + ((WorldObject::getObjectTeam()) ? 1 : -1),
+				WorldObject::getPosition().y);
 
-			WorldObject::set_position(x);
+			WorldObject::setPosition(x);
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&

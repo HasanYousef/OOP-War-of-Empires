@@ -7,14 +7,14 @@
 class BuyWorldObject {
 public:
 	BuyWorldObject(sf::Vector2f, int);
-	void set_can_buy(bool);
-	int get_price();
+	void setCanBuy(bool);
+	int getPrice();
 	virtual void setType(int) = 0;
 	void draw() const;
-	virtual bool handle_click(const sf::Vector2f location) const;
+	virtual bool handleClick(const sf::Vector2f location) const;
 
 protected:
-	virtual void draw_object() const = 0;
+	virtual void drawObject() const = 0;
 
 	BuyWorldObjectBackground m_background;
 	std::unique_ptr<BuyButton> m_button;

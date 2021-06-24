@@ -10,13 +10,13 @@ void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 }
 
 void Empire::addKiteBalloon() {
-	m_kiteBalloon = std::make_shared<KiteBalloon>(sf::Vector2f(m_team ? 0 : 1920, 50), m_team);
+	m_kiteBalloon = std::make_shared<KiteBalloon>(sf::Vector2f(m_team ? 0 : 1920, 20), m_team);
 }
 
 void Empire::moveKiteBalloon() {
 	if (m_kiteBalloon != NULL) {
 		m_kiteBalloon->move();
-		if (((m_team == LEFT_TEAM) ? m_kiteBalloon->get_position().x > 1920 : m_kiteBalloon->get_position().x < 0))
+		if (((m_team == LEFT_TEAM) ? m_kiteBalloon->getPosition().x > 1920 : m_kiteBalloon->getPosition().x < 0))
 			m_kiteBalloon.reset();
 	}
 }

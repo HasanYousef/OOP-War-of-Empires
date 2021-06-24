@@ -2,9 +2,9 @@
 #include "RangeFighter4.h"
 
 RangeFighter4::RangeFighter4(const sf::Vector2f& p, const int& objectTeam)
-	: RangeFighter(p + sf::Vector2f(0, -30), objectTeam, RANGE_4_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))
-		, RANGE_4_DAMAGE* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3))),
-		RANGE_4_WORTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))) {
+	: RangeFighter(p + sf::Vector2f(0, -30), objectTeam, RANGE_4_HEALTH* (Levels::instance().getLevel(objectTeam, int(FighterType::Tank3)))
+		, RANGE_4_DAMAGE* (Levels::instance().getLevel(objectTeam, int(FighterType::Tank3))),
+		RANGE_4_WORTH* (Levels::instance().getLevel(objectTeam, int(FighterType::Tank3)))) {
 	reSetAnimationObject(FighterType::Tank3);
 }
 
@@ -24,11 +24,11 @@ void RangeFighter4::move(const std::shared_ptr<Fighter>& nextAlly,
 
 			// moving enemy
 			sf::Vector2f x = sf::Vector2f(
-				WorldObject::get_position().x + ((WorldObject::get_object_team()) ? 1 : -1),
-				WorldObject::get_position().y);
+				WorldObject::getPosition().x + ((WorldObject::getObjectTeam()) ? 1 : -1),
+				WorldObject::getPosition().y);
 
-			WorldObject::set_position(x);
-			getGunFire()->set_position(x + sf::Vector2f((WorldObject::get_object_team() == LEFT_TEAM) ? 150 * 0.625 : -150 * 0.625, 52 * 0.625));
+			WorldObject::setPosition(x);
+			getGunFire()->setPosition(x + sf::Vector2f((WorldObject::getObjectTeam() == LEFT_TEAM) ? 150 * 0.625 : -150 * 0.625, 52 * 0.625));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&
@@ -42,22 +42,22 @@ void RangeFighter4::move(const std::shared_ptr<Fighter>& nextAlly,
 
 sf::Sprite RangeFighter4::create(float f) const {
 	auto lastAimation = m_animation->update(0);
-	auto result = sf::Sprite(*m_animation->get_texture());
+	auto result = sf::Sprite(*m_animation->getTexture());
 	if (m_animation->update(f) != getAnimationType()) {
 		if (getHealth() <= 0 && m_animation->update(0) == AnimationType::Idle && lastAimation == AnimationType::Die && m_animation->getCurrFrame() == 0) {
 			setFullyDead();
 		}
-		m_animation->set_anim_type(getAnimationType());
+		m_animation->setAnimType(getAnimationType());
 	}
-	result.setPosition(WorldObject::get_position());
+	result.setPosition(WorldObject::getPosition());
 	result.setScale(200.0f / result.getLocalBounds().width,
 		200.0f / result.getLocalBounds().height);
 	result.scale(0.625f, 0.625f);
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 }
 
 void RangeFighter4::addLevel() {
-	Levels::instance().add_level(WorldObject::m_objectTeam, int(FighterType::Tank3));
+	Levels::instance().addLevel(WorldObject::m_objectTeam, int(FighterType::Tank3));
 }

@@ -7,11 +7,11 @@ UIObject::UIObject(sf::Vector2f position) :
 {}
 
 void UIObject::draw() const {
-	(Window::instance().get_window())->draw(create());
+	(Window::instance().getWindow())->draw(create());
 }
 
 sf::Sprite UIObject::create(UITexture type) const {
-	sf::Sprite obj = sf::Sprite(*(Textures::instance().get_ui_texture(type)));
+	sf::Sprite obj = sf::Sprite(*(Textures::instance().getUiTexture(type)));
 	obj.setPosition({ m_position.x, m_position.y });
 	return obj;
 }

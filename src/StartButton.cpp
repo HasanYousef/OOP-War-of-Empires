@@ -2,7 +2,6 @@
 
 #include "StartButton.h"
 
-// 50, 940
 StartButton::StartButton() : Button({50, 940})
 {}
 

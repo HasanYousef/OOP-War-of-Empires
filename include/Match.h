@@ -15,7 +15,7 @@ public:
 	void run();
 
 private:
-	void draw_world(float);
+	void drawWorld(float);
 	void buyFighter(const sf::Vector2f&);
 	//---------------------------
 	MatchBackground m_background;

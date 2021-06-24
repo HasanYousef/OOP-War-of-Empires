@@ -7,11 +7,11 @@ Levels& Levels::instance() {
 	return inst;
 }
 
-int Levels::get_level(const bool& team, const int& objectType) const {
+int Levels::getLevel(const bool& team, const int& objectType) const {
 	return m_levels[team ? 0:1][objectType];
 }
 
-void Levels::add_level(const bool& team, const int& objectType){
+void Levels::addLevel(const bool& team, const int& objectType){
 	if((m_levels[team ? 0 : 1][objectType]) < 3)
 		(m_levels[team ? 0 : 1][objectType])++;
 }
@@ -28,9 +28,9 @@ Levels::Levels() {
 	}
 }
 
-int Levels::get_kite_level(const bool& team) const {
+int Levels::getKiteLevel(const bool& team) const {
 	return m_kiteLevels[team ? 0 : 1];
 }
-void Levels::add_kite_level(const bool& team) {
+void Levels::addKiteLevel(const bool& team) {
 	(m_kiteLevels[team ? 0 : 1])++;
 }

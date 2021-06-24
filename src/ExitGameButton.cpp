@@ -2,7 +2,6 @@
 
 #include "ExitGameButton.h"
 
-// 270, 940
 ExitGameButton::ExitGameButton() : Button({270, 940})
 {}
 

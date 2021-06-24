@@ -8,7 +8,7 @@ public:
 	void setType(int) {};
 
 private:
-	void draw_object() const;
+	void drawObject() const;
 
 	FighterType m_fighterType;
 };

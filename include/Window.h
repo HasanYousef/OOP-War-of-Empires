@@ -6,7 +6,7 @@
 class Window {
 public:
 	static Window& instance();
-	std::shared_ptr<sf::RenderWindow> get_window();
+	std::shared_ptr<sf::RenderWindow> getWindow();
 
 private:
 	Window();

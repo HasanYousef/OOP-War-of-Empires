@@ -4,7 +4,7 @@ void Menu::run() {
 	sf::Event event;
 	sf::Clock clock;
 	sf::Time time;
-	std::shared_ptr<sf::RenderWindow> window = Window::instance().get_window();
+	std::shared_ptr<sf::RenderWindow> window = Window::instance().getWindow();
 
 	std::shared_ptr<sf::Sound> music = Sounds::instance().getSound(SoundType::MenuMusic);
 	music->play();
@@ -24,11 +24,11 @@ void Menu::run() {
 			auto location = window->mapPixelToCoords(
 				{ event.mouseButton.x, event.mouseButton.y }
 			);
-			if (m_exitGameButton.handle_click(location)) {
+			if (m_exitGameButton.handleClick(location)) {
 				window->close();
 				break;
 			}
-			if (m_startButton.handle_click(location)) {
+			if (m_startButton.handleClick(location)) {
 				music->stop();
 				return;
 			}

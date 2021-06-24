@@ -1,11 +1,11 @@
 #pragma once
 #include "AirBombAnimation.h"
 
-std::shared_ptr <sf::Texture> AirBombAnimation::get_texture() const {
+std::shared_ptr <sf::Texture> AirBombAnimation::getTexture() const {
 	if (!m_explosive)
-		return Textures::instance().get_bomb_texture((m_airBombModule > 3)? 3:m_airBombModule);
+		return Textures::instance().getBombTexture((m_airBombModule > 3)? 3:m_airBombModule);
 	else
-		return Textures::instance().get_explosion_texture((m_airBombModule > 2) ? 2 : m_airBombModule,m_currFrame);
+		return Textures::instance().getExplosionTexture((m_airBombModule > 2) ? 2 : m_airBombModule,m_currFrame);
 }
 
 bool AirBombAnimation::update(float delta) {
@@ -26,12 +26,12 @@ bool AirBombAnimation::update(float delta) {
 	return Animation::update(0);
 }
 
-void AirBombAnimation::set_anim() {
+void AirBombAnimation::setAnim() {
 	m_currFrame = 0;
 	m_explosive = true;
 }
 
-void AirBombAnimation::set_anim_module(int airBombModule) {
+void AirBombAnimation::setAnimModule(int airBombModule) {
 	if (airBombModule >= 1 && airBombModule <= 3)
 		m_airBombModule = airBombModule;
 }

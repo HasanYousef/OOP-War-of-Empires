@@ -32,18 +32,18 @@ bool Bullet::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::V
 }
 
 void Bullet::draw(float delta) const {
-	Window::instance().get_window()->draw(create(delta));
+	Window::instance().getWindow()->draw(create(delta));
 }
 
 sf::Sprite Bullet::create(float) const {
-	auto sprite = sf::Sprite(*Textures::instance().get_bullet());
+	auto sprite = sf::Sprite(*Textures::instance().getBullet());
 	sprite.setPosition(m_position);
 	sprite.setScale(0.5, 0.5);
 	sf::FloatRect spriteRect = sprite.getLocalBounds();
 	sprite.setOrigin(spriteRect.left + spriteRect.width / 2.0f,
 		spriteRect.top + spriteRect.height / 2.0f);
 	sprite.rotate(m_deg);
-	if (WorldObject::get_object_team() == RIGHT_TEAM)
+	if (WorldObject::getObjectTeam() == RIGHT_TEAM)
 		sprite.scale(-1.f, 1.f);
 	return sprite;
 }

@@ -2,8 +2,6 @@
 
 const float PI = 3.14159265;
 
-const int INIT_MONEY = 4000;
-
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
 const int CASTLE_Y_INDEX = 1015;
@@ -37,19 +35,15 @@ SPEED = 0.1f;
 
 const int NUM_OF_FIRE_ANIMATION_FRAMES = 10;
 
-// bomb consts
-const int BOMB_DAMAGE = 250;
-
-// tower range
-const int TOWER_RANGE = 400;
+const int BOMB_DAMAGE = 100;
 
 // fighters health
-const int MELEE_1_HEALTH = 100;
-const int MELEE_2_HEALTH = 200;
-const int RANGE_1_HEALTH = 80;
-const int RANGE_2_HEALTH = 160;
-const int RANGE_3_HEALTH = 240;
-const int RANGE_4_HEALTH = 500;
+const int MELEE_1_HEALTH = 300;
+const int MELEE_2_HEALTH = 350;
+const int RANGE_1_HEALTH = 130;
+const int RANGE_2_HEALTH = 180;
+const int RANGE_3_HEALTH = 250;
+const int RANGE_4_HEALTH = 750;
 
 // fighters damage
 const int MELEE_1_DAMAGE = 20;
@@ -57,7 +51,7 @@ const int MELEE_2_DAMAGE = 30;
 const int RANGE_1_DAMAGE = 30;
 const int RANGE_2_DAMAGE = 40;
 const int RANGE_3_DAMAGE = 50;
-const int RANGE_4_DAMAGE = 80;
+const int RANGE_4_DAMAGE = 50;
 
 // fighters gold Worth
 const int MELEE_1_WORTH = 100;
@@ -67,10 +61,23 @@ const int RANGE_2_WORTH = 200;
 const int RANGE_3_WORTH = 300;
 const int RANGE_4_WORTH = 600;
 
-//time
+// fighters Level up worth
+const int BALOONKIT_1_LEVELWORTH = 400;
+const int MELEE_1_LEVELWORTH = 400;
+const int MELEE_2_LEVELWORTH = 600;
+const int RANGE_1_LEVELWORTH = 350;
+const int RANGE_2_LEVELWORTH = 450;
+const int RANGE_3_LEVELWORTH = 700;
+const int RANGE_4_LEVELWORTH = 1000;
+
+const int ATTACK_RANGE = 250;
+
+// Wave time
 const int WAVE = 100;
 
-const int BALLOON_TIME = 4;
+const int TOWER_RANGE = 600;
+
+const int BALLOON_TIME = 100;
 
 const int NUM_OF_SOUNDS = 4;
 enum class SoundType {
@@ -78,7 +85,7 @@ enum class SoundType {
 	MenuMusic,
 	InGameMusic,
 	ShootSoundEffect,
-	ExplosionSoundEffect,
+	ExplosionSoundEffect
 
 };
 
