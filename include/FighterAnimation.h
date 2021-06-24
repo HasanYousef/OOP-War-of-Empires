@@ -8,6 +8,7 @@ public:
 	void set_anim_type(AnimationType);
 	std::shared_ptr <sf::Texture> get_texture() const;
 	AnimationType update(float);
+	FighterType& getFighterType();
 
 private:
 	FighterType m_fighterType;

@@ -63,6 +63,9 @@ void Match::run() {
 		m_enemyEmpire.getSentBullet();
 		m_enemyEmpire.moveAirUnites();
 		m_enemyEmpire.colliedAirUnites(m_playerEmpire.getFighters(), m_floor.get_position());
+		// collect money of the fully dead
+		m_playerEmpire.collectEnemyMoney(m_enemyEmpire.getFighters());
+		m_enemyEmpire.collectEnemyMoney(m_playerEmpire.getFighters());
 		// collect the dead
 		m_playerEmpire.collectDead();
 		m_enemyEmpire.collectDead();
@@ -96,7 +99,7 @@ void Match::draw_world(float delta) {
 }
 
 void Match::buyFighter(const sf::Vector2f& pos) {
-	sf::Vector2f spawnPos(0, 927);
+	sf::Vector2f spawnPos(0, 1080 - 120);
 
 	switch (m_UI.handle_click_fighters(pos)) {
 	case FighterType::Tank1:
@@ -144,13 +147,14 @@ void Match::buyFighter(const sf::Vector2f& pos) {
 	default:
 		break;
 	}
+
+	if (m_UI.handle_click_balloon(pos))
+		m_playerEmpire.addKiteBalloon();
+
 	int stand = m_UI.handle_click_turetts(pos);
 	if (stand != -1) {
 		int type = m_playerEmpire.buyTurett(stand);
 		if (type != -1)
 			m_UI.setTurettType(stand, type + 1);
 	}
-
-	if (m_UI.handle_click_balloon(pos))
-		m_playerEmpire.addKiteBalloon();
 }

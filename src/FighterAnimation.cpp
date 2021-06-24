@@ -26,3 +26,7 @@ AnimationType FighterAnimation::update(float deltaTime) {
 
 	return m_currAnim;
 }
+
+FighterType& FighterAnimation::getFighterType() {
+	return m_fighterType;
+}

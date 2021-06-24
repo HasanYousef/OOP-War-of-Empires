@@ -28,7 +28,7 @@ void RangeFighter3::move(const std::shared_ptr<Fighter>& nextAlly,
 				WorldObject::get_position().y);
 
 			WorldObject::set_position(x);
-			getGunFire()->set_position(x + sf::Vector2f(88, 40));
+			getGunFire()->set_position(x + sf::Vector2f(WorldObject::m_objectTeam ? 85*0.625:-85 * 0.625, 30 * 0.625));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&

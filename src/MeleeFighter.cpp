@@ -55,7 +55,14 @@ sf::Sprite MeleeFighter::create(float f) const {
 		}
 		m_animation->set_anim_type(getAnimationType());
 	}
-	result.setPosition(WorldObject::get_position());
+	sf::Vector2f temp;
+	if(m_animation->getFighterType() == FighterType::Tank2)
+		temp = (getAnimationType() == AnimationType::Attack || getAnimationType() == AnimationType::Die) ? 
+			sf::Vector2f(0, -30) : sf::Vector2f(0, 0);
+	else
+		temp = (getAnimationType() == AnimationType::Die) ? sf::Vector2f(0, -30) : sf::Vector2f(0, 0);
+	result.setPosition(WorldObject::get_position() + temp);
+	result.scale(0.625f, 0.625f);
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;

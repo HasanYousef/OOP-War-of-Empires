@@ -22,12 +22,12 @@ sf::Sprite Turett::create(float delta) const {
 	if (WorldObject::get_object_team() == RIGHT_TEAM) {
 		sprite.scale(-1.f, 1.f);
 	}
-	sprite.scale(0.4, 0.4);
+	sprite.scale(0.25, 0.25);
 	return sprite;
 }
 
 void Turett::aim(const std::shared_ptr<Fighter>& enemy) {
-	if (enemy) {
+	if (enemy && getDistance(create(0), enemy->create(0)) <= TOWER_RANGE) {
 		m_isShooting = true;
 		auto enemyPos = enemy->create(0).getPosition();
 		enemyPos.y += enemy->create(0).getGlobalBounds().height;

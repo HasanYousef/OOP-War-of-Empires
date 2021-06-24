@@ -3,14 +3,14 @@
 #include <Empire.h>
 
 Empire::Empire(bool team) : m_team(team),
-m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 630), m_team)) {}
+m_castle(std::make_shared<Castle>(sf::Vector2f(m_team ? 0 : 1920, 768.75), m_team)) {}
 
 void Empire::addFighter(std::shared_ptr <Fighter> fighter) {
 	m_fighters.push_front(fighter);
 }
 
 void Empire::addKiteBalloon() {
-	m_kiteBalloon = std::make_shared<KiteBalloon>(sf::Vector2f(m_team ? 0 : 1920, 20), m_team);
+	m_kiteBalloon = std::make_shared<KiteBalloon>(sf::Vector2f(m_team ? 0 : 1920, 50), m_team);
 }
 
 void Empire::moveKiteBalloon() {
@@ -59,15 +59,18 @@ void Empire::draw(float delta) const {
 }
 
 void Empire::attackFighters(std::shared_ptr <Castle> castle, std::shared_ptr <Fighter> enemyFighter) {
-	int fighternum = 0;
 	for (auto fighter = m_fighters.begin(); fighter != m_fighters.end(); ++fighter) {
 		fighter->get()->attack(enemyFighter, castle);
 		if (enemyFighter.get() != NULL && *enemyFighter->fullyDead()) {
-			m_money += int(enemyFighter->getGoldWorth()) + 30;
 			return;
 		}
-		fighternum++;
 	}
+}
+
+void Empire::collectEnemyMoney(const std::list<std::shared_ptr<Fighter>>& enemies) {
+	for(std::shared_ptr<Fighter> enemyFighter : enemies)
+		if (enemyFighter.get() != NULL && *enemyFighter->fullyDead())
+			m_money += int(enemyFighter->getGoldWorth()) * 1.25;
 }
 
 void Empire::collectDead() {
@@ -117,7 +120,7 @@ int Empire::buyTurett(int stand) {
 	if (stand != 0 && stand != 1)
 		return -1;
 
-	auto pos = sf::Vector2f(m_team ? 150 : 1670, 600 + stand * 200);
+	auto pos = sf::Vector2f((m_team ? 105 : 1920 - 105) - stand * 15, 820 + stand * 70);
 	if (!m_turetts[stand]) {
 		if (m_money >= TURETT1_PRICE) {
 			m_turetts[stand] = std::make_unique<Turett1>(pos, m_team);
@@ -146,8 +149,10 @@ std::shared_ptr <Castle> Empire::getCastle() {
 }
 
 std::shared_ptr <Fighter> Empire::getFirstFighter() {
-	std::shared_ptr<Fighter> temp(nullptr);
-	return (m_fighters.size() > 0) ? m_fighters.back() : temp;
+	for (auto fighter = m_fighters.rbegin(); fighter != m_fighters.rend(); ++fighter)
+		if ((*fighter)->getHealth() > 0)
+			return (*fighter);
+	return std::shared_ptr<Fighter>(nullptr);
 }
 
 std::list<std::shared_ptr<Fighter>>& Empire::getFighters() {
@@ -162,5 +167,5 @@ void Empire::colliedAirUnites(std::list <std::shared_ptr <Fighter>>& enemies, co
 	for (auto airUnit : m_airUnites)
 		airUnit->collied(enemies, floorPosition);
 	m_airUnites.remove_if([](std::shared_ptr<AirUnites> airUnit)
-		{ return (*airUnit).getHit(); });
+		{return (*airUnit).getHit(); });
 }

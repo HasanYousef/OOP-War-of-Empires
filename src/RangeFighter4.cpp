@@ -2,7 +2,7 @@
 #include "RangeFighter4.h"
 
 RangeFighter4::RangeFighter4(const sf::Vector2f& p, const int& objectTeam)
-	: RangeFighter(p + sf::Vector2f(0, -50), objectTeam, RANGE_4_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))
+	: RangeFighter(p + sf::Vector2f(0, -30), objectTeam, RANGE_4_HEALTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))
 		, RANGE_4_DAMAGE* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3))),
 		RANGE_4_WORTH* (Levels::instance().get_level(objectTeam, int(FighterType::Tank3)))) {
 	reSetAnimationObject(FighterType::Tank3);
@@ -28,7 +28,7 @@ void RangeFighter4::move(const std::shared_ptr<Fighter>& nextAlly,
 				WorldObject::get_position().y);
 
 			WorldObject::set_position(x);
-			getGunFire()->set_position(x + sf::Vector2f((WorldObject::get_object_team() == LEFT_TEAM) ? 150 : -150, 60));
+			getGunFire()->set_position(x + sf::Vector2f((WorldObject::get_object_team() == LEFT_TEAM) ? 150 * 0.625 : -150 * 0.625, 52 * 0.625));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&
@@ -52,6 +52,7 @@ sf::Sprite RangeFighter4::create(float f) const {
 	result.setPosition(WorldObject::get_position());
 	result.setScale(200.0f / result.getLocalBounds().width,
 		200.0f / result.getLocalBounds().height);
+	result.scale(0.625f, 0.625f);
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;

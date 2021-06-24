@@ -23,6 +23,7 @@ public:
 	void moveFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
 	void draw(float) const;
 	void attackFighters(std::shared_ptr <Castle>, std::shared_ptr <Fighter>);
+	void collectEnemyMoney(const std::list<std::shared_ptr<Fighter>>&);
 	void collectDead();
 	void pay(int);
 	void addKiteBalloon();
@@ -45,7 +46,7 @@ public:
 
 private:
 	bool m_team;
-	int m_money = 1000;
+	int m_money = INIT_MONEY;
 	std::list <std::shared_ptr <Fighter>> m_fighters;
 	std::shared_ptr <Castle> m_castle;
 	std::shared_ptr <KiteBalloon> m_kiteBalloon;

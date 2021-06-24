@@ -23,3 +23,4 @@ protected:
 	bool m_objectTeam; // "true" - if on ally team, "false" if on enemy team
 };
 
+float getDistance(const sf::Sprite& right, const sf::Sprite& left);

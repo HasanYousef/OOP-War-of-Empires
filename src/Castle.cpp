@@ -11,6 +11,7 @@ sf::Sprite Castle::create(float) const{
 	sf::Sprite result = sf::Sprite(*Textures::instance().
 		get_world_obj_texture(WorldObjectType::Castle));
 	result.setPosition(get_position());
+	result.scale(0.625f, 0.625f);
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;

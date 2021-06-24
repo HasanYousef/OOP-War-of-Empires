@@ -2,6 +2,8 @@
 
 const float PI = 3.14159265;
 
+const int INIT_MONEY = 4000;
+
 // Castle Indexes:
 const int CASTLE_X_INDEX = 0;
 const int CASTLE_Y_INDEX = 1015;
@@ -35,7 +37,11 @@ SPEED = 0.1f;
 
 const int NUM_OF_FIRE_ANIMATION_FRAMES = 10;
 
-const int BOMB_DAMAGE = 100;
+// bomb consts
+const int BOMB_DAMAGE = 250;
+
+// tower range
+const int TOWER_RANGE = 400;
 
 // fighters health
 const int MELEE_1_HEALTH = 100;
@@ -63,6 +69,8 @@ const int RANGE_4_WORTH = 600;
 
 //time
 const int WAVE = 100;
+
+const int BALLOON_TIME = 4;
 
 const int NUM_OF_SOUNDS = 4;
 enum class SoundType {
@@ -97,8 +105,6 @@ enum class FighterType {
 
 	Nothing
 };
-
-const int BALLOON_TIME = 4;
 
 const int TURETT1_PRICE = 1200,
 TURETT2_PRICE = 2200,

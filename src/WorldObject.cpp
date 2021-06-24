@@ -41,3 +41,11 @@ sf::Sprite WorldObject::create() const {
 void WorldObject::draw(float delta) const {
 	Window::instance().get_window()->draw(create(delta));
 }
+
+float getDistance(const sf::Sprite& right, const sf::Sprite& left) {
+	float distance = (std::abs(
+		std::sqrt(((right.getPosition().x - left.getPosition().x) * (right.getPosition().x - left.getPosition().x))
+			+ ((right.getPosition().y - left.getPosition().y) * (right.getPosition().y - left.getPosition().y)))));
+
+	return distance;
+}

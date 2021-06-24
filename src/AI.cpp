@@ -27,7 +27,7 @@ void AI::bot(Empire& empire) {
 		}
 		m_score += 100;
 	}
-	sf::Vector2f spawnPos(empire.getCastle()->get_object_team() ? 20 : 1920, 927);
+	sf::Vector2f spawnPos(empire.getCastle()->get_object_team() ? 20 : 1920, 1080 - 120);
 	// buy tanks fighters
 	if (empire.getFightersNum() < (4 + (m_level * 2))) {
 		// buy a TANK VEHICLE
@@ -68,7 +68,8 @@ void AI::bot(Empire& empire) {
 			empire.pay(RANGE_4_WORTH);
 		}
 	}
-	if (empire.getFightersNum() == 0 && m_levelTime.asSeconds() < (WAVE / 2)) {
-		empire.giveMoney(500);
+	if (empire.getFightersNum() == 0 && m_levelTime.asSeconds() < (WAVE / 4)) {
+		empire.giveMoney(750);
+		empire.addKiteBalloon();
 	}
 }

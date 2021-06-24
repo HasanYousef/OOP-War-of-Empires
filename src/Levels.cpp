@@ -12,7 +12,8 @@ int Levels::get_level(const bool& team, const int& objectType) const {
 }
 
 void Levels::add_level(const bool& team, const int& objectType){
-	(m_levels[team ? 0 : 1][objectType])++;
+	if((m_levels[team ? 0 : 1][objectType]) < 3)
+		(m_levels[team ? 0 : 1][objectType])++;
 }
 
 Levels::Levels() {

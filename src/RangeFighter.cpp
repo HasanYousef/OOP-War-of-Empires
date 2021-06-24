@@ -71,7 +71,7 @@ void RangeFighter::move(const std::shared_ptr<Fighter>& nextAlly,
 				WorldObject::get_position().y);
 
 			WorldObject::set_position(x);
-			m_gunFire->set_position(x + sf::Vector2f(80, 20));
+			m_gunFire->set_position(x + sf::Vector2f(WorldObject::m_objectTeam ? 75*0.625: -75 * 0.625,5));
 		}
 	}
 	else if (getAnimationType() == AnimationType::Walk &&
@@ -114,16 +114,11 @@ sf::Sprite RangeFighter::create(float f) const {
 		}
 		m_animation->set_anim_type(getAnimationType());
 	}
-	result.setPosition(WorldObject::get_position());
+	sf::Vector2f temp = (getAnimationType() == AnimationType::Die) ? sf::Vector2f(0, -40) : sf::Vector2f(0, 0);
+	result.setPosition(WorldObject::get_position() + temp);
+	result.scale(0.625f, 0.625f);
 	if (WorldObject::get_object_team() == RIGHT_TEAM)
 		result.scale(-1.f, 1.f);
 	return result;
 }
 
-float getDistance(const sf::Sprite& right, const sf::Sprite& left) {
-	float distance = (std::abs(
-		std::sqrt( ((right.getPosition().x - left.getPosition().x) * (right.getPosition().x - left.getPosition().x))
-			+ ((right.getPosition().y - left.getPosition().y) * (right.getPosition().y - left.getPosition().y)) ) ));
-	
-	return distance;
-}
