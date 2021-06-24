@@ -26,37 +26,37 @@ void AI::bot(Empire& empire) {
 	if (empire.getFightersNum() < (2 + (m_level * 2))) {
 		// buy a TANK VEHICLE
 		if (m_tankFront && empire.getMoney() >= RANGE_4_WORTH) {
-			//empire.addFighter(std::make_shared<RangeFighter4>
-				//(spawnPos, empire.getCastle()->getObjectTeam()));
+			empire.addFighter(std::make_shared<RangeFighter4>
+				(spawnPos, empire.getCastle()->getObjectTeam()));
 			empire.pay(RANGE_4_WORTH);
 			m_tankFront = false;
 		}
 
 		if (empire.getMoney() >= MELEE_2_WORTH) {
-			//empire.addFighter(std::make_shared<MeleeFighter2>
-				//(spawnPos, empire.getCastle()->getObjectTeam()));
+			empire.addFighter(std::make_shared<MeleeFighter2>
+				(spawnPos, empire.getCastle()->getObjectTeam()));
 			empire.pay(MELEE_2_WORTH);
 		}
 		else if (empire.getMoney() >= MELEE_1_WORTH) {
-		//	empire.addFighter(std::make_shared<MeleeFighter1>
-				//(spawnPos, empire.getCastle()->getObjectTeam()));
+			empire.addFighter(std::make_shared<MeleeFighter1>
+				(spawnPos, empire.getCastle()->getObjectTeam()));
 			empire.pay(MELEE_1_WORTH);
 		}
 		// by a shooters
 		while (spawn < 2) {
 			if (empire.getMoney() >= RANGE_3_WORTH) {
-				//empire.addFighter(std::make_shared<RangeFighter3>
-					//(spawnPos, empire.getCastle()->getObjectTeam()));
+				empire.addFighter(std::make_shared<RangeFighter3>
+					(spawnPos, empire.getCastle()->getObjectTeam()));
 				empire.pay(RANGE_3_WORTH);
 			}
 			else if (empire.getMoney() >= RANGE_2_WORTH) {
-				//empire.addFighter(std::make_shared<RangeFighter2>
-			//		(spawnPos, empire.getCastle()->getObjectTeam()));
+				empire.addFighter(std::make_shared<RangeFighter2>
+					(spawnPos, empire.getCastle()->getObjectTeam()));
 				empire.pay(RANGE_2_WORTH);
 			}
 			else if (empire.getMoney() >= RANGE_1_WORTH) {
-				//empire.addFighter(std::make_shared<RangeFighter1>
-			//		(spawnPos, empire.getCastle()->getObjectTeam()));
+				empire.addFighter(std::make_shared<RangeFighter1>
+					(spawnPos, empire.getCastle()->getObjectTeam()));
 				empire.pay(RANGE_1_WORTH);
 			}
 			spawn++;
@@ -71,7 +71,7 @@ void AI::bot(Empire& empire) {
 		}
 	}
 	if (empire.getFightersNum() == 0 && int(m_levelTime.asSeconds()) % (WAVE / 4) == 0) {
-		//empire.giveMoney(1000 * (m_wave + 1));
+		empire.giveMoney(1000 * (m_wave + 1));
 		empire.addKiteBalloon();
 	}
 }

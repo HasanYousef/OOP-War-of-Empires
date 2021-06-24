@@ -10,6 +10,8 @@ const int CASTLE_Y_INDEX = 1015;
 const bool DEAD = false;
 const bool ALIVE = true;
 
+const int INIT_MONEY = 1000;
+
 // object speeds:
 const float MAX_MOVEMENT_SPEED = 50;  // move one pixel every 50 millisec = (1000/50 = 20) pixels each 1 sec
 const float MIN_MOVEMENT_SPEED = 500;
@@ -27,8 +29,8 @@ const int RANGE_DAMAGING_FRAME = 3;
 const int MELEE_DIE_FRAME = 25;
 
 // objects default health
-const int CASTLE_MAX_HEALTH = 1000,
-CASTLE_HEALTH = 1000;
+const int CASTLE_MAX_HEALTH = 8000,
+CASTLE_HEALTH = 8000;
 
 const float ANIMATION_SWITCH_TIME = 0.065f,
 SPEED = 0.1f;

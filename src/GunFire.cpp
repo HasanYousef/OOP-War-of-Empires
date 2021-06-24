@@ -7,6 +7,7 @@ GunFire::GunFire(const sf::Vector2f& p, const bool& objectTeam)
 
 void GunFire::activate() const {
 	*m_activated = true;
+	Sounds::instance().getSound(SoundType::ShootSoundEffect)->play();
 }
 void GunFire::disActivate() const {
 	*m_activated = false;

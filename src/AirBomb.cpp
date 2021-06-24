@@ -33,11 +33,12 @@ bool AirBomb::collied(std::list <std::shared_ptr <Fighter>>& enemies, const sf::
 				if (!(*fighter)->getDamaged(m_damage))
 					(*fighter)->setAnimationType(AnimationType::Die);
 				*m_hit = true;
-
+				Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
 				return true;
 			}
 		if (create(0).getPosition().y + create(0).getGlobalBounds().height >= floorPosition.y) {
 			*m_hit = true;
+			Sounds::instance().getSound(SoundType::ExplosionSoundEffect)->play();
 			return true;
 		}
 
@@ -60,8 +61,9 @@ void AirBomb::draw(float delta) const {
 //we creat the texture that we want to print it 
 
 sf::Sprite AirBomb::create(float f) const {
-	if (*m_hit && m_animation->getCurrFrame() == 0)
+	if (*m_hit && m_animation->getCurrFrame() == 0) {
 		m_animation->setAnim();
+	}
 
 	m_animation->setAnimModule(m_level);
 
